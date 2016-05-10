@@ -10,8 +10,14 @@ public abstract class Pokedex {
 	
 	public abstract ArrayList<String[]> search(String nameID);
 	
+	public abstract String[] exactSearch(String nameID);
+	
+	public abstract boolean boolSearch(String nameID);
+	
 	//Be careful when searching: searching for Pokemon 020, for example, will yield Pokemon 16. Instead, you need to search just for Pokemon 20 
-	public abstract ArrayList<String[]> idSearch(int id);
+	public abstract ArrayList<String[]> idSearch(String id);
+	
+	public abstract String[] exactIDSearch(String id);
 	
 	public abstract ArrayList<String[]> typeSearch(String type);
 	

@@ -14,7 +14,7 @@ public class UbersPokedex extends Pokedex{
 		try 
 		{
 			//FileReader inputPath = new FileReader("interfaz","pokedex",tier+".txt");
-			FileReader inputPath = new FileReader("C:\\Users\\Hugo\\workspace\\BEP\\src\\mathData\\pokedex\\"+tier+".txt");
+			FileReader inputPath = new FileReader("C:\\Users\\Hugo\\Desktop\\BEP\\BEP\\PokeTeam\\src\\mathData\\pokedex\\"+tier+".txt");
 			BufferedReader bufRead = new BufferedReader(inputPath);
 			String line = null;
 			while((line=bufRead.readLine())!=null)
@@ -62,7 +62,39 @@ public class UbersPokedex extends Pokedex{
 	}
 
 	@Override
-	public ArrayList<String[]> idSearch(int id) {
+	public String[] exactSearch(String nameID)
+	{
+		String[] pokemon = new String[ubersPokeList.get(0).length];
+		String name;
+		for(int i=0;i!=ubersPokeList.size();i++)
+		{
+			name=ubersPokeList.get(i)[1];
+			if(name.equals(nameID))
+			{
+				pokemon=ubersPokeList.get(i);
+				//break;
+			}
+		}
+		return pokemon;
+	}
+	
+	@Override
+	public boolean boolSearch(String nameID)
+	{
+		String name;
+		for(int i=0;i!=ubersPokeList.size();i++)
+		{
+			name=ubersPokeList.get(i)[1];
+			if(name.equals(nameID))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public ArrayList<String[]> idSearch(String id) {
 		ArrayList<String[]> pokemon = new ArrayList<String[]>();
 		String number="";
 		for(int i=0;i!=ubersPokeList.size();i++)
@@ -77,7 +109,7 @@ public class UbersPokedex extends Pokedex{
 				number=number.substring(0,number.indexOf("F"));
 			}
 			
-			if(id==Integer.parseInt(number))
+			if(id.equals(number))
 			{
 				pokemon.add(ubersPokeList.get(i));
 				//break;
@@ -86,6 +118,23 @@ public class UbersPokedex extends Pokedex{
 		return pokemon;
 	}
 
+	@Override
+	public String[] exactIDSearch(String id)
+	{
+		String[] pokemon = new String[ubersPokeList.get(0).length];
+		String number="";
+		for(int i=0;i!=ubersPokeList.size();i++)
+		{
+			number=ubersPokeList.get(i)[0];
+			if(id.equals(number))
+			{
+				pokemon=ubersPokeList.get(i);
+				//break;
+			}
+		}
+		return pokemon;
+	}
+	
 	@Override
 	public ArrayList<String[]> typeSearch(String type) {
 		ArrayList<String[]> pokemon = new ArrayList<String[]>();
