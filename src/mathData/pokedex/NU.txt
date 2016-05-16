@@ -236,6 +236,7 @@
 303, Mawile, 50, 85, 85, 55, 55, 50, Steel, Fairy;
 304, Aron, 50, 70, 100, 40, 40, 30, Steel, Rock;
 305, Lairon, 60, 90, 140, 50, 50, 40, Steel, Rock;
+306, Aggron, 70, 110, 180, 60, 60, 50, Steel, Rock;
 307, Meditite, 30, 40, 55, 40, 55, 60, Fighting, Psychic;
 309, Electrike, 40, 45, 40, 65, 40, 65, Electric, Null;
 310, Manectric, 70, 75, 60, 105, 60, 105, Electric, Null;
@@ -334,6 +335,7 @@
 420, Cherubi, 45, 35, 45, 62, 53, 35, Grass, Null;
 421, Cherrim, 70, 60, 70, 87, 78, 85, Grass, Null;
 422, Shellos, 76, 48, 48, 57, 62, 34, Water, Null;
+423, Gastrodon, 111, 83, 68, 92, 82, 39, Water, Ground;
 425, Drifloon, 90, 50, 34, 60, 44, 70, Ghost, Flying;
 426, Drifblim, 150, 80, 44, 90, 54, 80, Ghost, Flying;
 427, Buneary, 55, 66, 44, 44, 56, 85, Normal, Null;
@@ -459,7 +461,7 @@
 597, Ferroseed, 44, 50, 91, 24, 86, 10, Grass, Steel;
 599, Klink, 40, 55, 70, 45, 60, 30, Steel, Null;
 600, Klang, 60, 80, 95, 70, 85, 50, Steel, Null;
-601, Klinkang, 60, 100, 115, 70, 85, 90, Steel, Null;
+601, Klinklang, 60, 100, 115, 70, 85, 90, Steel, Null;
 602, Tynamo, 35, 55, 40, 45, 40, 60, Electric, Null;
 603, Eelektrik, 65, 85, 70, 75, 70, 40, Electric, Null;
 605, Elgyem, 55, 55, 55, 85, 55, 30, Psychic, Null;

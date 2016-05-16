@@ -631,7 +631,7 @@
 598, Ferrothorn, 74, 94, 131, 54, 116, 20, Grass, Steel;
 599, Klink, 40, 55, 70, 45, 60, 30, Steel, Null;
 600, Klang, 60, 80, 95, 70, 85, 50, Steel, Null;
-601, Klinkang, 60, 100, 115, 70, 85, 90, Steel, Null;
+601, Klinklang, 60, 100, 115, 70, 85, 90, Steel, Null;
 602, Tynamo, 35, 55, 40, 45, 40, 60, Electric, Null;
 603, Eelektrik, 65, 85, 70, 75, 70, 40, Electric, Null;
 604, Eelektross, 85, 115, 80, 105, 80, 50, Electric, Null;

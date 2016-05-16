@@ -420,9 +420,9 @@
 381, Latios, 80, 90, 80, 130, 110, 110, Dragon, Psychic;
 381M1, Mega Latios, 80, 130, 100, 160, 120, 110, Dragon, Psychic;
 382, Kyogre, 100, 100, 90, 150, 140, 90, Water, Null;
-382M1, Primal Kyogre, 100, 150, 90, 180, 160, 90, Water, Null;
+382P1, Primal Kyogre, 100, 150, 90, 180, 160, 90, Water, Null;
 383, Groudon, 100, 150, 140, 100, 90, 90, Ground, Null;
-383M1, Primal Groudon, 100, 180, 160, 150, 90, 90, Ground, Fire;
+383P1, Primal Groudon, 100, 180, 160, 150, 90, 90, Ground, Fire;
 384, Rayquaza, 105, 150, 90, 150, 90, 95, Dragon, Flying;
 385, Jirachi, 100, 100, 100, 100, 100, 100, Steel, Psychic;
 386, Deoxys, 50, 150, 50, 150, 50, 150, Psychic, Null;
@@ -676,7 +676,7 @@
 598, Ferrothorn, 74, 94, 131, 54, 116, 20, Grass, Steel;
 599, Klink, 40, 55, 70, 45, 60, 30, Steel, Null;
 600, Klang, 60, 80, 95, 70, 85, 50, Steel, Null;
-601, Klinkang, 60, 100, 115, 70, 85, 90, Steel, Null;
+601, Klinklang, 60, 100, 115, 70, 85, 90, Steel, Null;
 602, Tynamo, 35, 55, 40, 45, 40, 60, Electric, Null;
 603, Eelektrik, 65, 85, 70, 75, 70, 40, Electric, Null;
 604, Eelektross, 85, 115, 80, 105, 80, 50, Electric, Null;
