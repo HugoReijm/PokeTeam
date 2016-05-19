@@ -12,11 +12,20 @@ import mathData.UbersPokedex;
 import mathData.UUPokedex;
 
 import stats.StatsAnalyzer;
+import type.Dark;
+import type.Dragon;
 import type.Fairy;
+import type.Fire;
+import type.Flying;
+import type.Ghost;
+import type.Grass;
+import type.Ground;
 import type.Null;
 import type.Psychic;
+import type.Steel;
 import type.Type;
 import type.TypeAnalyzer;
+import type.Water;
 
 public class Tester {
 	
@@ -84,7 +93,7 @@ public class Tester {
 		ArrayList<ArrayList<Type>> origWRITable = TypeAnalyzer.wriTable(types);
 		for(int i=0;i!=pokedex.size();i++)
 		{
-			scores.add(TypeAnalyzer.typeScore(Type.toType(pokedex.get(i)[8]),Type.toType(pokedex.get(i)[9]),types,origWRITable.get(0).size(),origWRITable.get(1).size()));
+			scores.add(TypeAnalyzer.typeScore(Type.toType(pokedex.get(i)[8]),Type.toType(pokedex.get(i)[9]),types,origWRITable));
 		}
 		
 		double temp;
@@ -106,34 +115,36 @@ public class Tester {
 	
 	public static void main(String[] args) {
 		ArrayList<Type> types0 = new ArrayList<Type>();
-		ArrayList<Type> types1 = new ArrayList<Type>();
-		Pokedex pokedex = new AGPokedex();
-		types0.add(new Psychic());
-		types0.add(new Fairy());
-		types1.add(new Psychic());
-		types1.add(new Fairy());
+		Pokedex pokedex = new BSPokedex();
+		types0.add(new Dark());
+		types0.add(new Ghost());
 		
 		double k1 = 1.0;
 		double k2 = 0.02;
-		int[] gard = {68, 65, 65, 125, 115, 80};
+		int[] sabl = {50, 85, 125, 85, 115, 20};
 		int[] allTotals = {70, 79, 74, 73, 72, 69};
 		int[] ouTotals = {100, 123, 103, 126, 106, 108};
 		int[] uuTotals = {84, 96, 87, 93, 87, 83};
 		int[] ruTotals = {77, 93, 86, 80, 86, 73};
 		int[] nuTotals = {78, 87, 84, 77, 77, 72};
 		int[] puTotals = {59, 64, 62, 58, 60, 57};
+		
 		int quantity = 10;
-		//ArrayList<String[]> pokemonStats=StatsAnalyzer.bestScores(pokedex.getList("BattleSpot"), quantity, gard, totals);
-		//String[][] pokemonTypes=TypeAnalyzer.bestScores(pokedex.getList("BattleSpot"), quantity, types1);
-		//ArrayList<String[]> scores = StatsAnalyzer.mathScores(pokedex.idSearch(282),pokedex,TypeAnalyzer.wriTable(types0));
-		/*for(int i=0;i!=quantity;i++)
+		String[][] pokemonStats=StatsAnalyzer.bestScores(pokedex.getList(), quantity, sabl, allTotals);
+		String[][] pokemonTypes=TypeAnalyzer.bestScores(pokedex.getList(), quantity, types0);
+		//ArrayList<String[]> scores = StatsAnalyzer.mathScores(pokedex.idSearch("282"),pokedex,TypeAnalyzer.wriTable(types0));
+		for(int i=0;i!=quantity;i++)
 		{
-			System.out.println(scores.get(i)[1]);
-			System.out.println(scores.get(i)[10]);
-			//System.out.println(pokemonTypes[i][1]);
-			//System.out.println(pokemonTypes[i][10]);
+			//System.out.println(scores.get(i)[1]);
+			//System.out.println(scores.get(i)[10]);
+			System.out.println(pokemonTypes[i][1]);
+			System.out.println(pokemonTypes[i][10]);
 			System.out.println("");
-		}*/
+			System.out.println(pokemonStats[i][1]);
+			System.out.println(pokemonStats[i][10]);
+			System.out.println("");
+		}
+		
 		/*ArrayList<Double> stats = statsScoreRanger(pokedex);
 		System.out.println("Stats Start");
 		for(int i=0;i!=stats.size();i++)

@@ -250,7 +250,7 @@ public class StatsAnalyzer {
 			{
 				score[j]=pokeList.get(i)[j];
 			}
-			score[10]=Double.toString(kTypes*TypeAnalyzer.typeScore(Type.toType(pokeList.get(i)[8]), Type.toType(pokeList.get(i)[9]), types, origWRITable.get(0).size(),origWRITable.get(1).size())+kStats*StatsAnalyzer.statsScore(teamAverages, totalAverages, pokeList.get(i))+cStats);
+			score[10]=Double.toString(kTypes*TypeAnalyzer.typeScore(Type.toType(pokeList.get(i)[8]), Type.toType(pokeList.get(i)[9]), types,origWRITable)+kStats*StatsAnalyzer.statsScore(teamAverages, totalAverages, pokeList.get(i))+cStats);
 			scores.add(score);
 		}
 		return scores;

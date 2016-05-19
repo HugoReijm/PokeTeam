@@ -2,6 +2,10 @@ package type;
 
 import java.util.ArrayList;
 
+import mathData.AGPokedex;
+import mathData.BSPokedex;
+import mathData.Pokedex;
+
 public class TypeAnalyzer {
 
 	public static ArrayList<ArrayList<Type>> wriTable(ArrayList<Type> types){
@@ -68,9 +72,11 @@ public class TypeAnalyzer {
 		System.out.println("");
 	}
 	
-	public static double typeScore(Type type1, Type type2, ArrayList<Type> types, int origW, int origR){
-		double kW = 1;
+	public static double typeScore(Type type1, Type type2, ArrayList<Type> types,ArrayList<ArrayList<Type>> origWRITable)
+	{
+		/*double kW = 1;
 		double kR = 1;
+		//toPrint(origWRITable);
 		
 		ArrayList<Type> tempTypes = new ArrayList<Type>(types.size()+2);
 		for(int i=0;i!=types.size();i++)
@@ -81,10 +87,32 @@ public class TypeAnalyzer {
 		tempTypes.add(type2);
 		
 		ArrayList<ArrayList<Type>> newWRITable = wriTable(tempTypes);
-		int newW = newWRITable.get(0).size();
-		int newR = newWRITable.get(1).size();
+		//toPrint(newWRITable);
 		
-		return -kW*(newW-origW)+kR*(newR-origR);
+		return (-kW*(newWRITable.get(0).size()-origWRITable.get(0).size())+kR*(newWRITable.get(1).size()-origWRITable.get(1).size()));*/
+		
+		double[] typeArray = new double[19];
+		double[] bias = {1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0};
+		
+		ArrayList<Type> tempTypes = new ArrayList<Type>(types.size()+2);
+		for(int i=0;i!=types.size();i++)
+		{
+			tempTypes.add(types.get(i));
+		}
+		tempTypes.add(type1);
+		tempTypes.add(type2);
+		ArrayList<ArrayList<Type>> newWRITable = wriTable(tempTypes);
+		bias = biasChanger(bias, origWRITable);
+		typeArray = minusWeakness(typeArray,newWRITable);
+		typeArray = plusResistance(typeArray,newWRITable);
+		
+		double sum=0.0;
+		for(int i=0;i!=typeArray.length;i++)
+		{
+			sum=sum+typeArray[i]*bias[i];
+		}
+	
+		return sum;
 	}
 	
 	public static String[][] bestScores(ArrayList<String[]> pokedex, int quantity, ArrayList<Type> types)
@@ -92,7 +120,7 @@ public class TypeAnalyzer {
 		String[][] scores = new String[quantity][11];
 		for(int i=0;i!=quantity;i++)
 		{
-			scores[i][10]="0.0";
+			scores[i][10]="-20.0";
 		}
 		
 		ArrayList<ArrayList<Type>> origWRITable = wriTable(types);
@@ -101,7 +129,7 @@ public class TypeAnalyzer {
 		{
 			for(int j=0;j!=quantity;j++)
 			{
-				double typeScore = typeScore(Type.toType(pokedex.get(i)[8]),Type.toType(pokedex.get(i)[9]),types,origWRITable.get(0).size(),origWRITable.get(1).size());
+				double typeScore = typeScore(Type.toType(pokedex.get(i)[8]),Type.toType(pokedex.get(i)[9]),types,origWRITable);
 				if(typeScore>Double.parseDouble(scores[j][10]))
 				{
 					for(int k=quantity-1;k!=j;k--)
@@ -134,5 +162,352 @@ public class TypeAnalyzer {
 			}
 		}
 		return scores;
+	}
+	
+	public static double[] minusWeakness(double[] typeArray,ArrayList<ArrayList<Type>> newWRITable)
+	{
+		for(int i=0;i!=newWRITable.get(0).size();i++)
+		{
+			String name = newWRITable.get(0).get(i).getName();
+			if(name.equals("Bug"))
+			{
+				typeArray[0]--;
+			}
+			else if(name.equals("Dark"))
+			{
+				typeArray[1]--;
+			}
+			else if(name.equals("Dragon"))
+			{
+				typeArray[2]--;
+			}
+			else if(name.equals("Electric"))
+			{
+				typeArray[3]--;
+			}
+			else if(name.equals("Fairy"))
+			{
+				typeArray[4]--;
+			}
+			else if(name.equals("Fighting"))
+			{
+				typeArray[5]--;
+			}
+			else if(name.equals("Fire"))
+			{
+				typeArray[6]--;			
+			}
+			else if(name.equals("Flying"))
+			{
+				typeArray[7]--;
+			}
+			else if(name.equals("Ghost"))
+			{
+				typeArray[8]--;
+			}
+			else if(name.equals("Grass"))
+			{
+				typeArray[9]--;
+			}
+			else if(name.equals("Ground"))
+			{
+				typeArray[10]--;
+			}
+			else if(name.equals("Ice"))
+			{
+				typeArray[11]--;
+			}
+			else if(name.equals("Normal"))
+			{
+				typeArray[12]--;
+			}
+			else if(name.equals("Null"))
+			{
+				typeArray[13]--;
+			}
+			else if(name.equals("Poison"))
+			{
+				typeArray[14]--;
+			}
+			else if(name.equals("Psychic"))
+			{
+				typeArray[15]--;
+			}
+			else if(name.equals("Rock"))
+			{
+				typeArray[16]--;
+			}
+			else if(name.equals("Steel"))
+			{
+				typeArray[17]--;
+			}
+			else if(name.equals("Water"))
+			{
+				typeArray[18]--;
+			}
+		}
+		return typeArray;
+	}
+	
+	public static double[] plusResistance(double[] typeArray, ArrayList<ArrayList<Type>> newWRITable)
+	{
+		for(int i=0;i!=newWRITable.get(1).size();i++)
+		{
+			String name = newWRITable.get(1).get(i).getName();
+			if(name.equals("Bug"))
+			{
+				typeArray[0]++;
+			}
+			else if(name.equals("Dark"))
+			{
+				typeArray[1]++;
+			}
+			else if(name.equals("Dragon"))
+			{
+				typeArray[2]++;
+			}
+			else if(name.equals("Electric"))
+			{
+				typeArray[3]++;
+			}
+			else if(name.equals("Fairy"))
+			{
+				typeArray[4]++;
+			}
+			else if(name.equals("Fighting"))
+			{
+				typeArray[5]++;
+			}
+			else if(name.equals("Fire"))
+			{
+				typeArray[6]++;			
+			}
+			else if(name.equals("Flying"))
+			{
+				typeArray[7]++;
+			}
+			else if(name.equals("Ghost"))
+			{
+				typeArray[8]++;
+			}
+			else if(name.equals("Grass"))
+			{
+				typeArray[9]++;
+			}
+			else if(name.equals("Ground"))
+			{
+				typeArray[10]++;
+			}
+			else if(name.equals("Ice"))
+			{
+				typeArray[11]++;
+			}
+			else if(name.equals("Normal"))
+			{
+				typeArray[12]++;
+			}
+			else if(name.equals("Null"))
+			{
+				typeArray[13]++;
+			}
+			else if(name.equals("Poison"))
+			{
+				typeArray[14]++;
+			}
+			else if(name.equals("Psychic"))
+			{
+				typeArray[15]++;
+			}
+			else if(name.equals("Rock"))
+			{
+				typeArray[16]++;
+			}
+			else if(name.equals("Steel"))
+			{
+				typeArray[17]++;
+			}
+			else if(name.equals("Water"))
+			{
+				typeArray[18]++;
+			}
+		}
+		return typeArray;
+	}
+	
+	public static double[] biasChanger(double[] bias,ArrayList<ArrayList<Type>> origWRITable)
+	{
+		double factor = 4.0;
+		for(int i=0;i!=origWRITable.get(1).size();i++)
+		{
+			String name = origWRITable.get(1).get(i).getName();
+			if(name.equals("Bug"))
+			{
+				bias[0]=bias[0]/factor;
+			}
+			else if(name.equals("Dark"))
+			{
+				bias[1]=bias[1]/factor;
+			}
+			else if(name.equals("Dragon"))
+			{
+				bias[2]=bias[2]/factor;
+			}
+			else if(name.equals("Electric"))
+			{
+				bias[3]=bias[3]/factor;
+			}
+			else if(name.equals("Fairy"))
+			{
+				bias[4]=bias[4]/factor;
+			}
+			else if(name.equals("Fighting"))
+			{
+				bias[5]=bias[5]/factor;
+			}
+			else if(name.equals("Fire"))
+			{
+				bias[6]=bias[6]/factor;		
+			}
+			else if(name.equals("Flying"))
+			{
+				bias[7]=bias[7]/factor;
+			}
+			else if(name.equals("Ghost"))
+			{
+				bias[8]=bias[8]/factor;
+			}
+			else if(name.equals("Grass"))
+			{
+				bias[9]=bias[9]/factor;
+			}
+			else if(name.equals("Ground"))
+			{
+				bias[10]=bias[10]/factor;
+			}
+			else if(name.equals("Ice"))
+			{
+				bias[11]=bias[11]/factor;
+			}
+			else if(name.equals("Normal"))
+			{
+				bias[12]=bias[12]/factor;
+			}
+			else if(name.equals("Null"))
+			{
+				bias[13]=bias[13]/factor;
+			}
+			else if(name.equals("Poison"))
+			{
+				bias[14]=bias[14]/factor;
+			}
+			else if(name.equals("Psychic"))
+			{
+				bias[15]=bias[15]/factor;
+			}
+			else if(name.equals("Rock"))
+			{
+				bias[16]=bias[16]/factor;
+			}
+			else if(name.equals("Steel"))
+			{
+				bias[17]=bias[17]/factor;
+			}
+			else if(name.equals("Water"))
+			{
+				bias[18]=bias[18]/factor;
+			}
+		}
+		
+		for(int i=0;i!=origWRITable.get(0).size();i++)
+		{
+			String name = origWRITable.get(0).get(i).getName();
+			if(name.equals("Bug"))
+			{
+				bias[0]=bias[0]*factor;
+			}
+			else if(name.equals("Dark"))
+			{
+				bias[1]=bias[1]*factor;
+			}
+			else if(name.equals("Dragon"))
+			{
+				bias[2]=bias[2]*factor;
+			}
+			else if(name.equals("Electric"))
+			{
+				bias[3]=bias[3]*factor;
+			}
+			else if(name.equals("Fairy"))
+			{
+				bias[4]=bias[4]*factor;
+			}
+			else if(name.equals("Fighting"))
+			{
+				bias[5]=bias[5]*factor;
+			}
+			else if(name.equals("Fire"))
+			{
+				bias[6]=bias[6]*factor;		
+			}
+			else if(name.equals("Flying"))
+			{
+				bias[7]=bias[7]*factor;
+			}
+			else if(name.equals("Ghost"))
+			{
+				bias[8]=bias[8]*factor;
+			}
+			else if(name.equals("Grass"))
+			{
+				bias[9]=bias[9]*factor;
+			}
+			else if(name.equals("Ground"))
+			{
+				bias[10]=bias[10]*factor;
+			}
+			else if(name.equals("Ice"))
+			{
+				bias[11]=bias[11]*factor;
+			}
+			else if(name.equals("Normal"))
+			{
+				bias[12]=bias[12]*factor;
+			}
+			else if(name.equals("Null"))
+			{
+				bias[13]=bias[13]*factor;
+			}
+			else if(name.equals("Poison"))
+			{
+				bias[14]=bias[14]*factor;
+			}
+			else if(name.equals("Psychic"))
+			{
+				bias[15]=bias[15]*factor;
+			}
+			else if(name.equals("Rock"))
+			{
+				bias[16]=bias[16]*factor;
+			}
+			else if(name.equals("Steel"))
+			{
+				bias[17]=bias[17]*factor;
+			}
+			else if(name.equals("Water"))
+			{
+				bias[18]=bias[18]*factor;
+			}
+		}
+		return bias;
+	}
+	
+	public static void main(String[] args)
+	{
+		Pokedex pokedex=new AGPokedex();
+		ArrayList<Type> types=new ArrayList<Type>();
+		types.add(new Water());
+		types.add(new Null());
+		System.out.println(pokedex.getList().get(385)[1]);
+		System.out.println(typeScore(Type.toType(pokedex.getList().get(385)[8]),Type.toType(pokedex.getList().get(385)[9]),types,wriTable(types)));
 	}
 }
