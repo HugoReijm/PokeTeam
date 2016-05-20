@@ -76,49 +76,43 @@ public class StatsAnalyzer {
 		return (int)Math.round(average/pokemon.size());
 	}
 	
-	public static ArrayList<String[]> tierSep(String tier1)
+	public static ArrayList<String[]> tierSep(Pokedex pokedex)
 	{
-		ArrayList<String[]> pokemon1;
-		ArrayList<String[]> pokemon2;
+		String tier1=pokedex.getTier();
+		ArrayList<String[]> pokemon1 = new ArrayList<String[]>();
+		pokemon1.addAll(pokedex.getList());
+		ArrayList<String[]> pokemon2 = new ArrayList<String[]>();
+		
 		if (tier1.equals("AG"))
 		{
-			pokemon1 = new AGPokedex().getList();
-			pokemon2 = new OUPokedex().getList();
+			pokemon2.addAll(new OUPokedex().getList());
 		}
 		else if(tier1.equals("BattleSpot"))
 		{
-			pokemon1 = new BSPokedex().getList();
-			pokemon2 = new UUPokedex().getList();
+			pokemon2.addAll(new UUPokedex().getList());
 		}
 		else if (tier1.equals("Ubers"))
 		{
-			pokemon1 = new UbersPokedex().getList();
-			pokemon2 = new OUPokedex().getList();
+			pokemon2.addAll(new OUPokedex().getList());
 		}
 		else if (tier1.equals("OU"))
 		{
-			pokemon1 = new OUPokedex().getList();
-			pokemon2 = new UUPokedex().getList();
+			pokemon2.addAll(new UUPokedex().getList());
 		}
 		else if (tier1.equals("UU"))
 		{
-			pokemon1 = new UUPokedex().getList();
-			pokemon2 = new RUPokedex().getList();
+			pokemon2.addAll(new RUPokedex().getList());
 		}
 		else if (tier1.equals("RU"))
 		{
-			pokemon1 = new RUPokedex().getList();
-			pokemon2 = new NUPokedex().getList();
+			pokemon2.addAll(new NUPokedex().getList());
 		}
 		else if (tier1.equals("NU"))
 		{
-			pokemon1 = new NUPokedex().getList();
-			pokemon2 = new PUPokedex().getList();
+			pokemon2.addAll(new PUPokedex().getList());
 		}
 		else if (tier1.equals("PU"))
 		{
-			pokemon1 = new PUPokedex().getList();
-			pokemon2 = new ArrayList<String[]>(1);
 			String[] missingno = {"000","Missingno","0","0","0","0","0","0","Null","Null"}; 
 			pokemon2.add(missingno);
 		}
@@ -154,14 +148,14 @@ public class StatsAnalyzer {
 		return statsAverages;
 	}
 	
-	public static double statsScore(int[] teamAverages, int[] totalAverages, String[] pokemon)
+	public static double statsScore(int[] battleMode, int[] teamAverages, int[] totalAverages, String[] pokemon)
 	{
-		double kHP = 1;
-		double kATT = 1;
-		double kDEF = 1;
-		double kSPATT = 1;
-		double kSPDEF = 1;
-		double kSPD = 1;
+		double kHP = battleMode[0];
+		double kATT = battleMode[1];
+		double kDEF = battleMode[2];
+		double kSPATT = battleMode[3];
+		double kSPDEF = battleMode[4];
+		double kSPD = battleMode[5];
 		
 		int hpFactor = teamAverages[0]+Integer.parseInt(pokemon[2])-totalAverages[0];
 		int attFactor = teamAverages[1]+Integer.parseInt(pokemon[3])-totalAverages[1];
@@ -173,7 +167,7 @@ public class StatsAnalyzer {
 		return kHP*hpFactor+kATT*attFactor+kDEF*defFactor+kSPATT*spattFactor+kSPDEF*spdefFactor+kSPD*spdFactor;
 	}
 	
-	public static String[][] bestScores(ArrayList<String[]> pokedex, int quantity, int[] teamAverages, int[] totalAverages)
+	public static String[][] bestScores(int[] battleMode, ArrayList<String[]> pokedex, int quantity, int[] teamAverages, int[] totalAverages)
 	{
 		String[][] scores = new String[quantity][11];
 		for(int i=0;i!=quantity;i++)
@@ -185,7 +179,7 @@ public class StatsAnalyzer {
 		{
 			for(int j=0;j!=quantity;j++)
 			{
-				double statsScore = statsScore(teamAverages, totalAverages, pokedex.get(i));
+				double statsScore = statsScore(battleMode, teamAverages, totalAverages, pokedex.get(i));
 				if(statsScore>Double.parseDouble(scores[j][10]))
 				{
 					for(int k=quantity-1;k!=j;k--)
@@ -219,41 +213,4 @@ public class StatsAnalyzer {
 		}
 		return scores;
 	}
-	
-	public static ArrayList<String[]> mathScores(ArrayList<String[]> pokemon, Pokedex pokedex, ArrayList<ArrayList<Type>> origWRITable)
-	{
-		double kTypes = 1.0;
-		double kStats = 0.02428;
-		double cStats = 3.2129;
-		int[] totalAverages = StatsAnalyzer.tierStats(tierSep(pokedex.getTier()));
-		int[] teamAverages = new int[6];
-		ArrayList<String[]> pokeList = pokedex.getList();
-		ArrayList<String[]> scores = new ArrayList<String[]>();
-		ArrayList<Type> types = new ArrayList<Type>();
-		
-		for(int i=0;i!=pokemon.size();i++)
-		{
-			types.add(Type.toType(pokemon.get(i)[8]));
-			types.add(Type.toType(pokemon.get(i)[9]));
-		}
-		teamAverages[0]=hpAverage(pokemon);
-		teamAverages[1]=attAverage(pokemon);
-		teamAverages[2]=defAverage(pokemon);
-		teamAverages[3]=spattAverage(pokemon);
-		teamAverages[4]=spdefAverage(pokemon);
-		teamAverages[5]=spdAverage(pokemon);
-		
-		for(int i=0;i!=pokeList.size();i++)
-		{
-			String[] score = new String[11];
-			for(int j=0;j!=10;j++)
-			{
-				score[j]=pokeList.get(i)[j];
-			}
-			score[10]=Double.toString(kTypes*TypeAnalyzer.typeScore(Type.toType(pokeList.get(i)[8]), Type.toType(pokeList.get(i)[9]), types,origWRITable)+kStats*StatsAnalyzer.statsScore(teamAverages, totalAverages, pokeList.get(i))+cStats);
-			scores.add(score);
-		}
-		return scores;
-	}
-	
 }

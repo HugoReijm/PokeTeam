@@ -55,7 +55,7 @@ public class Tester {
 		}
 	}
 	
-	public static ArrayList<Double> statsScoreRanger(Pokedex database)
+	public static ArrayList<Double> statsScoreRanger(int[] battleMode,Pokedex database)
 	{
 		ArrayList<Double> scores=new ArrayList<Double>();
 		ArrayList<String[]> pokedex=database.getList();
@@ -63,7 +63,7 @@ public class Tester {
 		int[] averages = {70, 79, 74, 73, 72, 69};
 		for(int i=0;i!=pokedex.size();i++)
 		{
-			scores.add(StatsAnalyzer.statsScore(missingno, averages,pokedex.get(i)));
+			scores.add(StatsAnalyzer.statsScore(battleMode,missingno, averages, pokedex.get(i)));
 		}
 		
 		double temp;
@@ -114,14 +114,34 @@ public class Tester {
 	}
 	
 	public static void main(String[] args) {
-		ArrayList<Type> types0 = new ArrayList<Type>();
 		Pokedex pokedex = new BSPokedex();
-		types0.add(new Dark());
-		types0.add(new Ghost());
+		//ArrayList<Type> types0 = new ArrayList<Type>();
+		//types0.add(new Dark());
+		//types0.add(new Ghost());
+		//types0.add(new Fire());
+		//types0.add(new Steel());
+		//types0.add(new Fairy());
+		//types0.add(new Steel());
 		
 		double k1 = 1.0;
 		double k2 = 0.02;
-		int[] sabl = {50, 85, 125, 85, 115, 20};
+		int[] battleMode = {1,3,1,3,1,3};
+		//int[] sabl = {50, 85, 125, 85, 115, 20};
+		
+		ArrayList<String[]> otwimilt = new ArrayList<String[]>();
+		String[] teamMember1=pokedex.exactSearch("Mega Salamence");
+		String[] teamMember2=pokedex.exactSearch("Heatran");
+		String[] teamMember3=pokedex.exactSearch("Therian Forme Landorus");
+		String[] teamMember4=pokedex.exactSearch("Cloyster");
+		String[] teamMember5=pokedex.exactSearch("Lucario");
+		String[] teamMember6=pokedex.exactSearch("Gengar");
+		otwimilt.add(teamMember1);
+		otwimilt.add(teamMember2);
+		otwimilt.add(teamMember3);
+		otwimilt.add(teamMember4);
+		otwimilt.add(teamMember5);
+		otwimilt.add(teamMember6);
+		
 		int[] allTotals = {70, 79, 74, 73, 72, 69};
 		int[] ouTotals = {100, 123, 103, 126, 106, 108};
 		int[] uuTotals = {84, 96, 87, 93, 87, 83};
@@ -130,18 +150,17 @@ public class Tester {
 		int[] puTotals = {59, 64, 62, 58, 60, 57};
 		
 		int quantity = 10;
-		String[][] pokemonStats=StatsAnalyzer.bestScores(pokedex.getList(), quantity, sabl, allTotals);
-		String[][] pokemonTypes=TypeAnalyzer.bestScores(pokedex.getList(), quantity, types0);
-		//ArrayList<String[]> scores = StatsAnalyzer.mathScores(pokedex.idSearch("282"),pokedex,TypeAnalyzer.wriTable(types0));
+		//String[][] pokemonStats=StatsAnalyzer.bestScores(battleMode,pokedex.getList(), quantity, sabl, allTotals);
+		//String[][] pokemonTypes=TypeAnalyzer.bestScores(pokedex.getList(), quantity, types0);
+		String[][] scores = MathAnalyzer.mathScores(battleMode,otwimilt,pokedex,quantity);
 		for(int i=0;i!=quantity;i++)
 		{
-			//System.out.println(scores.get(i)[1]);
-			//System.out.println(scores.get(i)[10]);
-			System.out.println(pokemonTypes[i][1]);
-			System.out.println(pokemonTypes[i][10]);
-			System.out.println("");
-			System.out.println(pokemonStats[i][1]);
-			System.out.println(pokemonStats[i][10]);
+			System.out.println(scores[i][1]);
+			System.out.println(scores[i][10]);
+			//System.out.println(pokemonTypes[i][1]);
+			//System.out.println(pokemonTypes[i][10]);
+			//System.out.println(pokemonStats[i][1]);
+			//System.out.println(pokemonStats[i][10]);
 			System.out.println("");
 		}
 		

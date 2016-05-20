@@ -74,24 +74,8 @@ public class TypeAnalyzer {
 	
 	public static double typeScore(Type type1, Type type2, ArrayList<Type> types,ArrayList<ArrayList<Type>> origWRITable)
 	{
-		/*double kW = 1;
-		double kR = 1;
-		//toPrint(origWRITable);
-		
-		ArrayList<Type> tempTypes = new ArrayList<Type>(types.size()+2);
-		for(int i=0;i!=types.size();i++)
-		{
-			tempTypes.add(types.get(i));
-		}
-		tempTypes.add(type1);
-		tempTypes.add(type2);
-		
-		ArrayList<ArrayList<Type>> newWRITable = wriTable(tempTypes);
-		//toPrint(newWRITable);
-		
-		return (-kW*(newWRITable.get(0).size()-origWRITable.get(0).size())+kR*(newWRITable.get(1).size()-origWRITable.get(1).size()));*/
-		
-		double[] typeArray = new double[19];
+		double[] newtypeArray = new double[19];
+		double[] origtypeArray = new double[19];
 		double[] bias = {1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0};
 		
 		ArrayList<Type> tempTypes = new ArrayList<Type>(types.size()+2);
@@ -101,15 +85,18 @@ public class TypeAnalyzer {
 		}
 		tempTypes.add(type1);
 		tempTypes.add(type2);
+		
 		ArrayList<ArrayList<Type>> newWRITable = wriTable(tempTypes);
 		bias = biasChanger(bias, origWRITable);
-		typeArray = minusWeakness(typeArray,newWRITable);
-		typeArray = plusResistance(typeArray,newWRITable);
+		origtypeArray = minusWeakness(origtypeArray,origWRITable);
+		origtypeArray = plusResistance(origtypeArray,origWRITable);
+		newtypeArray = minusWeakness(newtypeArray,newWRITable);
+		newtypeArray = plusResistance(newtypeArray,newWRITable);
 		
 		double sum=0.0;
-		for(int i=0;i!=typeArray.length;i++)
+		for(int i=0;i!=newtypeArray.length;i++)
 		{
-			sum=sum+typeArray[i]*bias[i];
+			sum=sum+(newtypeArray[i]-origtypeArray[i])*bias[i];
 		}
 	
 		return sum;
@@ -336,7 +323,7 @@ public class TypeAnalyzer {
 	
 	public static double[] biasChanger(double[] bias,ArrayList<ArrayList<Type>> origWRITable)
 	{
-		double factor = 4.0;
+		double factor = 5.0;
 		for(int i=0;i!=origWRITable.get(1).size();i++)
 		{
 			String name = origWRITable.get(1).get(i).getName();
