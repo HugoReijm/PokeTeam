@@ -1,16 +1,5 @@
 package ui;
 
-import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.function.Function;
-import java.util.logging.FileHandler;
-import java.util.logging.Formatter;
-import java.util.logging.Handler;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
-
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
@@ -76,6 +65,11 @@ public class UI extends Application{
     public static Stage getSecondaryStage()
     {
     	return secondaryStage;
+    }
+    
+    public static void turnOffStage(Stage stage)
+    {
+    	stage.hide();
     }
     
     public static Scene getMenuScene()

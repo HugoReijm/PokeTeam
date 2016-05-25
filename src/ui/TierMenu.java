@@ -50,91 +50,46 @@ public class TierMenu extends AbstractMenu {
 
         btnAG = new MenuButton("Anything Goes",uniformWidth);
         btnAG.setOnMouseClicked(event -> {
-                FadeTransition ft = new FadeTransition(Duration.seconds(0.45),this);
-                ft.setFromValue(1);
-                ft.setToValue(0);
-                ft.setOnFinished(evt -> this.setVisible(false));
-                ft.play();
                 clickTierButton("AG");
             });
 
         btnUbers = new MenuButton("Ubers",uniformWidth);
         btnUbers.setOnMouseClicked(event -> {
-        		FadeTransition ft = new FadeTransition(Duration.seconds(0.45),this);
-        		ft.setFromValue(1);
-        		ft.setToValue(0);
-        		ft.setOnFinished(evt -> this.setVisible(false));
-        		ft.play();
         		clickTierButton("Ubers");
         	});
 
         btnBS = new MenuButton("BS",uniformWidth);
         btnBS.setOnMouseClicked(event -> {
-        		FadeTransition ft = new FadeTransition(Duration.seconds(0.45),this);
-        		ft.setFromValue(1);
-        		ft.setToValue(0);
-        		ft.setOnFinished(evt -> this.setVisible(false));
-        		ft.play();
         		clickTierButton("BS");
         	});
         
         btnOU = new MenuButton("OU",uniformWidth);
         btnOU.setOnMouseClicked(event -> {
-        		FadeTransition ft = new FadeTransition(Duration.seconds(0.45),this);
-        		ft.setFromValue(1);
-        		ft.setToValue(0);
-        		ft.setOnFinished(evt -> this.setVisible(false));
-        		ft.play();
         		clickTierButton("OU");
         	});
         
         btnUU = new MenuButton("UU",uniformWidth);
         btnUU.setOnMouseClicked(event -> {
-        		FadeTransition ft = new FadeTransition(Duration.seconds(0.45),this);
-        		ft.setFromValue(1);
-        		ft.setToValue(0);
-        		ft.setOnFinished(evt -> this.setVisible(false));
-        		ft.play();
         		clickTierButton("UU");
         	});
         
         btnRU = new MenuButton("RU",uniformWidth);
         btnRU.setOnMouseClicked(event -> {
-        		FadeTransition ft = new FadeTransition(Duration.seconds(0.45),this);
-        		ft.setFromValue(1);
-        		ft.setToValue(0);
-        		ft.setOnFinished(evt -> this.setVisible(false));
-        		ft.play();
         		clickTierButton("RU");
         	});
         
         btnNU = new MenuButton("NU",uniformWidth);
         btnNU.setOnMouseClicked(event -> {
-        		FadeTransition ft = new FadeTransition(Duration.seconds(0.45),this);
-        		ft.setFromValue(1);
-        		ft.setToValue(0);
-        		ft.setOnFinished(evt -> this.setVisible(false));
-        		ft.play();
         		clickTierButton("NU");
         	});
         
         btnPU = new MenuButton("PU",uniformWidth);
         btnPU.setOnMouseClicked(event -> {
-        		FadeTransition ft = new FadeTransition(Duration.seconds(0.45),this);
-        		ft.setFromValue(1);
-        		ft.setToValue(0);
-        		ft.setOnFinished(evt -> this.setVisible(false));
-        		ft.play();
         		clickTierButton("PU");
         	});
         
         btnBacktoStart = new MenuButton("Back",75);
         btnBacktoStart.setOnMouseClicked(event -> {
-	    		FadeTransition ft = new FadeTransition(Duration.seconds(0.45),this);
-	    		ft.setFromValue(1);
-	    		ft.setToValue(0);
-	    		ft.setOnFinished(evt -> this.setVisible(false));
-	    		ft.play();
 	        	clickBackButton();
         	});
         

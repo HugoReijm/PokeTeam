@@ -42,4 +42,41 @@ public abstract class Pokedex {
 			}
 		}
 	}
+	
+	public static ArrayList<String[]> removeTeamandMegas(ArrayList<String[]> tempPokeList,ArrayList<String[]> team)
+	{
+		ArrayList<String[]> pokeList = new ArrayList<String[]>();
+		for(int i=0;i!=tempPokeList.size();i++)
+		{
+			pokeList.add(tempPokeList.get(i));
+		}
+		
+		int megas = 0;
+		for(int i=0;i!=team.size();i++)
+		{
+			if(team.get(i)[0].contains("M"))
+			{
+				megas++;
+			}
+			for(int j=pokeList.size()-1;j!=-1;j--)
+			{
+				if(pokeList.get(j)[0].contains(team.get(i)[0].substring(0,3)))
+				{
+					pokeList.remove(pokeList.get(j));
+				}
+			}
+		}
+		
+		if(megas>=1)
+		{
+			for(int j=pokeList.size()-1;j!=-1;j--)
+			{
+				if(pokeList.get(j)[0].contains("M"))
+				{
+					pokeList.remove(pokeList.get(j));
+				}
+			}
+		}
+		return pokeList;
+	}
 }

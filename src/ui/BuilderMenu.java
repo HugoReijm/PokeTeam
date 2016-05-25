@@ -1,5 +1,6 @@
 package ui;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.animation.FadeTransition;
@@ -27,8 +28,8 @@ public class BuilderMenu extends AbstractMenu {
 	private MenuButton btnBacktoTier;
 	private MenuButton btnBacktoStart;
 	
-	//private List<Pokemon> teamL;
-	//private List<Pokemon> suggsL;
+	private List<Pokemon> teamL;
+	private List<Pokemon> suggsL;
 	
 	public BuilderMenu()
 	{
@@ -82,21 +83,11 @@ public class BuilderMenu extends AbstractMenu {
         
         btnBacktoTier = new MenuButton("Back",75);
         btnBacktoTier.setOnMouseClicked(event -> {
-            FadeTransition ft = new FadeTransition(Duration.seconds(0.45),this);
-    		ft.setFromValue(1);
-    		ft.setToValue(0);
-    		ft.setOnFinished(evt -> this.setVisible(false));
-    		ft.play();
     		clickBackButton();
         });
         
         btnBacktoStart = new MenuButton("Back to Start", 150);
         btnBacktoStart.setOnMouseClicked(event -> {
-            FadeTransition ft = new FadeTransition(Duration.seconds(0.45),this);
-    		ft.setFromValue(1);
-    		ft.setToValue(0);
-    		ft.setOnFinished(evt -> this.setVisible(false));
-    		ft.play();
     		clickBackStartButton();
         });
         
@@ -123,11 +114,13 @@ public class BuilderMenu extends AbstractMenu {
 	public void clickBackButton()
     {
 		UI.sceneReload(UI.getPrimaryStage(),UI.getTierMenuScene());
+		System.out.println("Back!");
     }
 	
 	public void clickBackStartButton()
 	{
 		UI.sceneReload(UI.getPrimaryStage(),UI.getMenuScene());
+		System.out.println("Back to Start!");
 	}
 	
 	public VBox TeamMemberInput() 
@@ -145,27 +138,43 @@ public class BuilderMenu extends AbstractMenu {
 	
 	public VBox makeTeamDisplay()
 	{
-		VBox team = new VBox(0);
-		team.setTranslateX(62.5);
+		VBox team = new VBox(2);
+		team.setTranslateX(10);
         team.setTranslateY(350);
         
-        MenuLabel teamlabel = new MenuLabel("Current Team", 175);
-        //teamL = 
+        MenuLabel teamlabel = new MenuLabel("Current Team", 280);
+        teamL = new ArrayList<Pokemon>();
+        teamL.add(new Pokemon("Mega Sableye",1.0,1.0,1.0));
+        teamL.add(new Pokemon("Mega Sableye",1.0,1.0,1.0));
+        teamL.add(new Pokemon("Mega Sableye",1.0,1.0,1.0));
+        teamL.add(new Pokemon("Mega Sableye",1.0,1.0,1.0));
+        teamL.add(new Pokemon("Mega Sableye",1.0,1.0,1.0));
+        teamL.add(new Pokemon("Mega Sableye",1.0,1.0,1.0));
         team.getChildren().add(teamlabel);
-        //team.getChildren().addAll(teamAl);
+        team.getChildren().addAll(teamL);
 		return team;
 	}
 	
 	public VBox makeSuggDisplay()
 	{
 		VBox suggs = new VBox(0);
-        suggs.setTranslateX(362.5);
+        suggs.setTranslateX(310);
         suggs.setTranslateY(350);
         
-        MenuLabel suggslabel = new MenuLabel("Suggestions", 175);
-        //suggsL = 
+        MenuLabel suggslabel = new MenuLabel("Suggestions", 280);
+        suggsL = new ArrayList<Pokemon>();
+        suggsL.add(new Pokemon("Mega Sableye",1.0,1.0,1.0));
+        suggsL.add(new Pokemon("Mega Sableye",1.0,1.0,1.0));
+        suggsL.add(new Pokemon("Mega Sableye",1.0,1.0,1.0));
+        suggsL.add(new Pokemon("Mega Sableye",1.0,1.0,1.0));
+        suggsL.add(new Pokemon("Mega Sableye",1.0,1.0,1.0));
+        suggsL.add(new Pokemon("Mega Sableye",1.0,1.0,1.0));
+        suggsL.add(new Pokemon("Mega Sableye",1.0,1.0,1.0));
+        suggsL.add(new Pokemon("Mega Sableye",1.0,1.0,1.0));
+        suggsL.add(new Pokemon("Mega Sableye",1.0,1.0,1.0));
+        suggsL.add(new Pokemon("Mega Sableye",1.0,1.0,1.0));
         suggs.getChildren().add(suggslabel);
-        //suggs.getChildren().addAll(suggsL);
+        suggs.getChildren().addAll(suggsL);
         return suggs;
 	}
 }

@@ -162,16 +162,14 @@ public class BSPokedex extends Pokedex {
 	@Override
 	public int location(String id)
 	{
+		int size=bsPokeList.size();
+		for(int i=0;i!=size;i++)
 		{
-			int size=bsPokeList.size();
-			for(int i=0;i!=size;i++)
+			if(bsPokeList.get(i)[0].equals(id))
 			{
-				if(bsPokeList.get(i)[0].equals(id))
-				{
-					return i;
-				}
+				return i;
 			}
-			return -1;
 		}
+		return -1;
 	}
 }

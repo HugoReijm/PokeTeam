@@ -1,10 +1,10 @@
 package ui;
 
-import javafx.animation.FadeTransition;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import ui.InputField;
 import ui.MenuLabel;
@@ -44,11 +44,6 @@ public class PokedexMenu extends AbstractMenu {
         
         btnBacktoTier = new MenuButton("Back",75);
         btnBacktoTier.setOnMouseClicked(event -> {
-            FadeTransition ft = new FadeTransition(Duration.seconds(0.45),this);
-    		ft.setFromValue(1);
-    		ft.setToValue(0);
-    		ft.setOnFinished(evt -> this.setVisible(false));
-    		ft.play();
             clickBackButton();
         });
         
@@ -78,6 +73,7 @@ public class PokedexMenu extends AbstractMenu {
     public void clickBackButton()
     {
     	UI.sceneReload(UI.getPrimaryStage(),UI.getTierMenuScene());
+    	UI.turnOffStage(UI.getSecondaryStage());
     }
     
     public VBox NameInput() 

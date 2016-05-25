@@ -113,28 +113,94 @@ public class Tester {
 		return scores;
 	}
 	
+	public static double[] constsCalc(Pokedex pokedex,int[] battleMode)
+	{
+		double[] consts = new double[2];
+		double complb = 0.0;
+		double compub = 0.0;
+		double mathlb = 0.0;
+		double mathub = 0.0;
+		
+		ArrayList<ArrayList<String>> chart = CompAnalyzer.getChart(pokedex);
+		ArrayList<String[]> pokemon = new ArrayList<String[]>();
+		String[] missingNo = {"000","Missingno","0","0","0","0","0","0","Null","Null"};
+		pokemon.add(missingNo);
+		
+		ArrayList<String[]> mathScores = MathAnalyzer.mathScores(battleMode, pokemon, pokedex);
+		double mathscore;
+		for(int i=0;i!=mathScores.size();i++)
+		{
+			mathscore = Double.parseDouble(mathScores.get(i)[10]);
+			if(mathscore>mathub)
+			{
+				mathub=mathscore;
+			}
+			else if(mathscore<mathlb)
+			{
+				mathlb=mathscore;
+			}
+		}
+		
+		double compscore;
+		for(int i=0;i!=chart.size();i++)
+		{
+			for(int j=0;j!=chart.get(i).size();j++)
+			{
+				compscore = Double.parseDouble(chart.get(i).get(j));
+				if(compscore>compub)
+				{
+					compub=compscore;
+				}
+			}
+		}
+		consts[0]=(mathub-mathlb)/(compub-complb);
+		consts[1]= mathlb-consts[0]*complb;
+		System.out.println(mathub+", "+mathlb);
+		System.out.println((consts[0]*compub+consts[1])+", "+(consts[0]*complb+consts[1]));
+		return consts;
+	}
+	
+	public static String[][] finalScores(int quantity, int[] battleMode, ArrayList<String[]> team, Pokedex pokedex)
+	{
+		double max = 0.9;
+		double min = 0.1;
+		double a1 = 5;
+		double b1 = 0.0;
+		double scale = (max/min+1)*Math.sqrt(max/min)*max;
+		double center = (max/min)*Math.sqrt(max/min);
+		double exponent = Math.log(max/min)/4;
+		
+		ArrayList<String[]> mathScores = MathAnalyzer.mathScores(battleMode, team, pokedex);
+		int[] compScores = CompAnalyzer.compScores(pokedex, team);
+		
+		if(mathScores.size()==compScores.length)
+		{
+			for(int i=0;i!=mathScores.size();i++)
+			{
+				mathScores.get(i)[10]=Double.toString(((max+min)-scale/(center+Math.exp(2*exponent*team.size())))*Double.parseDouble(mathScores.get(i)[10])+(scale/(center+Math.exp(2*exponent*team.size())))*(a1*compScores[i]+b1));
+			}
+			mathScores = Pokedex.removeTeamandMegas(mathScores, team);
+			String[][] finalScores = MathAnalyzer.sort(mathScores, quantity);
+			return finalScores;
+		}
+		else
+		{
+			System.out.println("Error: score input sizes do not match");
+			return null;
+		}
+	}
+
 	public static void main(String[] args) {
 		Pokedex pokedex = new BSPokedex();
-		//ArrayList<Type> types0 = new ArrayList<Type>();
-		//types0.add(new Dark());
-		//types0.add(new Ghost());
-		//types0.add(new Fire());
-		//types0.add(new Steel());
-		//types0.add(new Fairy());
-		//types0.add(new Steel());
-		
-		double k1 = 1.0;
-		double k2 = 0.02;
-		int[] battleMode = {1,3,1,3,1,3};
-		//int[] sabl = {50, 85, 125, 85, 115, 20};
+		int[] battleMode = {1,1,1,1,1,1};
 		
 		ArrayList<String[]> otwimilt = new ArrayList<String[]>();
-		String[] teamMember1=pokedex.exactSearch("Mega Salamence");
+		String[] teamMember1=pokedex.exactSearch("Mega Sableye");
 		String[] teamMember2=pokedex.exactSearch("Heatran");
 		String[] teamMember3=pokedex.exactSearch("Therian Forme Landorus");
-		String[] teamMember4=pokedex.exactSearch("Cloyster");
-		String[] teamMember5=pokedex.exactSearch("Lucario");
-		String[] teamMember6=pokedex.exactSearch("Gengar");
+		String[] teamMember4=pokedex.exactSearch("Breloom");
+		String[] teamMember5=pokedex.exactSearch("Wash Rotom");
+		String[] teamMember6=pokedex.exactSearch("Cresselia");
 		otwimilt.add(teamMember1);
 		otwimilt.add(teamMember2);
 		otwimilt.add(teamMember3);
@@ -150,17 +216,16 @@ public class Tester {
 		int[] puTotals = {59, 64, 62, 58, 60, 57};
 		
 		int quantity = 10;
-		//String[][] pokemonStats=StatsAnalyzer.bestScores(battleMode,pokedex.getList(), quantity, sabl, allTotals);
-		//String[][] pokemonTypes=TypeAnalyzer.bestScores(pokedex.getList(), quantity, types0);
-		String[][] scores = MathAnalyzer.mathScores(battleMode,otwimilt,pokedex,quantity);
+		//ArrayList<String[]> mathScores = MathAnalyzer.mathScores(battleMode,otwimilt,pokedex);
+		//int[] compScores = CompAnalyzer.compScores(pokedex,otwimilt);
+		String[][] finalScores = finalScores(quantity,battleMode,otwimilt,pokedex);
 		for(int i=0;i!=quantity;i++)
 		{
-			System.out.println(scores[i][1]);
-			System.out.println(scores[i][10]);
-			//System.out.println(pokemonTypes[i][1]);
-			//System.out.println(pokemonTypes[i][10]);
-			//System.out.println(pokemonStats[i][1]);
-			//System.out.println(pokemonStats[i][10]);
+			//System.out.println(mathScores.get(i)[1]);
+			//System.out.println(mathScores.get(i)[10]);
+			//System.out.println(compScores[i]);
+			System.out.println(finalScores[i][1]);
+			System.out.println(finalScores[i][10]);
 			System.out.println("");
 		}
 		

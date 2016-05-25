@@ -1,6 +1,5 @@
 package ui;
 
-import javafx.animation.FadeTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -16,32 +15,25 @@ public class Menu extends AbstractMenu{
     private MenuButton btnStart;
     private MenuButton btnPokedex;
     private MenuButton btnExit;
-    private final String menuImagePath = "file:resources/space-invaders-wallpaper.gif";
-    private ImageView menuImage;
+    //private final String menuImagePath = "C:\\User\\Hugo\\Desktop\\BEP\\BEP\\PokeTeam\\src\\ui\\Pokeball.jpg";
+    //private ImageView menuImage;
     
     public Menu()
     {
-        VBox menu = new VBox(10);
+        //menuImage = new ImageView(new Image(menuImagePath));
+        //getChildren().addAll(menuImage);
+    	
+    	VBox menu = new VBox(10);
         menu.setTranslateX(300-uniformWidth/2);
         menu.setTranslateY(450);
 
         btnStart = new MenuButton("Start",uniformWidth);
         btnStart.setOnMouseClicked(event -> {
-                FadeTransition ft = new FadeTransition(Duration.seconds(1),this);
-                ft.setFromValue(1);
-                ft.setToValue(0);
-                ft.setOnFinished(evt -> this.setVisible(false));
-                ft.play();
                 clickStartButton();
             });
 
         btnPokedex = new MenuButton("Pokedex",uniformWidth);
         btnPokedex.setOnMouseClicked(event -> {
-        		FadeTransition ft = new FadeTransition(Duration.seconds(0.45),this);
-        		ft.setFromValue(1);
-        		ft.setToValue(0);
-        		ft.setOnFinished(evt -> this.setVisible(false));
-        		ft.play();
         		clickPokedexButton();
         	});
         

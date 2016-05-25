@@ -7,8 +7,9 @@ import type.Null;
 import type.Type;
 import type.TypeAnalyzer;
 
-public class MathAnalyzer {
-	public static String[][] mathScores(int[] battleMode,ArrayList<String[]> pokemon, Pokedex pokedex, int quantity)
+public class MathAnalyzer 
+{
+	public static ArrayList<String[]> mathScores(int[] battleMode,ArrayList<String[]> pokemon, Pokedex pokedex)
 	{
 		ArrayList<String[]> pokeList = pokedex.getList();
 		ArrayList<Type> types = new ArrayList<Type>();
@@ -44,8 +45,9 @@ public class MathAnalyzer {
 			scores.add(score);
 		}
 		
-		String[][] finalScores = sort(scores,quantity);
-		return finalScores;
+		//String[][] finalScores = sort(scores,quantity);
+		//return finalScores;
+		return scores;
 	}
 	
 	public static double[] calcConstants(int[] battleMode,ArrayList<String[]> pokeList)
