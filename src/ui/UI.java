@@ -82,11 +82,21 @@ public class UI extends Application{
     	return scene2;
     }
     
+    public static PokedexMenu getPokedexMenu()
+    {
+    	return (PokedexMenu) pokedexMenu;
+    }
+    
     public static Scene getPokedexMenuScene()
     {
     	return scene3;
     }
     
+    public static BuilderMenu getBuilderMenu()
+    {
+    	return (BuilderMenu) builderMenu;
+    }
+
     public static Scene getBuilderMenuScene()
     {
     	return scene4;

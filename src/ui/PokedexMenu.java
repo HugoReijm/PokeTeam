@@ -6,6 +6,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import mathData.Pokedex;
 import ui.InputField;
 import ui.MenuLabel;
 
@@ -23,10 +24,11 @@ public class PokedexMenu extends AbstractMenu {
     private VBox type2Input;
     private MenuButton btnBacktoTier;
     
+    private Pokedex pokedex;
+    
     public PokedexMenu()
     {
     	UI instance = UI.getInstance();
-    	setTier(instance.getTier());
     	
     	VBox menu = new VBox(10);
         menu.setTranslateX(300-uniformWidth/2);
@@ -60,9 +62,10 @@ public class PokedexMenu extends AbstractMenu {
     	return this.tier;
     }
     
-    public void setTier(String tier)
+    public void setPokedex(Pokedex pokedex)
     {
-    	this.tier=tier;
+    	this.pokedex = pokedex;
+    	this.tier = pokedex.getTier();
     }
     
     public void clickSearchButton()
@@ -72,6 +75,8 @@ public class PokedexMenu extends AbstractMenu {
     
     public void clickBackButton()
     {
+    	tier = null;
+		pokedex = null;
     	UI.sceneReload(UI.getPrimaryStage(),UI.getTierMenuScene());
     	UI.turnOffStage(UI.getSecondaryStage());
     }

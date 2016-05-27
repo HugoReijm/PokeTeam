@@ -10,23 +10,22 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-public final class Pokemon extends StackPane{
+public final class TeamMember extends StackPane{
 	
     private Rectangle pokemon;
     private Text text;
     private String name;
-    private double statsScore;
-    private double typeScore;
-    private double popScore;
+    private String type1;
+    private String type2;
 
-    public Pokemon(String name, double statsScore, double typeScore, double popScore)
+
+    public TeamMember(String name, String type1, String type2)
     {
     	this.name = name;
-        this.statsScore = statsScore;
-        this.typeScore = typeScore;
-        this.popScore = popScore;
+        this.type1 = type1;
+        this.type2 = type2;
 
-        text = new Text(name+"\t"+Double.toString(statsScore)+"\t"+Double.toString(typeScore)+"\t"+Double.toString(popScore));
+        text = new Text(name+"\t"+type1+"\t"+type2);
         text.setFont(Font.font(15));
         text.setFill(Color.WHITE);
         text.setTextAlignment(TextAlignment.LEFT);
@@ -45,6 +44,6 @@ public final class Pokemon extends StackPane{
     @Override
     public String toString() 
     {
-        return name + " " + statsScore + " " + typeScore + " " + popScore;
+        return name + " " + " " + type1 + " " + type2;
     }
 }

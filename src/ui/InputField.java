@@ -11,19 +11,10 @@ import javafx.scene.shape.Rectangle;
  */
 public class InputField extends StackPane {
 
-    /**
-     * Object of the field.
-     */
     private Rectangle field;
 
-    /**
-     * The actual inputfield object.
-     */
     private TextField input;
 
-    /**
-     * Constructor of the input field.
-     */
     public InputField(int width) {
         field = new Rectangle(width, 25);
         field.setOpacity(0.5);
@@ -37,25 +28,11 @@ public class InputField extends StackPane {
         getChildren().addAll(field, input);
     }
 
-    /**
-     * Returns the input.
-     *
-     * @return String
-     */
     public String getInput() {
         String res = input.getText();
-        if (res.length() > 8) {
-            res = res.substring(0, 7);
-        }
         return res;
     }
 
-    /**
-     * Returns the input.
-     *
-     * @param text
-     *            String
-     */
     public void setInput(final String text) {
         input.setText(text);
     }

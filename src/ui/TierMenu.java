@@ -19,6 +19,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
+import mathData.Pokedex;
 import ui.UI;
 import ui.MenuLabel;
 import ui.InputField;
@@ -103,9 +104,11 @@ public class TierMenu extends AbstractMenu {
     
     public void clickTierButton(String tier)
     {
-    	setTier(tier);
     	UI instance = UI.getInstance();
     	instance.setTier(tier);
+    	Pokedex distributionDex = Pokedex.toPokedex(tier);
+    	instance.getBuilderMenu().setPokedex(distributionDex);
+    	instance.getPokedexMenu().setPokedex(distributionDex);
     	UI.sceneReload(UI.getSecondaryStage(), UI.getPokedexMenuScene());
     	UI.sceneReload(UI.getPrimaryStage(),UI.getBuilderMenuScene());
     }

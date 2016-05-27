@@ -15,12 +15,13 @@ public class Menu extends AbstractMenu{
     private MenuButton btnStart;
     private MenuButton btnPokedex;
     private MenuButton btnExit;
-    //private final String menuImagePath = "C:\\User\\Hugo\\Desktop\\BEP\\BEP\\PokeTeam\\src\\ui\\Pokeball.jpg";
+    //private final String menuImagePath = "C:\\Users\\Hugo\\Desktop\\BEP\\BEP\\PokeTeam\\src\\ui\\Pokeball.jpg";
     //private ImageView menuImage;
     
     public Menu()
     {
-        //menuImage = new ImageView(new Image(menuImagePath));
+        //Image pokeball = new Image(menuImagePath);
+    	//menuImage = new ImageView(pokeball);
         //getChildren().addAll(menuImage);
     	
     	VBox menu = new VBox(10);

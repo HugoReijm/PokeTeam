@@ -9,27 +9,12 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-/**
- * Class for the menu buttons.
- */
 public class MenuButton extends StackPane {
 
-	/**
-     * Text object.
-     */
     private Text text;
 
-    /**
-     * Rectangle object.
-     */
     private Rectangle bg;
 
-    /**
-     * Create menu buttons.
-     *
-     * @param name
-     *            on button
-     */
     public MenuButton(final String name,int width) {
         text = new Text(name);
         text.setFont(Font.font(17));
@@ -42,13 +27,11 @@ public class MenuButton extends StackPane {
         getChildren().addAll(bg, text);
 
         this.setOnMouseEntered(event -> {
-                bg.setFill(Color.WHITE);
-                text.setFill(Color.BLACK);
+                text.setFont(Font.font(19));
             });
 
         this.setOnMouseExited(event -> {
-                bg.setFill(Color.BLACK);
-                text.setFill(Color.WHITE);
+        		text.setFont(Font.font(17));
             });
 
         DropShadow drop = new DropShadow(40, Color.WHITE);
@@ -57,13 +40,8 @@ public class MenuButton extends StackPane {
         setOnMousePressed(event -> setEffect(drop));
         setOnMouseReleased(event -> setEffect(null));
     }
-
-    /**
-     * Text getter.
-     *
-     * @return Text
-     */
-    public Text getText() {
-        return text;
+    
+    public void setColor(Color color) {
+        bg.setFill(color);
     }
 }

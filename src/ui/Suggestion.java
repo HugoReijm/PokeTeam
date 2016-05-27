@@ -10,16 +10,21 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-public final class Pokemon extends StackPane{
+public class Suggestion extends StackPane{
 	
     private Rectangle pokemon;
+
     private Text text;
+    
     private String name;
+
     private double statsScore;
+    
     private double typeScore;
+    
     private double popScore;
 
-    public Pokemon(String name, double statsScore, double typeScore, double popScore)
+    public Suggestion(String name, double statsScore, double typeScore, double popScore)
     {
     	this.name = name;
         this.statsScore = statsScore;

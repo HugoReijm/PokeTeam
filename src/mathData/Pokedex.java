@@ -25,6 +25,43 @@ public abstract class Pokedex {
 	
 	public abstract int location(String id);
 	
+	public static Pokedex toPokedex(String tier)
+	{
+		if(tier.equals("AG"))
+		{
+			return new AGPokedex();
+		}
+		else if(tier.equals("BS"))
+		{
+			return new BSPokedex();
+		}
+		else if(tier.equals("Ubers"))
+		{
+			return new UbersPokedex();
+		}
+		else if(tier.equals("OU"))
+		{
+			return new OUPokedex();
+		}
+		else if(tier.equals("UU"))
+		{
+			return new UUPokedex();
+		}
+		else if(tier.equals("RU"))
+		{
+			return new RUPokedex();
+		}
+		else if(tier.equals("NU"))
+		{
+			return new NUPokedex();
+		}
+		else if(tier.equals("PU"))
+		{
+			return new PUPokedex();
+		}
+		return null;
+	}
+	
 	public static void alphabetic(ArrayList<String[]> pokedex)
 	{
 		String[] temp;

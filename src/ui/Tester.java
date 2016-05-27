@@ -153,10 +153,8 @@ public class Tester {
 				}
 			}
 		}
-		consts[0]=(mathub-mathlb)/(compub-complb);
-		consts[1]= mathlb-consts[0]*complb;
-		System.out.println(mathub+", "+mathlb);
-		System.out.println((consts[0]*compub+consts[1])+", "+(consts[0]*complb+consts[1]));
+		System.out.println(consts[0]);
+		System.out.println(consts[1]);
 		return consts;
 	}
 	
@@ -164,7 +162,7 @@ public class Tester {
 	{
 		double max = 0.9;
 		double min = 0.1;
-		double a1 = 5;
+		double a1 = 5.0;
 		double b1 = 0.0;
 		double scale = (max/min+1)*Math.sqrt(max/min)*max;
 		double center = (max/min)*Math.sqrt(max/min);
@@ -202,11 +200,11 @@ public class Tester {
 		String[] teamMember5=pokedex.exactSearch("Wash Rotom");
 		String[] teamMember6=pokedex.exactSearch("Cresselia");
 		otwimilt.add(teamMember1);
-		otwimilt.add(teamMember2);
-		otwimilt.add(teamMember3);
-		otwimilt.add(teamMember4);
-		otwimilt.add(teamMember5);
-		otwimilt.add(teamMember6);
+		//otwimilt.add(teamMember2);
+		//otwimilt.add(teamMember3);
+		//otwimilt.add(teamMember4);
+		//otwimilt.add(teamMember5);
+		//otwimilt.add(teamMember6);
 		
 		int[] allTotals = {70, 79, 74, 73, 72, 69};
 		int[] ouTotals = {100, 123, 103, 126, 106, 108};
