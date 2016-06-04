@@ -109,8 +109,8 @@ public class TierMenu extends AbstractMenu {
     	Pokedex distributionDex = Pokedex.toPokedex(tier);
     	instance.getBuilderMenu().setPokedex(distributionDex);
     	instance.getPokedexMenu().setPokedex(distributionDex);
-    	UI.sceneReload(UI.getSecondaryStage(), UI.getPokedexMenuScene());
     	UI.sceneReload(UI.getPrimaryStage(),UI.getBuilderMenuScene());
+    	UI.sceneReload(UI.getSecondaryStage(), UI.getPokedexMenuScene());
     }
     
     public void clickBackButton()

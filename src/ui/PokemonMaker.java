@@ -1,12 +1,5 @@
 package ui;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,8 +36,10 @@ public class PokemonMaker
     	String[][] scores = finalScores(10,pokedex,team,battleMode);
     	for(int i=0;i!=scores.length;i++)
     	{
-    		double score1 = Math.round(Double.parseDouble(scores[i][10])*100)/100.0;
-    		Suggestion p = new Suggestion(scores[i][1],score1,score1,score1);
+    		double typeScore = Math.round(Double.parseDouble(scores[i][10])*100)/100.0;
+    		double statScore = Math.round(Double.parseDouble(scores[i][11])*100)/100.0;
+    		double compScore = Double.parseDouble(scores[i][13]);
+    		Suggestion p = new Suggestion(scores[i][1],typeScore,statScore,compScore);
     		list.add(p);
     	}
     	return list;
@@ -66,7 +61,8 @@ public class PokemonMaker
 		{
 			for(int i=0;i!=mathScores.size();i++)
 			{
-				mathScores.get(i)[10]=Double.toString(((max+min)-scale/(center+Math.exp(2*exponent*team.size())))*Double.parseDouble(mathScores.get(i)[10])+(scale/(center+Math.exp(2*exponent*team.size())))*(a1*compScores[i]+b1));
+				mathScores.get(i)[13]=Integer.toString(compScores[i]);
+				mathScores.get(i)[14]=Double.toString(((max+min)-scale/(center+Math.exp(2*exponent*team.size())))*Double.parseDouble(mathScores.get(i)[12])+(scale/(center+Math.exp(2*exponent*team.size())))*(a1*compScores[i]+b1));
 			}
 			mathScores = Pokedex.removeTeamandMegas(mathScores, team);
 			String[][] finalScores = MathAnalyzer.sort(mathScores, quantity);

@@ -148,26 +148,31 @@ public class StatsAnalyzer {
 		return statsAverages;
 	}
 	
-	public static double statsScore(int[] battleMode, int[] teamAverages, int[] totalAverages, String[] pokemon)
-	{
-		double kHP = battleMode[0];
-		double kATT = battleMode[1];
-		double kDEF = battleMode[2];
-		double kSPATT = battleMode[3];
-		double kSPDEF = battleMode[4];
-		double kSPD = battleMode[5];
+	public static double statsScore(int[] battleMode, ArrayList<String[]> team, int[] totalAverages, String[] pokemon)
+	{	
+		ArrayList<String[]> tempTeam = new ArrayList<String[]>();
+		tempTeam.addAll(team);
+		tempTeam.add(pokemon);
 		
-		int hpFactor = teamAverages[0]+Integer.parseInt(pokemon[2])-totalAverages[0];
-		int attFactor = teamAverages[1]+Integer.parseInt(pokemon[3])-totalAverages[1];
-		int defFactor = teamAverages[2]+Integer.parseInt(pokemon[4])-totalAverages[2];
-		int spattFactor = teamAverages[3]+Integer.parseInt(pokemon[5])-totalAverages[3];
-		int spdefFactor = teamAverages[4]+Integer.parseInt(pokemon[6])-totalAverages[4];
-		int spdFactor = teamAverages[5]+Integer.parseInt(pokemon[6])-totalAverages[5];
+		int[] teamAverages = new int[6];
+		teamAverages[0]=hpAverage(tempTeam);
+		teamAverages[1]=attAverage(tempTeam);
+		teamAverages[2]=defAverage(tempTeam);
+		teamAverages[3]=spattAverage(tempTeam);
+		teamAverages[4]=spdefAverage(tempTeam);
+		teamAverages[5]=spdAverage(tempTeam);
+				
+		int hpFactor = teamAverages[0]-totalAverages[0];
+		int attFactor = teamAverages[1]-totalAverages[1];
+		int defFactor = teamAverages[2]-totalAverages[2];
+		int spattFactor = teamAverages[3]-totalAverages[3];
+		int spdefFactor = teamAverages[4]-totalAverages[4];
+		int spdFactor = teamAverages[5]-totalAverages[5];
 		
-		return kHP*hpFactor+kATT*attFactor+kDEF*defFactor+kSPATT*spattFactor+kSPDEF*spdefFactor+kSPD*spdFactor;
+		return (battleMode[0]*hpFactor)+(battleMode[1]*attFactor)+(battleMode[2]*defFactor)+(battleMode[3]*spattFactor)+(battleMode[4]*spdefFactor)+(battleMode[5]*spdFactor);
 	}
 	
-	public static String[][] bestScores(int[] battleMode, ArrayList<String[]> pokedex, int quantity, int[] teamAverages, int[] totalAverages)
+	public static String[][] bestScores(int[] battleMode, ArrayList<String[]> pokedex, int quantity, ArrayList<String[]> team, int[] totalAverages)
 	{
 		String[][] scores = new String[quantity][11];
 		for(int i=0;i!=quantity;i++)
@@ -179,7 +184,7 @@ public class StatsAnalyzer {
 		{
 			for(int j=0;j!=quantity;j++)
 			{
-				double statsScore = statsScore(battleMode, teamAverages, totalAverages, pokedex.get(i));
+				double statsScore = statsScore(battleMode, team, totalAverages, pokedex.get(i));
 				if(statsScore>Double.parseDouble(scores[j][10]))
 				{
 					for(int k=quantity-1;k!=j;k--)

@@ -12,28 +12,23 @@ import javafx.scene.text.Font;
  */
 public class MenuLabel extends StackPane {
 
-    /**
-     * Object for the label.
-     */
     private Rectangle bg;
+    private Label name;
 
-    /**
-     * Constructor for the label.
-     *
-     * @param text
-     *            in the label
-     * @param width
-     *            of the label
-     */
     public MenuLabel(final String text, final int width) {
-        Label plname = new Label(text);
-        plname.setFont(Font.font(15));
-        plname.setTextFill(Color.WHITE);
-        bg = new Rectangle(width, 28);
+    	name = new Label(text);
+        name.setFont(Font.font(15));
+        name.setTextFill(Color.AQUA);
+        bg = new Rectangle(width, 30);
         bg.setOpacity(0.5);
         bg.setFill(Color.BLACK);
         bg.setEffect(new GaussianBlur(3.2));
 
-        getChildren().addAll(bg, plname);
+        getChildren().addAll(bg, name);
+    }
+    
+    public void setText(String text)
+    {
+    	name.setText(text);
     }
 }

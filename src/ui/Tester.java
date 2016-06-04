@@ -59,7 +59,9 @@ public class Tester {
 	{
 		ArrayList<Double> scores=new ArrayList<Double>();
 		ArrayList<String[]> pokedex=database.getList();
-		int[] missingno = {0,0,0,0,0,0};
+		ArrayList<String[]> missingno = new ArrayList<String[]>();
+		String[] nothing = {"000","Missingno","0","0","0","0","0","0","Null","Null"};
+		missingno.add(nothing);
 		int[] averages = {70, 79, 74, 73, 72, 69};
 		for(int i=0;i!=pokedex.size();i++)
 		{
@@ -189,7 +191,7 @@ public class Tester {
 	}
 
 	public static void main(String[] args) {
-		Pokedex pokedex = new BSPokedex();
+		Pokedex pokedex = new AGPokedex();
 		int[] battleMode = {1,1,1,1,1,1};
 		
 		ArrayList<String[]> otwimilt = new ArrayList<String[]>();
@@ -216,8 +218,8 @@ public class Tester {
 		int quantity = 10;
 		//ArrayList<String[]> mathScores = MathAnalyzer.mathScores(battleMode,otwimilt,pokedex);
 		//int[] compScores = CompAnalyzer.compScores(pokedex,otwimilt);
-		String[][] finalScores = finalScores(quantity,battleMode,otwimilt,pokedex);
-		for(int i=0;i!=quantity;i++)
+		//String[][] finalScores = finalScores(quantity,battleMode,otwimilt,pokedex);
+		/*for(int i=0;i!=quantity;i++)
 		{
 			//System.out.println(mathScores.get(i)[1]);
 			//System.out.println(mathScores.get(i)[10]);
@@ -225,19 +227,6 @@ public class Tester {
 			System.out.println(finalScores[i][1]);
 			System.out.println(finalScores[i][10]);
 			System.out.println("");
-		}
-		
-		/*ArrayList<Double> stats = statsScoreRanger(pokedex);
-		System.out.println("Stats Start");
-		for(int i=0;i!=stats.size();i++)
-		{
-			System.out.println(stats.get(i));
-		}*/
-		/*ArrayList<Double> types = typeScoreRanger(pokedex);
-		System.out.println("Type Start");
-		for(int i=0;i!=types.size();i++)
-		{
-			System.out.println(types.get(i));
 		}*/
 	}
 }

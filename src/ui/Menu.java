@@ -7,6 +7,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import mathData.Pokedex;
 import ui.MenuLabel;
 import ui.MenuButton;
 
@@ -57,6 +58,9 @@ public class Menu extends AbstractMenu{
     }
     
     public void clickPokedexButton(){
+    	UI instance = UI.getInstance();
+    	Pokedex distributionDex = Pokedex.toPokedex("AG");
+    	instance.getPokedexMenu().setPokedex(distributionDex);
     	UI.sceneReload(UI.getSecondaryStage(),UI.getPokedexMenuScene());
     }
 }

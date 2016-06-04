@@ -1,5 +1,6 @@
 package mathData;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public abstract class Pokedex {
@@ -115,5 +116,50 @@ public abstract class Pokedex {
 			}
 		}
 		return pokeList;
+	}
+	
+	public static ArrayList<String[]> inCommon(ArrayList<ArrayList<String[]>> arrays)
+	{
+		ArrayList<String[]> res = new ArrayList<String[]>();
+		int size = arrays.size();
+		
+		if(size>0)
+		{
+			for(int i=0;i!=arrays.get(0).size();i++)
+			{
+				if(size>1)
+				{
+					if(arrays.get(1).contains(arrays.get(0).get(i)))
+					{
+						if(size>2)
+						{
+							if(arrays.get(2).contains(arrays.get(0).get(i)))
+							{
+								if(size>3)
+								{
+									if(arrays.get(3).contains(arrays.get(0).get(i)))
+									{
+										res.add(arrays.get(0).get(i));
+									}
+								}
+								else
+								{
+									res.add(arrays.get(0).get(i));
+								}
+							}
+						}
+						else
+						{
+							res.add(arrays.get(0).get(i));
+						}
+					}
+				}
+				else
+				{
+					res.add(arrays.get(0).get(i));
+				}
+			}
+		}
+		return res;
 	}
 }

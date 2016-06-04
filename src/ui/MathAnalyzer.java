@@ -9,44 +9,37 @@ import type.TypeAnalyzer;
 
 public class MathAnalyzer 
 {
-	public static ArrayList<String[]> mathScores(int[] battleMode,ArrayList<String[]> pokemon, Pokedex pokedex)
+	public static ArrayList<String[]> mathScores(int[] battleMode,ArrayList<String[]> team, Pokedex pokedex)
 	{
 		ArrayList<String[]> pokeList = pokedex.getList();
 		ArrayList<Type> types = new ArrayList<Type>();
 		ArrayList<String[]> scores = new ArrayList<String[]>();
 		int[] totalAverages = StatsAnalyzer.tierStats(StatsAnalyzer.tierSep(pokedex));
-		int[] teamAverages = new int[6];
 		double[] constants = calcConstants(battleMode,pokeList);
 		double kStats = constants[0];
 		double cStats = constants[1];
 		
-		for(int i=0;i!=pokemon.size();i++)
+		for(int i=0;i!=team.size();i++)
 		{
-			types.add(Type.toType(pokemon.get(i)[8]));
-			types.add(Type.toType(pokemon.get(i)[9]));
+			types.add(Type.toType(team.get(i)[8]));
+			types.add(Type.toType(team.get(i)[9]));
 		}
 		ArrayList<ArrayList<Type>> origWRITable = TypeAnalyzer.wriTable(types);
 		
-		teamAverages[0]=StatsAnalyzer.hpAverage(pokemon);
-		teamAverages[1]=StatsAnalyzer.attAverage(pokemon);
-		teamAverages[2]=StatsAnalyzer.defAverage(pokemon);
-		teamAverages[3]=StatsAnalyzer.spattAverage(pokemon);
-		teamAverages[4]=StatsAnalyzer.spdefAverage(pokemon);
-		teamAverages[5]=StatsAnalyzer.spdAverage(pokemon);
-		
 		for(int i=0;i!=pokeList.size();i++)
 		{
-			String[] score = new String[11];
+			String[] score = new String[15];
 			for(int j=0;j!=10;j++)
 			{
 				score[j]=pokeList.get(i)[j];
 			}
-			score[10]=Double.toString(TypeAnalyzer.typeScore(Type.toType(pokeList.get(i)[8]), Type.toType(pokeList.get(i)[9]), types,origWRITable)+kStats*StatsAnalyzer.statsScore(battleMode, teamAverages, totalAverages, pokeList.get(i))+cStats);
+			score[10]=Double.toString(TypeAnalyzer.typeScore(Type.toType(pokeList.get(i)[8]), Type.toType(pokeList.get(i)[9]), types,origWRITable));
+			score[11]=Double.toString(kStats*StatsAnalyzer.statsScore(battleMode, team, totalAverages, pokeList.get(i))+cStats);
+			score[12]=Double.toString(TypeAnalyzer.typeScore(Type.toType(pokeList.get(i)[8]), Type.toType(pokeList.get(i)[9]), types,origWRITable)+kStats*StatsAnalyzer.statsScore(battleMode, team, totalAverages, pokeList.get(i))+cStats);
+			score[13]="0.0";
+			score[14]="0.0";
 			scores.add(score);
 		}
-		
-		//String[][] finalScores = sort(scores,quantity);
-		//return finalScores;
 		return scores;
 	}
 	
@@ -63,7 +56,9 @@ public class MathAnalyzer
 		
 		ArrayList<Type> typeInput = new ArrayList<Type>();
 		typeInput.add(new Null());
-		int[] missingno = {0,0,0,0,0,0};
+		ArrayList<String[]> missingno = new ArrayList<String[]>();
+		String[] nothing = {"000","Missingno","0","0","0","0","0","0","Null","Null"};
+		missingno.add(nothing);
 		ArrayList<ArrayList<Type>> origWRI = TypeAnalyzer.wriTable(typeInput);
 		for(int i=0;i!= pokeList.size();i++)
 		{
@@ -94,17 +89,21 @@ public class MathAnalyzer
 	
 	public static String[][] sort(ArrayList<String[]> tempScores,int quantity)
 	{
-		String[][] scores = new String[quantity][11];
+		String[][] scores = new String[quantity][15];
 		for(int i=0;i!=quantity;i++)
 		{
 			scores[i][10]="0";
+			scores[i][11]="0";
+			scores[i][12]="0";
+			scores[i][13]="0";
+			scores[i][14]="0";
 		}
 		
 		for(int i=0;i!=tempScores.size();i++)
 		{
 			for(int j=0;j!=quantity;j++)
 			{
-				if(Double.parseDouble(tempScores.get(i)[10])>Double.parseDouble(scores[j][10]))
+				if(Double.parseDouble(tempScores.get(i)[14])>Double.parseDouble(scores[j][14]))
 				{
 					for(int k=quantity-1;k!=j;k--)
 					{
@@ -119,6 +118,10 @@ public class MathAnalyzer
 						scores[k][8]=scores[k-1][8];
 						scores[k][9]=scores[k-1][9];
 						scores[k][10]=scores[k-1][10];
+						scores[k][11]=scores[k-1][11];
+						scores[k][12]=scores[k-1][12];
+						scores[k][13]=scores[k-1][13];
+						scores[k][14]=scores[k-1][14];
 					}
 					scores[j][0]=tempScores.get(i)[0];
 					scores[j][1]=tempScores.get(i)[1];
@@ -131,6 +134,10 @@ public class MathAnalyzer
 					scores[j][8]=tempScores.get(i)[8];
 					scores[j][9]=tempScores.get(i)[9];
 					scores[j][10]=tempScores.get(i)[10];
+					scores[j][11]=tempScores.get(i)[11];
+					scores[j][12]=tempScores.get(i)[12];
+					scores[j][13]=tempScores.get(i)[13];
+					scores[j][14]=tempScores.get(i)[14];
 					break;
 				}
 			}

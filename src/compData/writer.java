@@ -299,7 +299,7 @@ public class writer {
 	
 	public static void main(String[] args)
 	{
-		Pokedex pokedex = new AGPokedex();
+		Pokedex pokedex = new RUPokedex();
 		reader(pokedex);
 		boolean rerun = true;
 		boolean rerunTier;

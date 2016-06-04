@@ -1,31 +1,10 @@
 package ui;
 
-import javafx.animation.Animation;
-import javafx.animation.AnimationTimer;
-import javafx.animation.FadeTransition;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.media.AudioClip;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import ui.Menu;
 
 public class UI extends Application{
@@ -136,8 +115,8 @@ public class UI extends Application{
         root4 = new Group();
         scene1 = new Scene(root, maxWidth, maxHeight, Color.WHITE);
         scene2 = new Scene(root2,maxWidth,maxHeight, Color.WHITE);
-        scene3 = new Scene(root3,maxWidth,maxHeight, Color.WHITE);
-        scene4 = new Scene(root4,maxWidth,maxHeight, Color.WHITE);
+        scene3 = new Scene(root3,630,maxHeight, Color.WHITE);
+        scene4 = new Scene(root4,900,maxHeight, Color.WHITE);
         sceneReload(primaryStage,scene1);
         
         menu = new Menu();

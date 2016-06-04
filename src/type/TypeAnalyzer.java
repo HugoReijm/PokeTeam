@@ -98,7 +98,6 @@ public class TypeAnalyzer {
 		{
 			sum=sum+(newtypeArray[i]-origtypeArray[i])*bias[i];
 		}
-	
 		return sum;
 	}
 	
