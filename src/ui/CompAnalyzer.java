@@ -1,19 +1,12 @@
 package ui;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import mathData.AGPokedex;
-import mathData.BSPokedex;
-import mathData.OUPokedex;
 import mathData.Pokedex;
-import mathData.UbersPokedex;
-import stats.StatsAnalyzer;
-import type.Null;
-import type.Type;
-import type.TypeAnalyzer;
 
 public class CompAnalyzer 
 {
@@ -49,7 +42,8 @@ public class CompAnalyzer
 		{
 			chart.clear();
 			String tier = pokedex.getTier();
-			FileReader inputPath = new FileReader("C:\\Users\\Hugo\\Desktop\\BEP\\BEP\\PokeTeam\\src\\compData\\tables\\"+tier+"data.txt");
+			String currentDirectory = new File("").getAbsolutePath();
+			FileReader inputPath = new FileReader(currentDirectory+"\\resources\\tables\\"+tier+"data.txt");
 			BufferedReader bufRead = new BufferedReader(inputPath);
 			String line = null;
 			while((line=bufRead.readLine())!=null)
@@ -68,28 +62,6 @@ public class CompAnalyzer
 		catch (IOException e) 
 		{
 			e.printStackTrace();
-		}
-	}
-	
-	public static void main(String[] args)
-	{
-		Pokedex pokedex=new OUPokedex();
-		
-		ArrayList<String[]> otwimilt = new ArrayList<String[]>();
-		String[] teamMember1=pokedex.exactSearch("Mega Sableye");
-		String[] teamMember2=pokedex.exactSearch("Heatran");
-		otwimilt.add(teamMember1);
-		otwimilt.add(teamMember2);
-		
-		int[] p=compScores(pokedex,otwimilt);
-		int l=pokedex.location(otwimilt.get(0)[0]);
-		System.out.println("Start");
-		for(int i=0;i!=p.length;i++)
-		{
-			if(p[i]!=0)
-			{
-				System.out.println(pokedex.getList().get(i)[1]+": "+p[i]);
-			}
 		}
 	}
 }

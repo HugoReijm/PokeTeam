@@ -6,16 +6,13 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Scanner;
 
 import mathData.AGPokedex;
 import mathData.BSPokedex;
 import mathData.NUPokedex;
 import mathData.OUPokedex;
-import mathData.PUPokedex;
 import mathData.Pokedex;
 import mathData.RUPokedex;
 import mathData.UUPokedex;
@@ -25,6 +22,7 @@ public class writer {
 	private static ArrayList<ArrayList<String>> table = new ArrayList<ArrayList<String>>();
 	private static ArrayList<ArrayList<String>> backupTable = new ArrayList<ArrayList<String>>();
 	private static ArrayList<String[]> newTeamLog = new ArrayList<String[]>();
+	private final static String currentDirectory = new File("").getAbsolutePath();
 
 	public static void reset(Pokedex pokedex)
 	{
@@ -32,8 +30,8 @@ public class writer {
 		{
 			String tier = pokedex.getTier();
 			int size=pokedex.getList().size();
-			File file = new File("C:\\Users\\Hugo\\Desktop\\BEP\\BEP\\PokeTeam\\src\\compData\\tables\\"+tier+"data.txt");
-			File logFile = new File("C:\\Users\\Hugo\\Desktop\\BEP\\BEP\\PokeTeam\\src\\compData\\tables\\"+tier+"log.txt");
+			File file = new File(currentDirectory+"\\resources\\tables\\"+tier+"data.txt");
+			File logFile = new File(currentDirectory+"\\resources\\tables\\"+tier+"log.txt");
 			System.out.println(file.getCanonicalPath());
 			System.out.println(logFile.getCanonicalPath());
 			FileWriter output = new FileWriter(file);
@@ -66,7 +64,7 @@ public class writer {
 		{
 			String tier = pokedex.getTier();
 			int size=pokedex.getList().size();
-			File backupFile = new File("C:\\Users\\Hugo\\Desktop\\BEP\\BEP\\PokeTeam\\src\\compData\\tables\\"+tier+"backup.txt");
+			File backupFile = new File(currentDirectory+"\\resources\\tables\\"+tier+"backup.txt");
 			System.out.println(backupFile.getCanonicalPath());
 			FileWriter backupOutput = new FileWriter(backupFile);
 			BufferedWriter backupBuf = new BufferedWriter(backupOutput);
@@ -93,9 +91,9 @@ public class writer {
 		try 
 		{
 			String tier = pokedex.getTier();
-			FileReader inputPath = new FileReader("C:\\Users\\Hugo\\Desktop\\BEP\\BEP\\PokeTeam\\src\\compData\\tables\\"+tier+"data.txt");
-			FileReader backupPath = new FileReader("C:\\Users\\Hugo\\Desktop\\BEP\\BEP\\PokeTeam\\src\\compData\\tables\\"+tier+"backup.txt");
-			FileReader logPath = new FileReader("C:\\Users\\Hugo\\Desktop\\BEP\\BEP\\PokeTeam\\src\\compData\\tables\\"+tier+"log.txt");
+			FileReader inputPath = new FileReader(currentDirectory+"\\resources\\tables\\"+tier+"data.txt");
+			FileReader backupPath = new FileReader(currentDirectory+"\\resources\\tables\\"+tier+"backup.txt");
+			FileReader logPath = new FileReader(currentDirectory+"\\resources\\tables\\"+tier+"log.txt");
 			BufferedReader bufRead = new BufferedReader(inputPath);
 			BufferedReader backupBuf = new BufferedReader(backupPath);
 			BufferedReader logBuf = new BufferedReader(logPath);
@@ -170,9 +168,9 @@ public class writer {
 		{
 			String tier = pokedex.getTier();
 			int size=pokedex.getList().size();
-			File file = new File("C:\\Users\\Hugo\\Desktop\\BEP\\BEP\\PokeTeam\\src\\compData\\tables\\"+tier+"data.txt");
-			File backupFile = new File("C:\\Users\\Hugo\\Desktop\\BEP\\BEP\\PokeTeam\\src\\compData\\tables\\"+tier+"backup.txt");
-			File logFile = new File("C:\\Users\\Hugo\\Desktop\\BEP\\BEP\\PokeTeam\\src\\compData\\tables\\"+tier+"log.txt");
+			File file = new File(currentDirectory+"\\resources\\tables\\"+tier+"data.txt");
+			File backupFile = new File(currentDirectory+"\\resources\\tables\\"+tier+"backup.txt");
+			File logFile = new File(currentDirectory+"\\resources\\tables\\"+tier+"log.txt");
 			FileWriter output = new FileWriter(file);
 			FileWriter backupOutput = new FileWriter(backupFile);
 			FileWriter logOutput = new FileWriter(logFile);
@@ -298,75 +296,15 @@ public class writer {
 	}
 	
 	public static void main(String[] args)
-	{
-		Pokedex pokedex = new RUPokedex();
+	{	
+		Pokedex pokedex = new BSPokedex();
 		reader(pokedex);
 		boolean rerun = true;
-		boolean rerunTier;
 		String respond;
 		Scanner scanner = new Scanner(System.in);
 		
 		while(rerun==true)
 		{
-			/*rerunTier=true;
-			while(rerunTier==true)
-			{
-				System.out.println("Please input the Tier of your team");
-				String tier = scanner.nextLine();
-				if(tier.equals("AG"))
-				{
-					pokedex = new AGPokedex();
-					reader(pokedex);
-					rerunTier=false;
-				}
-				else if(tier.equals("BS"))
-				{
-					pokedex = new BSPokedex();
-					reader(pokedex);
-					rerunTier=false;
-				}
-				else if(tier.equals("Ubers"))
-				{
-					pokedex = new UbersPokedex();
-					reader(pokedex);
-					rerunTier=false;
-				}
-				else if(tier.equals("OU"))
-				{
-					pokedex = new OUPokedex();
-					reader(pokedex);
-					rerunTier=false;
-				}
-				else if(tier.equals("UU"))
-				{
-					pokedex = new UUPokedex();
-					reader(pokedex);
-					rerunTier=false;
-				}
-				else if(tier.equals("RU"))
-				{
-					pokedex = new RUPokedex();
-					reader(pokedex);
-					rerunTier=false;
-				}
-				else if(tier.equals("NU"))
-				{
-					pokedex = new NUPokedex();
-					reader(pokedex);
-					rerunTier=false;
-				}
-				else if(tier.equals("PU"))
-				{
-					pokedex = new PUPokedex();
-					reader(pokedex);
-					rerunTier=false;
-				}
-				else
-				{
-					System.out.println("Tier doesn't exist. Please try again");
-					System.out.println("");
-				}
-			}*/
 			System.out.println("Please input your first Pokemon");
 			String poke1 = scanner.nextLine();
 			System.out.println("Please input your second Pokemon");
@@ -389,7 +327,6 @@ public class writer {
 					if(newTeamChecker(team,pokedex)==true)
 					{
 						adder(team,pokedex);
-						//writer(pokedex);
 						System.out.println("Team registered!");
 					}
 				}

@@ -2,10 +2,6 @@ package type;
 
 import java.util.ArrayList;
 
-import mathData.AGPokedex;
-import mathData.BSPokedex;
-import mathData.Pokedex;
-
 public class TypeAnalyzer {
 
 	public static ArrayList<ArrayList<Type>> wriTable(ArrayList<Type> types){
@@ -485,15 +481,5 @@ public class TypeAnalyzer {
 			}
 		}
 		return bias;
-	}
-	
-	public static void main(String[] args)
-	{
-		Pokedex pokedex=new AGPokedex();
-		ArrayList<Type> types=new ArrayList<Type>();
-		types.add(new Water());
-		types.add(new Null());
-		System.out.println(pokedex.getList().get(385)[1]);
-		System.out.println(typeScore(Type.toType(pokedex.getList().get(385)[8]),Type.toType(pokedex.getList().get(385)[9]),types,wriTable(types)));
 	}
 }

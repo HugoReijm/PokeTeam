@@ -13,9 +13,8 @@ public class AGPokedex extends Pokedex {
 	public AGPokedex(){
 		try 
 		{
-			//String currentDirectory = new File("").getAbsolutePath();
-			//FileReader inputPath = new FileReader(currentDirectory+"\\mathData\\pokedex\\"+tier+".txt");
-			FileReader inputPath = new FileReader("C:\\Users\\Hugo\\Desktop\\BEP\\BEP\\PokeTeam\\src\\mathData\\pokedex\\"+tier+".txt");
+			String currentDirectory = new File("").getAbsolutePath();
+			FileReader inputPath = new FileReader(currentDirectory+"\\resources\\pokedex\\"+tier+".txt");
 			BufferedReader bufRead = new BufferedReader(inputPath);
 			String line = null;
 			while((line=bufRead.readLine())!=null)

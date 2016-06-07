@@ -1,6 +1,5 @@
 package mathData;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public abstract class Pokedex {
@@ -15,7 +14,6 @@ public abstract class Pokedex {
 	
 	public abstract boolean boolSearch(String nameID);
 	
-	//Be careful when searching: searching for Pokemon 020, for example, will yield Pokemon 16. Instead, you need to search just for Pokemon 20 
 	public abstract ArrayList<String[]> idSearch(String id);
 	
 	public abstract String[] exactIDSearch(String id);
@@ -56,29 +54,7 @@ public abstract class Pokedex {
 		{
 			return new NUPokedex();
 		}
-		else if(tier.equals("PU"))
-		{
-			return new PUPokedex();
-		}
 		return null;
-	}
-	
-	public static void alphabetic(ArrayList<String[]> pokedex)
-	{
-		String[] temp;
-		
-		for(int i=0;i!=pokedex.size();i++)
-		{
-			for(int j=i+1;j!=pokedex.size();j++)
-			{
-				if(pokedex.get(i)[1].compareTo(pokedex.get(j)[1])>0)
-				{
-					temp = pokedex.get(i);
-					pokedex.set(i,pokedex.get(j));
-					pokedex.set(j,temp);
-				}
-			}
-		}
 	}
 	
 	public static ArrayList<String[]> removeTeamandMegas(ArrayList<String[]> tempPokeList,ArrayList<String[]> team)

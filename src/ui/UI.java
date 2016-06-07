@@ -102,6 +102,18 @@ public class UI extends Application{
     	stage.show();
     }
     
+    public static void reset(String menu)
+    {
+    	if(menu.equals("BuilderMenu"))
+    	{
+    		((BuilderMenu) builderMenu).reset();
+    	}
+    	else if(menu.equals("PokedexMenu"))
+    	{
+    		((PokedexMenu) pokedexMenu).reset();
+    	}
+    }
+    
     public static void main(final String[] args) {
     	launch(args);
     }
@@ -109,15 +121,11 @@ public class UI extends Application{
 	@Override
 	public void start(final Stage stage) throws Exception{
 		primaryStage.setTitle("PokeTeam Builder");
+        secondaryStage.setTitle("Pokedex");
         root = new Group();
         root2 = new Group();
         root3 = new Group();
         root4 = new Group();
-        scene1 = new Scene(root, maxWidth, maxHeight, Color.WHITE);
-        scene2 = new Scene(root2,maxWidth,maxHeight, Color.WHITE);
-        scene3 = new Scene(root3,630,maxHeight, Color.WHITE);
-        scene4 = new Scene(root4,900,maxHeight, Color.WHITE);
-        sceneReload(primaryStage,scene1);
         
         menu = new Menu();
         tierMenu = new TierMenu();
@@ -128,6 +136,11 @@ public class UI extends Application{
         root3.getChildren().add(pokedexMenu);
         root4.getChildren().add(builderMenu);
         
-        secondaryStage.setTitle("Pokedex");
+        scene1 = new Scene(root, maxWidth, maxHeight, Color.WHITE);
+        scene2 = new Scene(root2,maxWidth,maxHeight, Color.WHITE);
+        scene3 = new Scene(root3,630,maxHeight, Color.WHITE);
+        scene4 = new Scene(root4,900,maxHeight, Color.WHITE);
+        
+        sceneReload(primaryStage,scene1);
 	}
 }

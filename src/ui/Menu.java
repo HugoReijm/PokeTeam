@@ -2,13 +2,8 @@ package ui;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 import mathData.Pokedex;
-import ui.MenuLabel;
 import ui.MenuButton;
 
 public class Menu extends AbstractMenu{
@@ -16,14 +11,15 @@ public class Menu extends AbstractMenu{
     private MenuButton btnStart;
     private MenuButton btnPokedex;
     private MenuButton btnExit;
-    //private final String menuImagePath = "C:\\Users\\Hugo\\Desktop\\BEP\\BEP\\PokeTeam\\src\\ui\\Pokeball.jpg";
-    //private ImageView menuImage;
+    private final String menuImagePath = "file:resources/Pokeball.jpg";
+    private ImageView menuImage;
     
     public Menu()
     {
-        //Image pokeball = new Image(menuImagePath);
-    	//menuImage = new ImageView(pokeball);
-        //getChildren().addAll(menuImage);
+    	menuImage = new ImageView(new Image(menuImagePath));
+    	menuImage.setFitHeight(700);
+    	menuImage.setFitWidth(1244);
+        menuImage.setX(-310);
     	
     	VBox menu = new VBox(10);
         menu.setTranslateX(300-uniformWidth/2);
@@ -45,11 +41,8 @@ public class Menu extends AbstractMenu{
             });
 
         menu.getChildren().addAll(btnStart, btnPokedex, btnExit);
-        Rectangle bg = new Rectangle(600, 700);
-        bg.setFill(Color.GREY);
-        bg.setOpacity(0.35);
 
-        getChildren().addAll(bg, menu);
+        getChildren().addAll(menuImage,menu);
     }
     
     public void clickStartButton() 
@@ -60,7 +53,7 @@ public class Menu extends AbstractMenu{
     public void clickPokedexButton(){
     	UI instance = UI.getInstance();
     	Pokedex distributionDex = Pokedex.toPokedex("AG");
-    	instance.getPokedexMenu().setPokedex(distributionDex);
-    	UI.sceneReload(UI.getSecondaryStage(),UI.getPokedexMenuScene());
+    	instance.getPokedexMenu().setPokedex(distributionDex,true);
+    	UI.sceneReload(UI.getPrimaryStage(),UI.getPokedexMenuScene());
     }
 }

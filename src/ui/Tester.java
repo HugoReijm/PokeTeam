@@ -6,7 +6,6 @@ import mathData.BSPokedex;
 import mathData.NUPokedex;
 import mathData.OUPokedex;
 import mathData.Pokedex;
-import mathData.PUPokedex;
 import mathData.RUPokedex;
 import mathData.UbersPokedex;
 import mathData.UUPokedex;
@@ -118,7 +117,6 @@ public class Tester {
 	public static double[] constsCalc(Pokedex pokedex,int[] battleMode)
 	{
 		double[] consts = new double[2];
-		double complb = 0.0;
 		double compub = 0.0;
 		double mathlb = 0.0;
 		double mathub = 0.0;
@@ -218,8 +216,8 @@ public class Tester {
 		int quantity = 10;
 		//ArrayList<String[]> mathScores = MathAnalyzer.mathScores(battleMode,otwimilt,pokedex);
 		//int[] compScores = CompAnalyzer.compScores(pokedex,otwimilt);
-		//String[][] finalScores = finalScores(quantity,battleMode,otwimilt,pokedex);
-		/*for(int i=0;i!=quantity;i++)
+		String[][] finalScores = finalScores(quantity,battleMode,otwimilt,pokedex);
+		for(int i=0;i!=quantity;i++)
 		{
 			//System.out.println(mathScores.get(i)[1]);
 			//System.out.println(mathScores.get(i)[10]);
@@ -227,6 +225,6 @@ public class Tester {
 			System.out.println(finalScores[i][1]);
 			System.out.println(finalScores[i][10]);
 			System.out.println("");
-		}*/
+		}
 	}
 }

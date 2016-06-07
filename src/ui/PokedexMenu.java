@@ -5,16 +5,17 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.HBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import mathData.Pokedex;
 import ui.InputField;
 import ui.MenuLabel;
 
 public class PokedexMenu extends AbstractMenu {
 	private int uniformWidth=200;
+	private boolean fromMenu=false;
 	private MenuLabel tierLabel;
 	private MenuButton btnSearch;
     private InputField nameIn;
@@ -31,13 +32,19 @@ public class PokedexMenu extends AbstractMenu {
     private ObservableList<Pokemon> observableList;
     private ListView<Pokemon> resScroll;
     private MenuButton btnBacktoTier;
+	private final String menuImagePath = "file:resources/kalosPokedex3.jpg";
+    private ImageView menuImage;
     
     private Pokedex pokedex;
     private List<Pokemon> results = new ArrayList<Pokemon>();
     
     public PokedexMenu()
     {
-    	
+    	menuImage = new ImageView(new Image(menuImagePath));
+		menuImage.setOpacity(0.40);
+    	menuImage.setFitHeight(700);
+    	menuImage.setFitWidth(630);
+
     	VBox menu = new VBox(8);
         menu.setTranslateX(215);
         menu.setTranslateY(0);
@@ -63,11 +70,7 @@ public class PokedexMenu extends AbstractMenu {
         });
         
         menu.getChildren().addAll(tierLabel,nameInput,numberInput,type1Input,type2Input,btnSearch);
-        Rectangle bg = new Rectangle(630,700);
-        bg.setFill(Color.GREY);
-        bg.setOpacity(0.35);
-
-        getChildren().addAll(bg,btnBacktoTier,menu,resDisplay);
+        getChildren().addAll(menuImage,btnBacktoTier,menu,resDisplay);
     }
     
     public String getTier()
@@ -75,8 +78,19 @@ public class PokedexMenu extends AbstractMenu {
     	return this.pokedex.getTier();
     }
     
-    public void setPokedex(Pokedex pokedex)
+    public boolean getFromMenuBool()
     {
+    	return fromMenu;
+    }
+    
+    public void setFromMenuBool(boolean bool)
+    {
+    	this.fromMenu=bool;
+    }
+    
+    public void setPokedex(Pokedex pokedex, boolean fromMenu)
+    {
+    	setFromMenuBool(fromMenu);
     	this.pokedex = pokedex;
     	tierLabel.setText(pokedex.getTier());
     }
@@ -154,9 +168,19 @@ public class PokedexMenu extends AbstractMenu {
     
     private void clickBackButton()
     {
-    	reset();
-    	UI.sceneReload(UI.getPrimaryStage(),UI.getTierMenuScene());
-    	UI.turnOffStage(UI.getSecondaryStage());
+    	if(fromMenu)
+    	{
+        	reset();
+        	UI.reset("BuilderMenu");
+    		UI.sceneReload(UI.getPrimaryStage(),UI.getMenuScene());
+    	}
+    	else
+    	{
+        	reset();
+        	UI.reset("BuilderMenu");
+    		UI.sceneReload(UI.getPrimaryStage(),UI.getTierMenuScene());
+	    	UI.turnOffStage(UI.getSecondaryStage());
+    	}
     }
     
     private VBox NameInput() 
@@ -215,8 +239,14 @@ public class PokedexMenu extends AbstractMenu {
         return resBox;
     }
     
-    private void reset()
+    public void reset()
 	{
+    	fromMenu=false;
+    	nameIn.setInput("");
+    	numberIn.setInput("");
+    	type1In.setInput("");
+    	type2In.setInput("");
+    	
     	results.clear();
     	results.add(resLabels);
     	observableList=FXCollections.observableList(results);
@@ -225,6 +255,10 @@ public class PokedexMenu extends AbstractMenu {
     
     private void resultReload()
     {
+    	nameIn.setInput("");
+    	numberIn.setInput("");
+    	type1In.setInput("");
+    	type2In.setInput("");
     	observableList=FXCollections.observableList(results);
     	resScroll.setItems(observableList);
     }

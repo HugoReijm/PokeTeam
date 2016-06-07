@@ -2,19 +2,19 @@ package mathData;
 
 import java.util.ArrayList;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class UbersPokedex extends Pokedex{
-
 	private String tier = "Ubers";
 	private static ArrayList<String[]> ubersPokeList=new ArrayList<String[]>();
 	
 	public UbersPokedex(){
 		try 
 		{
-			//FileReader inputPath = new FileReader("interfaz","pokedex",tier+".txt");
-			FileReader inputPath = new FileReader("C:\\Users\\Hugo\\Desktop\\BEP\\BEP\\PokeTeam\\src\\mathData\\pokedex\\"+tier+".txt");
+			String currentDirectory = new File("").getAbsolutePath();
+			FileReader inputPath = new FileReader(currentDirectory+"\\resources\\pokedex\\"+tier+".txt");
 			BufferedReader bufRead = new BufferedReader(inputPath);
 			String line = null;
 			while((line=bufRead.readLine())!=null)

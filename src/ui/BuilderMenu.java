@@ -2,10 +2,12 @@ package ui;
 
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+
 import mathData.Pokedex;
 import ui.InputField;
 import ui.MenuLabel;
@@ -28,6 +30,8 @@ public class BuilderMenu extends AbstractMenu {
 	private HBox suggestionLabels;
 	private MenuButton btnBacktoTier;
 	private MenuButton btnBacktoStart;
+	private final String menuImagePath = "file:resources/allPokemon.png";
+    private ImageView menuImage;
 	
 	private Pokedex pokedex;
 	private ArrayList<String[]> team = new ArrayList<String[]>(6);
@@ -38,7 +42,12 @@ public class BuilderMenu extends AbstractMenu {
 	
 	public BuilderMenu()
 	{	
-        HBox backMenu = new HBox(8);
+		menuImage = new ImageView(new Image(menuImagePath));
+		menuImage.setOpacity(0.25);
+    	menuImage.setFitHeight(700);
+    	menuImage.setFitWidth(1244);
+
+		HBox backMenu = new HBox(8);
 		
         tierLabel = new MenuLabel("",200);
         tierLabel.setTranslateX(350);
@@ -114,11 +123,7 @@ public class BuilderMenu extends AbstractMenu {
         backMenu.getChildren().addAll(btnBacktoTier, btnBacktoStart);
         modeMenu.getChildren().addAll(btnDefensive, btnBalanced, btnAggressive);
         menu.getChildren().addAll(teamMemberInput, btnCalculate);
-        Rectangle bg = new Rectangle(900, 700);
-        bg.setFill(Color.GREY);
-        bg.setOpacity(0.35);
-
-        getChildren().addAll(bg,tierLabel,modeLabel,backMenu,modeMenu,menu,teamDisplay,suggestionDisplay);
+        getChildren().addAll(menuImage,tierLabel,modeLabel,backMenu,modeMenu,menu,teamDisplay,suggestionDisplay);
 	}
 	
     public void setPokedex(Pokedex pokedex)
@@ -132,21 +137,21 @@ public class BuilderMenu extends AbstractMenu {
     	battleModeChosen = true;
     	if(mode.equals("defensive"))
     	{
-	    	battleMode[0]=3;
-	    	battleMode[1]=1;
-	    	battleMode[2]=3;
-	    	battleMode[3]=1;
-	    	battleMode[4]=3;
-	    	battleMode[5]=1;
+	    	battleMode[0]=3/2;
+	    	battleMode[1]=1/2;
+	    	battleMode[2]=3/2;
+	    	battleMode[3]=1/2;
+	    	battleMode[4]=3/2;
+	    	battleMode[5]=1/2;
     	}
     	else if(mode.equals("balanced"))
     	{
-	    	battleMode[0]=1;
-	    	battleMode[1]=3;
-	    	battleMode[2]=1;
-	    	battleMode[3]=3;
-	    	battleMode[4]=1;
-	    	battleMode[5]=3;
+	    	battleMode[0]=1/2;
+	    	battleMode[1]=3/2;
+	    	battleMode[2]=1/2;
+	    	battleMode[3]=3/2;
+	    	battleMode[4]=1/2;
+	    	battleMode[5]=3/2;
     	}
     	else if(mode.equals("aggressive"))
     	{
@@ -195,13 +200,17 @@ public class BuilderMenu extends AbstractMenu {
 	private void clickBackButton()
     {
 		reset();
+		UI.reset("PokedexMenu");
 		UI.sceneReload(UI.getPrimaryStage(),UI.getTierMenuScene());
+		UI.turnOffStage(UI.getSecondaryStage());
     }
 	
 	private void clickBackStartButton()
 	{
 		reset();
+		UI.reset("PokedexMenu");
 		UI.sceneReload(UI.getPrimaryStage(),UI.getMenuScene());
+		UI.turnOffStage(UI.getSecondaryStage());
 	}
 	
 	private VBox TeamMemberInput() 
@@ -271,7 +280,7 @@ public class BuilderMenu extends AbstractMenu {
 		}
 	}
 	
-	private void reset()
+	public void reset()
 	{
     	btnDefensive.setColor(Color.BLACK);
     	btnBalanced.setColor(Color.BLACK);

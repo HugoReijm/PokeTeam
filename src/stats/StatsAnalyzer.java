@@ -2,21 +2,16 @@ package stats;
 
 import java.util.ArrayList;
 
-import mathData.AGPokedex;
-import mathData.BSPokedex;
 import mathData.NUPokedex;
 import mathData.OUPokedex;
 import mathData.PUPokedex;
 import mathData.Pokedex;
 import mathData.RUPokedex;
 import mathData.UUPokedex;
-import mathData.UbersPokedex;
-import type.Type;
-import type.TypeAnalyzer;
 
 public class StatsAnalyzer {
 
-	public static int hpAverage(ArrayList<String[]> pokemon)
+	private static int hpAverage(ArrayList<String[]> pokemon)
 	{
 		int average = 0;
 		for(int i=0;i!=pokemon.size();i++)
@@ -26,7 +21,7 @@ public class StatsAnalyzer {
 		return (int)Math.round(average/pokemon.size());
 	}
 	
-	public static int attAverage(ArrayList<String[]> pokemon)
+	private static int attAverage(ArrayList<String[]> pokemon)
 	{
 		int average = 0;
 		for(int i=0;i!=pokemon.size();i++)
@@ -36,7 +31,7 @@ public class StatsAnalyzer {
 		return (int)Math.round(average/pokemon.size());
 	}
 	
-	public static int defAverage(ArrayList<String[]> pokemon)
+	private static int defAverage(ArrayList<String[]> pokemon)
 	{
 		int average = 0;
 		for(int i=0;i!=pokemon.size();i++)
@@ -46,7 +41,7 @@ public class StatsAnalyzer {
 		return (int)Math.round(average/pokemon.size());
 	}
 	
-	public static int spattAverage(ArrayList<String[]> pokemon)
+	private static int spattAverage(ArrayList<String[]> pokemon)
 	{
 		int average = 0;
 		for(int i=0;i!=pokemon.size();i++)
@@ -56,7 +51,7 @@ public class StatsAnalyzer {
 		return (int)Math.round(average/pokemon.size());
 	}
 	
-	public static int spdefAverage(ArrayList<String[]> pokemon)
+	private static int spdefAverage(ArrayList<String[]> pokemon)
 	{
 		int average = 0;
 		for(int i=0;i!=pokemon.size();i++)
@@ -66,7 +61,7 @@ public class StatsAnalyzer {
 		return (int)Math.round(average/pokemon.size());
 	}
 	
-	public static int spdAverage(ArrayList<String[]> pokemon)
+	private static int spdAverage(ArrayList<String[]> pokemon)
 	{
 		int average = 0;
 		for(int i=0;i!=pokemon.size();i++)
@@ -110,11 +105,6 @@ public class StatsAnalyzer {
 		else if (tier1.equals("NU"))
 		{
 			pokemon2.addAll(new PUPokedex().getList());
-		}
-		else if (tier1.equals("PU"))
-		{
-			String[] missingno = {"000","Missingno","0","0","0","0","0","0","Null","Null"}; 
-			pokemon2.add(missingno);
 		}
 		else 
 		{
@@ -170,52 +160,5 @@ public class StatsAnalyzer {
 		int spdFactor = teamAverages[5]-totalAverages[5];
 		
 		return (battleMode[0]*hpFactor)+(battleMode[1]*attFactor)+(battleMode[2]*defFactor)+(battleMode[3]*spattFactor)+(battleMode[4]*spdefFactor)+(battleMode[5]*spdFactor);
-	}
-	
-	public static String[][] bestScores(int[] battleMode, ArrayList<String[]> pokedex, int quantity, ArrayList<String[]> team, int[] totalAverages)
-	{
-		String[][] scores = new String[quantity][11];
-		for(int i=0;i!=quantity;i++)
-		{
-			scores[i][10]="0.0";
-		}
-		
-		for(int i=0;i!=pokedex.size();i++)
-		{
-			for(int j=0;j!=quantity;j++)
-			{
-				double statsScore = statsScore(battleMode, team, totalAverages, pokedex.get(i));
-				if(statsScore>Double.parseDouble(scores[j][10]))
-				{
-					for(int k=quantity-1;k!=j;k--)
-					{
-						scores[k][0]=scores[k-1][0];
-						scores[k][1]=scores[k-1][1];
-						scores[k][2]=scores[k-1][2];
-						scores[k][3]=scores[k-1][3];
-						scores[k][4]=scores[k-1][4];
-						scores[k][5]=scores[k-1][5];
-						scores[k][6]=scores[k-1][6];
-						scores[k][7]=scores[k-1][7];
-						scores[k][8]=scores[k-1][8];
-						scores[k][9]=scores[k-1][9];
-						scores[k][10]=scores[k-1][10];
-					}
-					scores[j][0]=pokedex.get(i)[0];
-					scores[j][1]=pokedex.get(i)[1];
-					scores[j][2]=pokedex.get(i)[2];
-					scores[j][3]=pokedex.get(i)[3];
-					scores[j][4]=pokedex.get(i)[4];
-					scores[j][5]=pokedex.get(i)[5];
-					scores[j][6]=pokedex.get(i)[6];
-					scores[j][7]=pokedex.get(i)[7];
-					scores[j][8]=pokedex.get(i)[8];
-					scores[j][9]=pokedex.get(i)[9];
-					scores[j][10]=Double.toString(statsScore);
-					break;
-				}
-			}
-		}
-		return scores;
 	}
 }

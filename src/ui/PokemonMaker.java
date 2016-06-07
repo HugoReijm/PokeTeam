@@ -3,7 +3,6 @@ package ui;
 import java.util.ArrayList;
 import java.util.List;
 
-import mathData.AGPokedex;
 import mathData.Pokedex;
 
 public class PokemonMaker 
