@@ -17,7 +17,7 @@ public class TierMenu extends AbstractMenu {
     private MenuButton btnRU;
     private MenuButton btnNU;
     private MenuButton btnBacktoStart;
-    //private final String menuImagePath = "file:resources/space-invaders-wallpaper.gif";
+    //private final String menuImagePath = "file:resources/";
     //private ImageView menuImage;
     
     public TierMenu()
@@ -80,7 +80,6 @@ public class TierMenu extends AbstractMenu {
     private void clickTierButton(String tier)
     {
     	UI instance = UI.getInstance();
-    	instance.setTier(tier);
     	Pokedex distributionDex = Pokedex.toPokedex(tier);
     	instance.getBuilderMenu().setPokedex(distributionDex);
     	instance.getPokedexMenu().setPokedex(distributionDex,false);

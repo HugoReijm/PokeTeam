@@ -13,7 +13,6 @@ public final class TeamMember extends StackPane{
     private Box type1Box;
     private Box type2Box;
 
-
     public TeamMember(String name, String type1, String type2)
     {
     	nameBox = new Box(name,200,30);

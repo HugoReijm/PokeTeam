@@ -1,10 +1,13 @@
 package ui;
 
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import mathData.Pokedex;
 import ui.Menu;
 
 public class UI extends Application{
@@ -20,7 +23,6 @@ public class UI extends Application{
     private static Group root3;
     private static Group root4;
 	private static UI instance;
-    private String tier;
 	
     private static AbstractMenu menu;
     private static AbstractMenu tierMenu;
@@ -86,16 +88,6 @@ public class UI extends Application{
     	return instance;
     }
     
-    public String getTier()
-    {
-    	return instance.tier;
-    }
-    
-    public void setTier(String tier)
-    {
-    	instance.tier=tier;
-    }
-    
     public static void sceneReload(Stage stage, Scene scene)
     {
     	stage.setScene(scene);
@@ -113,6 +105,43 @@ public class UI extends Application{
     		((PokedexMenu) pokedexMenu).reset();
     	}
     }
+    
+    public static String[][] finalScores(int quantity, Pokedex pokedex, ArrayList<String[]> team, int[] battleMode)
+	{
+		double[] consts = {0.67,0.5,0.33,0.2,0.1};
+		double compMax = 0.0;
+		double compMin = 0.0;
+		
+		ArrayList<String[]> mathScores = MathAnalyzer.mathScores(battleMode, team, pokedex);
+		int[] compScores = CompAnalyzer.compScores(pokedex, team);
+		for(int i=0;i!=compScores.length;i++)
+		{
+			if(compScores[i]>compMax)
+			{
+				compMax=compScores[i];
+			}
+			else if(compScores[i]<compMin)
+			{
+				compMin=compScores[i];
+			}
+		}
+		if(mathScores.size()==compScores.length)
+		{
+			for(int i=0;i!=mathScores.size();i++)
+			{
+				mathScores.get(i)[13]=Integer.toString(compScores[i]);
+				mathScores.get(i)[14]=Double.toString((1-consts[team.size()-1])*Double.parseDouble(mathScores.get(i)[12])+(consts[team.size()-1])*((compScores[i]-compMin)*(20/(compMax-compMin))));
+			}
+			mathScores = Pokedex.removeTeamandMegas(mathScores, team);
+			String[][] finalScores = MathAnalyzer.sort(mathScores, quantity);
+			return finalScores;
+		}
+		else
+		{
+			System.out.println("Error: score input sizes do not match");
+			return null;
+		}
+	}
     
     public static void main(final String[] args) {
     	launch(args);

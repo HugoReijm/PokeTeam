@@ -12,19 +12,22 @@ public class MathAnalyzer
 	public static ArrayList<String[]> mathScores(int[] battleMode,ArrayList<String[]> team, Pokedex pokedex)
 	{
 		ArrayList<String[]> pokeList = pokedex.getList();
-		ArrayList<Type> types = new ArrayList<Type>();
 		ArrayList<String[]> scores = new ArrayList<String[]>();
 		int[] totalAverages = StatsAnalyzer.tierStats(StatsAnalyzer.tierSep(pokedex));
-		double[] constants = calcConstants(battleMode,pokeList);
-		double kStats = constants[0];
-		double cStats = constants[1];
 		
+		ArrayList<Type> types = new ArrayList<Type>();
 		for(int i=0;i!=team.size();i++)
 		{
 			types.add(Type.toType(team.get(i)[8]));
 			types.add(Type.toType(team.get(i)[9]));
 		}
 		ArrayList<ArrayList<Type>> origWRITable = TypeAnalyzer.wriTable(types);
+		
+		double[] MaxMins = findMaxMin(battleMode,pokeList,team,totalAverages);
+		double typeMax=MaxMins[0];
+		double typeMin=MaxMins[1];
+		double statsMax=MaxMins[2];
+		double statsMin=MaxMins[3];
 		
 		for(int i=0;i!=pokeList.size();i++)
 		{
@@ -33,9 +36,11 @@ public class MathAnalyzer
 			{
 				score[j]=pokeList.get(i)[j];
 			}
-			score[10]=Double.toString(TypeAnalyzer.typeScore(Type.toType(pokeList.get(i)[8]), Type.toType(pokeList.get(i)[9]), types,origWRITable));
-			score[11]=Double.toString(kStats*StatsAnalyzer.statsScore(battleMode, team, totalAverages, pokeList.get(i))+cStats);
-			score[12]=Double.toString(TypeAnalyzer.typeScore(Type.toType(pokeList.get(i)[8]), Type.toType(pokeList.get(i)[9]), types,origWRITable)+kStats*StatsAnalyzer.statsScore(battleMode, team, totalAverages, pokeList.get(i))+cStats);
+			double typeScore = TypeAnalyzer.typeScore(Type.toType(pokeList.get(i)[8]), Type.toType(pokeList.get(i)[9]), types,origWRITable);
+			score[10]=Double.toString((typeScore-typeMin)*(10/(typeMax-typeMin)));
+			double statsScore = StatsAnalyzer.statsScore(battleMode, team, totalAverages, pokeList.get(i));
+			score[11]=Double.toString((statsScore-statsMin)*(10/(statsMax-statsMin)));
+			score[12]=Double.toString(Double.parseDouble(score[10])+Double.parseDouble(score[11]));
 			score[13]="0.0";
 			score[14]="0.0";
 			scores.add(score);
@@ -43,48 +48,48 @@ public class MathAnalyzer
 		return scores;
 	}
 	
-	public static double[] calcConstants(int[] battleMode,ArrayList<String[]> pokeList)
+	private static double[] findMaxMin(int[] battleMode,ArrayList<String[]> pokeList,ArrayList<String[]> team, int[] totalAverages )
 	{
-		double[] constants = new double[2];
-		double statslb = 0.0;
-		double statsub = 0.0;
-		double typeslb = 0.0;
-		double typesub = 0.0;
+		double[] MaxMin = new double[4];
+		MaxMin[0] = 0.0;
+		MaxMin[1] = 0.0;
+		MaxMin[2] = 0.0;
+		MaxMin[3] = 0.0;
 		
 		double tempStats;
 		double tempTypes;
 		
 		ArrayList<Type> typeInput = new ArrayList<Type>();
-		typeInput.add(new Null());
-		ArrayList<String[]> missingno = new ArrayList<String[]>();
-		String[] nothing = {"000","Missingno","0","0","0","0","0","0","Null","Null"};
-		missingno.add(nothing);
-		ArrayList<ArrayList<Type>> origWRI = TypeAnalyzer.wriTable(typeInput);
+		for(int i=0;i!=team.size();i++)
+		{
+			typeInput.add(Type.toType(team.get(i)[8]));
+			typeInput.add(Type.toType(team.get(i)[9]));
+		}
+		ArrayList<ArrayList<Type>> origWRITable = TypeAnalyzer.wriTable(typeInput);
+		
 		for(int i=0;i!= pokeList.size();i++)
 		{
-			tempTypes = TypeAnalyzer.typeScore(Type.toType(pokeList.get(i)[8]),Type.toType(pokeList.get(i)[9]),typeInput,origWRI);
-			tempStats = StatsAnalyzer.statsScore(battleMode,missingno,StatsAnalyzer.tierStats(pokeList),pokeList.get(i));
+			tempTypes = TypeAnalyzer.typeScore(Type.toType(pokeList.get(i)[8]), Type.toType(pokeList.get(i)[9]), typeInput, origWRITable);
+			tempStats = StatsAnalyzer.statsScore(battleMode, team, totalAverages, pokeList.get(i));
 			
-			if(tempStats<statslb)
+			if(tempStats<MaxMin[3])
 			{
-				statslb=tempStats;
+				MaxMin[3]=tempStats;
 			}
-			else if(tempStats>statsub)
+			else if(tempStats>MaxMin[2])
 			{
-				statsub=tempStats;
+				MaxMin[2]=tempStats;
 			}
-			else if(tempTypes<typeslb)
+			if(tempTypes<MaxMin[1])
 			{
-				typeslb=tempTypes;
+				MaxMin[1]=tempTypes;
 			}
-			else if(tempTypes>typesub)
+			else if(tempTypes>MaxMin[0])
 			{
-				typesub=tempTypes;
+				MaxMin[0]=tempTypes;
 			}
 		}
-		constants[0]=(typesub-typeslb)/(statsub-statslb);
-		constants[1]=typeslb-constants[0]*statslb;
-		return constants;
+		return MaxMin;
 	}
 	
 	public static String[][] sort(ArrayList<String[]> tempScores,int quantity)

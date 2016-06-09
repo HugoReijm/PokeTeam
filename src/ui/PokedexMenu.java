@@ -73,29 +73,14 @@ public class PokedexMenu extends AbstractMenu {
         getChildren().addAll(menuImage,btnBacktoTier,menu,resDisplay);
     }
     
-    public String getTier()
-    {
-    	return this.pokedex.getTier();
-    }
-    
-    public boolean getFromMenuBool()
-    {
-    	return fromMenu;
-    }
-    
-    public void setFromMenuBool(boolean bool)
-    {
-    	this.fromMenu=bool;
-    }
-    
     public void setPokedex(Pokedex pokedex, boolean fromMenu)
     {
-    	setFromMenuBool(fromMenu);
+    	this.fromMenu=fromMenu;
     	this.pokedex = pokedex;
     	tierLabel.setText(pokedex.getTier());
     }
     
-    public void clickSearchButton()
+    private void clickSearchButton()
     {
     	ArrayList<ArrayList<String[]>> resArrays = new ArrayList<ArrayList<String[]>>();
     	boolean nameBool=false;

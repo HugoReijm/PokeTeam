@@ -6,13 +6,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-/**
- * Input object for the assigning a player name.
- */
 public class InputField extends StackPane {
 
     private Rectangle field;
-
     private TextField input;
 
     public InputField(int width) {

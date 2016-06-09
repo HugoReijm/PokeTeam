@@ -146,19 +146,6 @@ public class BSPokedex extends Pokedex {
 		}
 		return pokemon;
 	}
-
-	@Override
-	public ArrayList<String[]> megaSearch() {
-		ArrayList<String[]> megas = new ArrayList<String[]>();
-		for(int i=0;i!=bsPokeList.size();i++)
-		{
-			if(bsPokeList.get(i)[0].contains("M"))
-			{
-				megas.add(bsPokeList.get(i));
-			}
-		}
-		return megas;
-	}
 	
 	@Override
 	public int location(String id)

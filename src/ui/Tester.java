@@ -214,10 +214,10 @@ public class Tester {
 		int[] puTotals = {59, 64, 62, 58, 60, 57};
 		
 		int quantity = 10;
-		//ArrayList<String[]> mathScores = MathAnalyzer.mathScores(battleMode,otwimilt,pokedex);
+		ArrayList<String[]> mathScores = MathAnalyzer.mathScores(battleMode,otwimilt,pokedex);
 		//int[] compScores = CompAnalyzer.compScores(pokedex,otwimilt);
-		String[][] finalScores = finalScores(quantity,battleMode,otwimilt,pokedex);
-		for(int i=0;i!=quantity;i++)
+		//String[][] finalScores = finalScores(quantity,battleMode,otwimilt,pokedex);
+		/*for(int i=0;i!=quantity;i++)
 		{
 			//System.out.println(mathScores.get(i)[1]);
 			//System.out.println(mathScores.get(i)[10]);
@@ -225,6 +225,6 @@ public class Tester {
 			System.out.println(finalScores[i][1]);
 			System.out.println(finalScores[i][10]);
 			System.out.println("");
-		}
+		}*/
 	}
 }

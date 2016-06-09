@@ -149,19 +149,6 @@ public class UbersPokedex extends Pokedex{
 	}
 
 	@Override
-	public ArrayList<String[]> megaSearch() {
-		ArrayList<String[]> megas = new ArrayList<String[]>();
-		for(int i=0;i!=ubersPokeList.size();i++)
-		{
-			if(ubersPokeList.get(i)[0].contains("M"))
-			{
-				megas.add(ubersPokeList.get(i));
-			}
-		}
-		return megas;
-	}
-	
-	@Override
 	public int location(String id)
 	{
 		{

@@ -20,8 +20,6 @@ public abstract class Pokedex {
 	
 	public abstract ArrayList<String[]> typeSearch(String type);
 	
-	public abstract ArrayList<String[]> megaSearch();
-	
 	public abstract int location(String id);
 	
 	public static Pokedex toPokedex(String tier)

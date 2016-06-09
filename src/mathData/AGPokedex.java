@@ -148,19 +148,6 @@ public class AGPokedex extends Pokedex {
 		}
 		return pokemon;
 	}
-
-	@Override
-	public ArrayList<String[]> megaSearch() {
-		ArrayList<String[]> megas = new ArrayList<String[]>();
-		for(int i=0;i!=agPokeList.size();i++)
-		{
-			if(agPokeList.get(i)[0].contains("M"))
-			{
-				megas.add(agPokeList.get(i));
-			}
-		}
-		return megas;
-	}
 	
 	@Override
 	public int location(String id)

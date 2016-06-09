@@ -149,19 +149,6 @@ public class OUPokedex extends Pokedex{
 	}
 
 	@Override
-	public ArrayList<String[]> megaSearch() {
-		ArrayList<String[]> megas = new ArrayList<String[]>();
-		for(int i=0;i!=ouPokeList.size();i++)
-		{
-			if(ouPokeList.get(i)[0].contains("M"))
-			{
-				megas.add(ouPokeList.get(i));
-			}
-		}
-		return megas;
-	}
-
-	@Override
 	public int location(String id)
 	{
 		{

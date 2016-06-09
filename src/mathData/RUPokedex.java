@@ -149,19 +149,6 @@ public class RUPokedex extends Pokedex{
 	}
 
 	@Override
-	public ArrayList<String[]> megaSearch() {
-		ArrayList<String[]> megas = new ArrayList<String[]>();
-		for(int i=0;i!=ruPokeList.size();i++)
-		{
-			if(ruPokeList.get(i)[0].contains("M"))
-			{
-				megas.add(ruPokeList.get(i));
-			}
-		}
-		return megas;
-	}
-
-	@Override
 	public int location(String id)
 	{
 		{

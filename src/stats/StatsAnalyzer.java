@@ -152,13 +152,19 @@ public class StatsAnalyzer {
 		teamAverages[4]=spdefAverage(tempTeam);
 		teamAverages[5]=spdAverage(tempTeam);
 				
-		int hpFactor = teamAverages[0]-totalAverages[0];
-		int attFactor = teamAverages[1]-totalAverages[1];
-		int defFactor = teamAverages[2]-totalAverages[2];
-		int spattFactor = teamAverages[3]-totalAverages[3];
-		int spdefFactor = teamAverages[4]-totalAverages[4];
-		int spdFactor = teamAverages[5]-totalAverages[5];
+		teamAverages[0] = teamAverages[0]-totalAverages[0];
+		teamAverages[1] = teamAverages[1]-totalAverages[1];
+		teamAverages[2] = teamAverages[2]-totalAverages[2];
+		teamAverages[3] = teamAverages[3]-totalAverages[3];
+		teamAverages[4] = teamAverages[4]-totalAverages[4];
+		teamAverages[5] = teamAverages[5]-totalAverages[5];
 		
-		return (battleMode[0]*hpFactor)+(battleMode[1]*attFactor)+(battleMode[2]*defFactor)+(battleMode[3]*spattFactor)+(battleMode[4]*spdefFactor)+(battleMode[5]*spdFactor);
+		double sum=0.0;
+		for(int i=0;i!=teamAverages.length;i++)
+		{
+			sum=sum+(teamAverages[i]*battleMode[i]);
+		}
+		
+		return sum;
 	}
 }

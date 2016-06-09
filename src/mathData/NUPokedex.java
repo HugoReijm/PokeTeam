@@ -147,19 +147,6 @@ public class NUPokedex extends Pokedex {
 		}
 		return pokemon;
 	}
-
-	@Override
-	public ArrayList<String[]> megaSearch() {
-		ArrayList<String[]> megas = new ArrayList<String[]>();
-		for(int i=0;i!=nuPokeList.size();i++)
-		{
-			if(nuPokeList.get(i)[0].contains("M"))
-			{
-				megas.add(nuPokeList.get(i));
-			}
-		}
-		return megas;
-	}
 	
 	@Override
 	public int location(String id)

@@ -41,7 +41,6 @@ public class Menu extends AbstractMenu{
             });
 
         menu.getChildren().addAll(btnStart, btnPokedex, btnExit);
-
         getChildren().addAll(menuImage,menu);
     }
     

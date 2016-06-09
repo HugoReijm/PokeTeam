@@ -12,14 +12,10 @@ public class Box extends StackPane{
 
 	private Text text;
 	private Rectangle rectangle;
-	private int height;
-	private int width;
 	
 	public Box(String text,int width,int height)
 	{
 		this.text = new Text(text);
-		this.height=height;
-		this.width=width;
         this.text.setFont(Font.font(15));
         this.text.setFill(Color.WHITE);
         this.text.setTextAlignment(TextAlignment.LEFT);

@@ -36,7 +36,7 @@ public class CompAnalyzer
 		return teamPreferences;
 	}
 	
-	public static void reader(Pokedex pokedex)
+	private static void reader(Pokedex pokedex)
 	{
 		try
 		{

@@ -297,7 +297,7 @@ public class writer {
 	
 	public static void main(String[] args)
 	{	
-		Pokedex pokedex = new BSPokedex();
+		Pokedex pokedex = new AGPokedex();
 		reader(pokedex);
 		boolean rerun = true;
 		String respond;
