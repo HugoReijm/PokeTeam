@@ -7,8 +7,8 @@ import type.Null;
 import type.Type;
 import type.TypeAnalyzer;
 
-public class MathAnalyzer 
-{
+public class MathAnalyzer {
+	
 	public static ArrayList<String[]> mathScores(int[] battleMode,ArrayList<String[]> team, Pokedex pokedex)
 	{
 		ArrayList<String[]> pokeList = pokedex.getList();
@@ -40,7 +40,7 @@ public class MathAnalyzer
 			score[10]=Double.toString((typeScore-typeMin)*(10/(typeMax-typeMin)));
 			double statsScore = StatsAnalyzer.statsScore(battleMode, team, totalAverages, pokeList.get(i));
 			score[11]=Double.toString((statsScore-statsMin)*(10/(statsMax-statsMin)));
-			score[12]=Double.toString(Double.parseDouble(score[10])+Double.parseDouble(score[11]));
+			score[12]=Double.toString(1.4*Double.parseDouble(score[10])+Double.parseDouble(score[11]));
 			score[13]="0.0";
 			score[14]="0.0";
 			scores.add(score);

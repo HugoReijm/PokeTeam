@@ -98,7 +98,10 @@ public class BuilderMenu extends AbstractMenu {
         btnCalculate.setOnMouseClicked(event -> {
             if(battleModeChosen&&(teamMemberIn.getInput()!=null&&!teamMemberIn.getInput().trim().isEmpty()))
             {
+            	long stTime = System.currentTimeMillis();
             	clickCalcButton();
+                long endTime = System.currentTimeMillis();
+                System.out.println("Time: " + (endTime - stTime));
             }
             else if(battleModeChosen&&!(teamMemberIn.getInput()!=null&&!teamMemberIn.getInput().trim().isEmpty()))
             {

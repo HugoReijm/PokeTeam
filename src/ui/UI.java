@@ -114,23 +114,31 @@ public class UI extends Application{
 		
 		ArrayList<String[]> mathScores = MathAnalyzer.mathScores(battleMode, team, pokedex);
 		int[] compScores = CompAnalyzer.compScores(pokedex, team);
-		for(int i=0;i!=compScores.length;i++)
-		{
-			if(compScores[i]>compMax)
-			{
-				compMax=compScores[i];
-			}
-			else if(compScores[i]<compMin)
-			{
-				compMin=compScores[i];
-			}
-		}
+		
 		if(mathScores.size()==compScores.length)
 		{
+			for(int i=0;i!=compScores.length;i++)
+			{
+				if(compScores[i]>compMax)
+				{
+					compMax=compScores[i];
+				}
+				else if(compScores[i]<compMin)
+				{
+					compMin=compScores[i];
+				}
+			}
 			for(int i=0;i!=mathScores.size();i++)
 			{
 				mathScores.get(i)[13]=Integer.toString(compScores[i]);
-				mathScores.get(i)[14]=Double.toString((1-consts[team.size()-1])*Double.parseDouble(mathScores.get(i)[12])+(consts[team.size()-1])*((compScores[i]-compMin)*(20/(compMax-compMin))));
+				if(compMax-compMin>0)
+				{
+					mathScores.get(i)[14]=Double.toString((1-consts[team.size()-1])*Double.parseDouble(mathScores.get(i)[12])+(consts[team.size()-1])*(compScores[i]-compMin)*(24/(compMax-compMin)));
+				}
+				else
+				{
+					mathScores.get(i)[14]=mathScores.get(i)[12];
+				}
 			}
 			mathScores = Pokedex.removeTeamandMegas(mathScores, team);
 			String[][] finalScores = MathAnalyzer.sort(mathScores, quantity);

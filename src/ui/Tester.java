@@ -1,6 +1,8 @@
 package ui;
 
 import java.util.ArrayList;
+import java.util.Random;
+
 import mathData.AGPokedex;
 import mathData.BSPokedex;
 import mathData.NUPokedex;
@@ -188,43 +190,30 @@ public class Tester {
 		}
 	}
 
+	public static void rtg(Pokedex pokedex)
+	{
+		Random rng = new Random();
+		int random;
+		for(int i=0;i!=6;i++)
+		{
+			random = rng.nextInt(pokedex.getList().size());
+			while(random==0)
+			{
+				random = rng.nextInt(pokedex.getList().size());
+			}
+			System.out.println(pokedex.getList().get(random)[1]);
+		}
+	}
+	
 	public static void main(String[] args) {
-		Pokedex pokedex = new AGPokedex();
-		int[] battleMode = {1,1,1,1,1,1};
-		
-		ArrayList<String[]> otwimilt = new ArrayList<String[]>();
-		String[] teamMember1=pokedex.exactSearch("Mega Sableye");
-		String[] teamMember2=pokedex.exactSearch("Heatran");
-		String[] teamMember3=pokedex.exactSearch("Therian Forme Landorus");
-		String[] teamMember4=pokedex.exactSearch("Breloom");
-		String[] teamMember5=pokedex.exactSearch("Wash Rotom");
-		String[] teamMember6=pokedex.exactSearch("Cresselia");
-		otwimilt.add(teamMember1);
-		//otwimilt.add(teamMember2);
-		//otwimilt.add(teamMember3);
-		//otwimilt.add(teamMember4);
-		//otwimilt.add(teamMember5);
-		//otwimilt.add(teamMember6);
+		Pokedex pokedex = new NUPokedex();
 		
 		int[] allTotals = {70, 79, 74, 73, 72, 69};
 		int[] ouTotals = {100, 123, 103, 126, 106, 108};
 		int[] uuTotals = {84, 96, 87, 93, 87, 83};
 		int[] ruTotals = {77, 93, 86, 80, 86, 73};
 		int[] nuTotals = {78, 87, 84, 77, 77, 72};
-		int[] puTotals = {59, 64, 62, 58, 60, 57};
 		
-		int quantity = 10;
-		ArrayList<String[]> mathScores = MathAnalyzer.mathScores(battleMode,otwimilt,pokedex);
-		//int[] compScores = CompAnalyzer.compScores(pokedex,otwimilt);
-		//String[][] finalScores = finalScores(quantity,battleMode,otwimilt,pokedex);
-		/*for(int i=0;i!=quantity;i++)
-		{
-			//System.out.println(mathScores.get(i)[1]);
-			//System.out.println(mathScores.get(i)[10]);
-			//System.out.println(compScores[i]);
-			System.out.println(finalScores[i][1]);
-			System.out.println(finalScores[i][10]);
-			System.out.println("");
-		}*/
+		rtg(pokedex);
 	}
 }
