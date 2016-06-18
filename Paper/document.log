@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.11)  14 JUN 2016 12:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.11)  18 JUN 2016 13:29
 entering extended mode
 **document.tex
 (document.tex
@@ -317,6 +317,18 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 LaTeX Info: Redefining \[ on input line 2665.
 LaTeX Info: Redefining \] on input line 2666.
 )
+("C:\Program Files\MiKTeX 2.9\tex\latex\amscls\amsthm.sty"
+Package: amsthm 2009/07/02 v2.20.1
+\thm@style=\toks21
+\thm@bodyfont=\toks22
+\thm@headfont=\toks23
+\thm@notefont=\toks24
+\thm@headpunct=\toks25
+\thm@preskip=\skip46
+\thm@postskip=\skip47
+\thm@headsep=\skip48
+\dth@everypar=\toks26
+)
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty"
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
@@ -332,7 +344,7 @@ Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks21
+\KV@toks@=\toks27
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
 Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
@@ -384,37 +396,46 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layoutheight=\dimen120
 \Gm@layouthoffset=\dimen121
 \Gm@layoutvoffset=\dimen122
-\Gm@dimlist=\toks22
+\Gm@dimlist=\toks28
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
-\c@theorem=\count104
-\c@definition=\count105
+("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count104
+\float@exts=\toks29
+\float@box=\box28
+\@float@everytoks=\toks30
+\@floatcapt=\box29
+)
+\c@theorem=\count105
+\c@definition=\count106
  (document.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count106
+\scratchcounter=\count107
 \scratchdimen=\dimen123
-\scratchbox=\box28
-\nofMPsegments=\count107
-\nofMParguments=\count108
-\everyMPshowfont=\toks23
-\MPscratchCnt=\count109
+\scratchbox=\box30
+\nofMPsegments=\count108
+\nofMParguments=\count109
+\everyMPshowfont=\toks31
+\MPscratchCnt=\count110
 \MPscratchDim=\dimen124
-\MPnumerator=\count110
-\makeMPintoPDFobject=\count111
-\everyMPtoPDFconversion=\toks24
+\MPnumerator=\count111
+\makeMPintoPDFobject=\count112
+\everyMPtoPDFconversion=\toks32
 )
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -450,11 +471,11 @@ LaTeX Font Info:    ... okay on input line 18.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 19.
+LaTeX Font Info:    Try loading font information for U+msa on input line 21.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 19.
+LaTeX Font Info:    Try loading font information for U+msb on input line 21.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -463,189 +484,206 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] (document.toc)
 \tf@toc=\write3
  [2]
-Underfull \hbox (badness 10000) in paragraph at lines 25--28
+Underfull \hbox (badness 10000) in paragraph at lines 27--30
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 25--28
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 30--32
+Underfull \hbox (badness 10000) in paragraph at lines 27--30
 
  []
 
 <fluffy.png, id=13, 250.9375pt x 250.9375pt>
 File: fluffy.png Graphic file (type png)
  <use fluffy.png>
-Package pdftex.def Info: fluffy.png used on input line 33.
+Package pdftex.def Info: fluffy.png used on input line 35.
 (pdftex.def)             Requested size: 215.0023pt x 215.01326pt.
- [3]
-Underfull \hbox (badness 10000) in paragraph at lines 35--38
+
+Underfull \hbox (badness 10000) in paragraph at lines 32--38
+
+ []
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 39--43
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 35--38
+Underfull \hbox (badness 10000) in paragraph at lines 39--43
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 46.
+
+Underfull \hbox (badness 10000) in paragraph at lines 39--43
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--51
+
+ []
+
+[4 <./fluffy.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 54--56
+
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 57.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 46.
- [4 <./fluffy.png>]
-<TierAmount.png, id=25, 803.0pt x 401.5pt>
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 57.
+
+<TierAmount.png, id=24, 803.0pt x 401.5pt>
 File: TierAmount.png Graphic file (type png)
  <use TierAmount.png>
-Package pdftex.def Info: TierAmount.png used on input line 56.
+Package pdftex.def Info: TierAmount.png used on input line 68.
 (pdftex.def)             Requested size: 430.00462pt x 215.0056pt.
-
-
-Package amsmath Warning: Foreign command \above;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 60.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 61--68
+ [5]
+Underfull \hbox (badness 10000) in paragraph at lines 72--74
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--68
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 61--68
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 61--68
-
- []
-
-[5 <./TierAmount.png (PNG copy)>]
-<fluffyfile.png, id=32, 502.12593pt x 362.10281pt>
-File: fluffyfile.png Graphic file (type png)
- <use fluffyfile.png>
-Package pdftex.def Info: fluffyfile.png used on input line 75.
-(pdftex.def)             Requested size: 387.00153pt x 279.09627pt.
-
-[6]
 Underfull \hbox (badness 10000) in paragraph at lines 77--79
 
  []
 
-<fluffystats.png, id=37, 150.5625pt x 164.11313pt>
+
+Package amsmath Warning: Foreign command \above;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 80.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--88
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--88
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--88
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--88
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--88
+
+ []
+
+[6 <./TierAmount.png (PNG copy)>]
+<fluffyfile.png, id=35, 502.12593pt x 362.10281pt>
+File: fluffyfile.png Graphic file (type png)
+ <use fluffyfile.png>
+Package pdftex.def Info: fluffyfile.png used on input line 96.
+(pdftex.def)             Requested size: 344.005pt x 248.08865pt.
+
+[7] <fluffystats.png, id=40, 150.5625pt x 164.11313pt>
 File: fluffystats.png Graphic file (type png)
  <use fluffystats.png>
-Package pdftex.def Info: fluffystats.png used on input line 83.
+Package pdftex.def Info: fluffystats.png used on input line 105.
 (pdftex.def)             Requested size: 171.99922pt x 187.49657pt.
 
-[7 <./fluffyfile.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 85--88
+Underfull \hbox (badness 10000) in paragraph at lines 103--108
+
+ []
+
+[8 <./fluffyfile.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 113--115
+
+ []
+
+[9 <./fluffystats.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 123--125
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 105--107
+Underfull \hbox (badness 10000) in paragraph at lines 127--129
 
  []
 
-[8 <./fluffystats.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 109--112
-
- []
-
-<typeChart.png, id=45, 528.47438pt x 511.9125pt>
-File: typeChart.png Graphic file (type png)
- <use typeChart.png>
-Package pdftex.def Info: typeChart.png used on input line 122.
+<TypeChart.png, id=47, 528.47438pt x 511.9125pt>
+File: TypeChart.png Graphic file (type png)
+ <use TypeChart.png>
+Package pdftex.def Info: TypeChart.png used on input line 140.
 (pdftex.def)             Requested size: 430.00462pt x 416.52934pt.
- [9]
-Underfull \hbox (badness 10000) in paragraph at lines 124--126
+ [10]
+Underfull \hbox (badness 10000) in paragraph at lines 144--146
 
  []
 
-[10 <./typeChart.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 133--136
+[11 <./TypeChart.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 153--155
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 133--136
-
- []
-
-<ScoringDiagram.png, id=53, 473.77pt x 373.395pt>
+<ScoringDiagram.png, id=55, 473.77pt x 373.395pt>
 File: ScoringDiagram.png Graphic file (type png)
  <use ScoringDiagram.png>
-Package pdftex.def Info: ScoringDiagram.png used on input line 145.
+Package pdftex.def Info: ScoringDiagram.png used on input line 164.
 (pdftex.def)             Requested size: 301.00192pt x 237.23424pt.
 
-[11]
-Underfull \hbox (badness 10000) in paragraph at lines 149--151
+Underfull \hbox (badness 10000) in paragraph at lines 161--167
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 163--165
-
- []
-
-[12 <./ScoringDiagram.png>]
+[12]
 Underfull \hbox (badness 10000) in paragraph at lines 170--172
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 174--176
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 178--181
-
- []
-
-[13]
-Underfull \hbox (badness 10000) in paragraph at lines 186--189
+[13 <./ScoringDiagram.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 184--186
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 186--189
+Underfull \hbox (badness 10000) in paragraph at lines 191--193
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 191--196
+Underfull \hbox (badness 10000) in paragraph at lines 195--197
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 191--196
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 191--196
+Underfull \hbox (badness 10000) in paragraph at lines 199--202
 
  []
 
 [14]
-Underfull \hbox (badness 10000) in paragraph at lines 198--201
+Underfull \hbox (badness 10000) in paragraph at lines 207--210
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 207--209
+Underfull \hbox (badness 10000) in paragraph at lines 207--210
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 212--217
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 212--217
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 212--217
 
  []
 
@@ -655,96 +693,109 @@ Underfull \hbox (badness 10000) in paragraph at lines 219--222
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 240--243
+Underfull \hbox (badness 10000) in paragraph at lines 228--230
 
  []
 
 [16]
-Underfull \hbox (badness 10000) in paragraph at lines 256--258
+Underfull \hbox (badness 10000) in paragraph at lines 240--243
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 266--268
+Underfull \hbox (badness 10000) in paragraph at lines 245--248
 
  []
 
 [17]
-Overfull \hbox (51.96786pt too wide) in paragraph at lines 277--286
- [] 
+Underfull \hbox (badness 10000) in paragraph at lines 261--272
+
  []
 
 
-Overfull \hbox (57.88454pt too wide) in paragraph at lines 288--297
- [] 
- []
+Underfull \hbox (badness 10000) in paragraph at lines 279--281
 
-
-Overfull \hbox (51.96786pt too wide) in paragraph at lines 299--308
- [] 
- []
-
-
-Overfull \hbox (51.96786pt too wide) in paragraph at lines 310--319
- [] 
- []
-
-
-Overfull \hbox (51.96786pt too wide) in paragraph at lines 321--330
- [] 
- []
-
-
-Overfull \hbox (51.96786pt too wide) in paragraph at lines 332--341
- [] 
  []
 
 [18]
-Overfull \hbox (51.96786pt too wide) in paragraph at lines 343--352
- [] 
+Underfull \hbox (badness 10000) in paragraph at lines 289--291
+
  []
 
-<RuntimeAverages.png, id=82, 803.0pt x 401.5pt>
+
+Overfull \hbox (0.69003pt too wide) in paragraph at lines 312--322
+ [][] 
+ []
+
+[19] [20] <RuntimeAverages.png, id=90, 803.0pt x 401.5pt>
 File: RuntimeAverages.png Graphic file (type png)
- <use RuntimeAverages.png>
-Package pdftex.def Info: RuntimeAverages.png used on input line 355.
+
+<use RuntimeAverages.png>
+Package pdftex.def Info: RuntimeAverages.png used on input line 386.
 (pdftex.def)             Requested size: 430.00462pt x 215.0056pt.
 
-[19 <./RuntimeAverages.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 366--369
+Underfull \hbox (badness 10000) in paragraph at lines 383--389
+
+ []
+
+[21 <./RuntimeAverages.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 399--402
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 366--369
+Underfull \hbox (badness 10000) in paragraph at lines 399--402
 
  []
 
-[20] [21] (document.aux) ) 
+[22]
+Underfull \hbox (badness 10000) in paragraph at lines 406--408
+
+ []
+
+
+Overfull \hbox (9.30194pt too wide) in paragraph at lines 419--420
+$\OML/cmm/m/it/10 <$\OT1/cmr/m/n/10 http://www.pokemon.com/us/strategy/making-t
+he-jump-to-video-game-competitive-play/$\OML/cmm/m/it/10 >$\OT1/cmr/m/n/10 . 
+ []
+
+[23]
+Overfull \hbox (8.95007pt too wide) in paragraph at lines 426--427
+\OT1/cmr/m/n/10 Web. 15 June 2016. $\OML/cmm/m/it/10 <$\OT1/cmr/m/n/10 http://w
+ww.pokemon.com/us/play-pokemon/pokemon-events/pokemon-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 437--438
+
+ []
+
+[24] (document.aux) ) 
 Here is how much of TeX's memory you used:
- 3213 strings out of 493698
- 40245 string characters out of 3144415
- 138267 words of memory out of 3000000
- 6484 multiletter control sequences out of 15000+200000
+ 3348 strings out of 493698
+ 41956 string characters out of 3144415
+ 140855 words of memory out of 3000000
+ 6611 multiletter control sequences out of 15000+200000
  12827 words of font info for 49 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 27i,8n,26p,825b,199s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-mbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbxti10.
-pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/
-Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.
-pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/
-Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on document.pdf (21 pages, 412547 bytes).
+ 27i,9n,26p,1224b,219s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12
+.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Progr
+am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+r7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Progra
+m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/
+MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on document.pdf (24 pages, 431884 bytes).
 PDF statistics:
- 137 PDF objects out of 1000 (max. 8388607)
+ 150 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
