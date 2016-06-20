@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.11)  18 JUN 2016 13:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.11)  20 JUN 2016 09:54
 entering extended mode
 **document.tex
 (document.tex
@@ -754,28 +754,28 @@ Underfull \hbox (badness 10000) in paragraph at lines 406--408
  []
 
 
-Overfull \hbox (9.30194pt too wide) in paragraph at lines 419--420
+Overfull \hbox (9.30194pt too wide) in paragraph at lines 420--421
 $\OML/cmm/m/it/10 <$\OT1/cmr/m/n/10 http://www.pokemon.com/us/strategy/making-t
 he-jump-to-video-game-competitive-play/$\OML/cmm/m/it/10 >$\OT1/cmr/m/n/10 . 
  []
 
 [23]
-Overfull \hbox (8.95007pt too wide) in paragraph at lines 426--427
+Overfull \hbox (8.95007pt too wide) in paragraph at lines 429--430
 \OT1/cmr/m/n/10 Web. 15 June 2016. $\OML/cmm/m/it/10 <$\OT1/cmr/m/n/10 http://w
 ww.pokemon.com/us/play-pokemon/pokemon-events/pokemon-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 437--438
+Underfull \hbox (badness 10000) in paragraph at lines 439--440
 
  []
 
 [24] (document.aux) ) 
 Here is how much of TeX's memory you used:
- 3348 strings out of 493698
- 41956 string characters out of 3144415
- 140855 words of memory out of 3000000
- 6611 multiletter control sequences out of 15000+200000
+ 3349 strings out of 493698
+ 41968 string characters out of 3144415
+ 140865 words of memory out of 3000000
+ 6612 multiletter control sequences out of 15000+200000
  12827 words of font info for 49 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  27i,9n,26p,1224b,219s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -793,7 +793,7 @@ r7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Progra
 m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/
 MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on document.pdf (24 pages, 431884 bytes).
+Output written on document.pdf (24 pages, 432474 bytes).
 PDF statistics:
  150 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
