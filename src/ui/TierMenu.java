@@ -3,6 +3,7 @@ package ui;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import mathData.AGPokedex;
 import mathData.Pokedex;
 import ui.UI;
 import ui.MenuButton;
@@ -17,6 +18,7 @@ public class TierMenu extends AbstractMenu {
     private MenuButton btnRU;
     private MenuButton btnNU;
     private MenuButton btnBacktoStart;
+    
     //private final String menuImagePath = "file:resources/";
     //private ImageView menuImage;
     
@@ -79,16 +81,18 @@ public class TierMenu extends AbstractMenu {
     
     private void clickTierButton(String tier)
     {
-    	UI instance = UI.getInstance();
-    	Pokedex distributionDex = Pokedex.toPokedex(tier);
-    	instance.getBuilderMenu().setPokedex(distributionDex);
-    	instance.getPokedexMenu().setPokedex(distributionDex,false);
+    	UI.setCentralPokedex(Pokedex.toPokedex(tier));
     	UI.sceneReload(UI.getPrimaryStage(),UI.getBuilderMenuScene());
-    	UI.sceneReload(UI.getSecondaryStage(), UI.getPokedexMenuScene());
+    	//UI.sceneReload(UI.getSecondaryStage(),UI.getPokedexMenuScene());
     }
     
     private void clickBackButton()
     {
+    	UI.setCentralPokedex(null);
     	UI.sceneReload(UI.getPrimaryStage(),UI.getMenuScene());
     }
+    
+    public void reset(){}
+    
+    public void tierName(){}
 }

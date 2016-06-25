@@ -48,6 +48,53 @@ public class MathAnalyzer {
 		return scores;
 	}
 	
+	public static ArrayList<String[]> typeScores(Pokedex pokedex, ArrayList<String[]> team)
+	{
+		ArrayList<String[]> pokeList = pokedex.getList();
+		ArrayList<String[]> scores = new ArrayList<String[]>();
+		
+		ArrayList<Type> types = new ArrayList<Type>();
+		for(int i=0;i!=team.size();i++)
+		{
+			types.add(Type.toType(team.get(i)[8]));
+			types.add(Type.toType(team.get(i)[9]));
+		}
+		ArrayList<ArrayList<Type>> origWRITable = TypeAnalyzer.wriTable(types);
+		
+		for(int i=0;i!=pokeList.size();i++)
+		{
+			String[] score = new String[11];
+			for(int j=0;j!=10;j++)
+			{
+				score[j]=pokeList.get(i)[j];
+			}
+			double typeScore = TypeAnalyzer.typeScore(Type.toType(pokeList.get(i)[8]), Type.toType(pokeList.get(i)[9]), types,origWRITable);
+			score[10]=Double.toString(typeScore);
+			scores.add(score);
+		}
+		return scores;
+	}
+	
+	public static ArrayList<String[]> statScore(Pokedex pokedex, ArrayList<String[]> team, int[] battleMode)
+	{
+		ArrayList<String[]> pokeList = pokedex.getList();
+		ArrayList<String[]> scores = new ArrayList<String[]>();
+		int[] totalAverages = StatsAnalyzer.tierStats(StatsAnalyzer.tierSep(pokedex));
+		
+		for(int i=0;i!=pokeList.size();i++)
+		{
+			String[] score = new String[11];
+			for(int j=0;j!=10;j++)
+			{
+				score[j]=pokeList.get(i)[j];
+			}
+			double statsScore = StatsAnalyzer.statsScore(battleMode, team, totalAverages, pokeList.get(i));
+			score[10]=Double.toString(statsScore);
+			scores.add(score);
+		}
+		return scores;
+	}
+	
 	private static double[] findMaxMin(int[] battleMode,ArrayList<String[]> pokeList,ArrayList<String[]> team, int[] totalAverages )
 	{
 		double[] MaxMin = new double[4];

@@ -205,8 +205,26 @@ public class Tester {
 		}
 	}
 	
+	public static int number(Pokedex pokedex)
+	{
+		ArrayList<String[]> Pokelist = new ArrayList<String[]>();
+		Pokelist.addAll(pokedex.getList());
+		System.out.println(Pokelist.size());
+		for(int i=Pokelist.size()-1;i!=-1;i--)
+		{
+			for(int j=Pokelist.size()-1;j!=i;j--)
+			{
+				if(Pokelist.get(j)[0].contains(Pokelist.get(i)[0]))
+				{
+					Pokelist.remove(Pokelist.get(j));
+				}
+			}
+		}
+		return Pokelist.size();
+	}
+	
 	public static void main(String[] args) {
-		Pokedex pokedex = new NUPokedex();
+		Pokedex pokedex = new BSPokedex();
 		
 		int[] allTotals = {70, 79, 74, 73, 72, 69};
 		int[] ouTotals = {100, 123, 103, 126, 106, 108};
@@ -214,6 +232,7 @@ public class Tester {
 		int[] ruTotals = {77, 93, 86, 80, 86, 73};
 		int[] nuTotals = {78, 87, 84, 77, 77, 72};
 		
-		rtg(pokedex);
+		//rtg(pokedex);
+		System.out.println(number(pokedex));
 	}
 }

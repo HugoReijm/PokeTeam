@@ -29,6 +29,11 @@ public class UI extends Application{
     private static AbstractMenu pokedexMenu;
     private static AbstractMenu builderMenu;
     
+    private static Pokedex centralPokedex;
+    private static boolean typeBool = false;
+    private static boolean statsBool = false;
+    private static boolean popBool = false;
+    
     private int maxWidth = 600;
     private int maxHeight = 700;
 
@@ -78,6 +83,16 @@ public class UI extends Application{
     	return (BuilderMenu) builderMenu;
     }
 
+    public static Pokedex getCentralPokedex()
+    {
+    	return centralPokedex;
+    }
+    
+    public static void setCentralPokedex(Pokedex newPokedex)
+    {
+    	centralPokedex=newPokedex;
+    }
+    
     public static Scene getBuilderMenuScene()
     {
     	return scene4;
@@ -88,61 +103,207 @@ public class UI extends Application{
     	return instance;
     }
     
+    public static boolean getTypeBool()
+    {
+    	return typeBool;
+    }
+    
+    public static void setTypeBool(boolean tempBool)
+    {
+    	typeBool=tempBool;
+    }
+    
+    public static boolean getStatsBool()
+    {
+    	return statsBool;
+    }
+    
+    public static void setStatsBool(boolean tempBool)
+    {
+    	statsBool=tempBool;
+    }
+    
+    public static boolean getPopBool()
+    {
+    	return popBool;
+    }
+    
+    public static void setPopBool(boolean tempBool)
+    {
+    	popBool=tempBool;
+    }
+    
     public static void sceneReload(Stage stage, Scene scene)
     {
     	stage.setScene(scene);
     	stage.show();
+    	if(centralPokedex!=null)
+    	{
+    		if(scene.equals(scene3))
+        	{
+        		pokedexMenu.tierName();
+        	}
+    		if(scene.equals(scene4))
+        	{
+        		builderMenu.tierName();
+        	}
+    	}
     }
     
-    public static void reset(String menu)
+    public static void reset()
     {
-    	if(menu.equals("BuilderMenu"))
-    	{
-    		((BuilderMenu) builderMenu).reset();
-    	}
-    	else if(menu.equals("PokedexMenu"))
-    	{
-    		((PokedexMenu) pokedexMenu).reset();
-    	}
+    	centralPokedex=null;
+    	typeBool=false;
+    	statsBool=false;
+    	popBool=false;
+    	menu.reset();
+    	tierMenu.reset();
+    	builderMenu.reset();
+    	pokedexMenu.reset();
     }
     
     public static String[][] finalScores(int quantity, Pokedex pokedex, ArrayList<String[]> team, int[] battleMode)
 	{
-		double[] consts = {0.67,0.5,0.33,0.2,0.1};
+    	int length = pokedex.getList().size();
+    	ArrayList<String[]> finalScores = new ArrayList<String[]>(length);
+    	double[] consts = {0.67,0.5,0.33,0.2,0.1};
+    	double typeMax = 0.0;
+    	double typeMin = 0.0;
+    	double statsMax = 0.0;
+    	double statsMin = 0.0;
 		double compMax = 0.0;
 		double compMin = 0.0;
+		double typeRange = 0;
+		double statsRange = 0;
+		double compRange = 0;
 		
-		ArrayList<String[]> mathScores = MathAnalyzer.mathScores(battleMode, team, pokedex);
-		int[] compScores = CompAnalyzer.compScores(pokedex, team);
+		ArrayList<String[]> typeScores = new ArrayList<String[]>();
+		ArrayList<String[]> statScores = new ArrayList<String[]>();
+		int[] compScores = new int[pokedex.getList().size()];
 		
-		if(mathScores.size()==compScores.length)
+    	if(!typeBool)
 		{
-			for(int i=0;i!=compScores.length;i++)
+			typeScores = MathAnalyzer.typeScores(pokedex,team);
+			typeRange = 10;
+		}
+    	else
+    	{
+    		for(int i=0;i!=length;i++)
+    		{
+    			String[] score = new String[11];
+    			score[10] = "0.0";
+    			typeScores.add(score);
+    		}
+    	}
+		
+		if(!statsBool)
+		{
+			statScores = MathAnalyzer.statScore(pokedex,team,battleMode);
+			statsRange = 10;
+		}
+		else
+    	{
+    		for(int i=0;i!=length;i++)
+    		{
+    			String[] score = new String[11];
+    			score[10] = "0.0";
+    			statScores.add(score);
+    		}
+    	}
+		
+    	if(!popBool)
+    	{
+    		compScores = CompAnalyzer.compScores(pokedex, team);
+    		compRange = 1.4*typeRange+statsRange;
+    		if(statsBool&&typeBool)
+    		{
+    			compRange=10;
+    		}
+    	}
+		
+		if(typeScores.size()==compScores.length&&statScores.size()==compScores.length)
+		{
+			for(int i=0;i!=length;i++)
 			{
-				if(compScores[i]>compMax)
+				if(!typeBool)
 				{
-					compMax=compScores[i];
+					double tempTypeScore = Double.parseDouble(typeScores.get(i)[10]);
+					if(tempTypeScore>typeMax)
+					{
+						typeMax=tempTypeScore;
+					}
+					else if(tempTypeScore<typeMin)
+					{
+						typeMin=tempTypeScore;
+					}
 				}
-				else if(compScores[i]<compMin)
+				
+				if(!statsBool)
 				{
-					compMin=compScores[i];
+					double tempStatsScore = Double.parseDouble(statScores.get(i)[10]);
+					if(tempStatsScore>statsMax)
+					{
+						statsMax=tempStatsScore;
+					}
+					else if(tempStatsScore<statsMin)
+					{
+						statsMin=tempStatsScore;
+					}
+				}
+				if(!popBool)
+				{
+					double tempCompScore = compScores[i];
+					if(tempCompScore>compMax)
+					{
+						compMax=tempCompScore;
+					}
+					else if(tempCompScore<compMin)
+					{
+						compMin=tempCompScore;
+					}
 				}
 			}
-			for(int i=0;i!=mathScores.size();i++)
+			
+			for(int i=0;i!=length;i++)
 			{
-				mathScores.get(i)[13]=Integer.toString(compScores[i]);
-				if(compMax-compMin>0)
+				String[] score = new String[15];
+				for(int j=0;j!=10;j++)
 				{
-					mathScores.get(i)[14]=Double.toString((1-consts[team.size()-1])*Double.parseDouble(mathScores.get(i)[12])+(consts[team.size()-1])*(compScores[i]-compMin)*(24/(compMax-compMin)));
+					score[j]=pokedex.getList().get(i)[j];
+				}
+				if(!typeBool)
+				{
+					score[10]=Double.toString((Double.parseDouble(typeScores.get(i)[10])-typeMin)*(typeRange/(typeMax-typeMin)));
 				}
 				else
 				{
-					mathScores.get(i)[14]=mathScores.get(i)[12];
+					score[10]="0.0";
 				}
+				
+				if(!statsBool)
+				{
+					score[11]=Double.toString((Double.parseDouble(statScores.get(i)[10])-statsMin)*(statsRange/(statsMax-statsMin)));
+				}
+				else
+				{
+					score[11]="0.0";
+				}
+				
+				score[12]=Double.toString(1.4*Double.parseDouble(score[10])+Double.parseDouble(score[11]));
+				score[13]=Double.toString(compScores[i]);
+				if(compMax>compMin)
+				{
+					score[14]=Double.toString((1-consts[team.size()-1])*(1.4*Double.parseDouble(score[10])+Double.parseDouble(score[11]))+consts[team.size()-1]*((compScores[i]-compMin)*(compRange/(compMax-compMin))));
+				}
+				else
+				{
+					score[14]=score[12];
+				}
+				finalScores.add(score);
 			}
-			mathScores = Pokedex.removeTeamandMegas(mathScores, team);
-			String[][] finalScores = MathAnalyzer.sort(mathScores, quantity);
-			return finalScores;
+			finalScores = Pokedex.removeTeamandMegas(finalScores, team);
+			String[][] finalSortedScores = MathAnalyzer.sort(finalScores, quantity);
+			return finalSortedScores;
 		}
 		else
 		{

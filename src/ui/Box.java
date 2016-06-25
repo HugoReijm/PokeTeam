@@ -30,4 +30,9 @@ public class Box extends StackPane{
 	{
 		text.setFill(color);
 	}
+	
+	public String getText()
+	{
+		return text.getText();
+	}
 }

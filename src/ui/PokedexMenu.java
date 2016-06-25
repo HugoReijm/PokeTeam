@@ -35,7 +35,6 @@ public class PokedexMenu extends AbstractMenu {
 	private final String menuImagePath = "file:resources/kalosPokedex3.jpg";
     private ImageView menuImage;
     
-    private Pokedex pokedex;
     private List<Pokemon> results = new ArrayList<Pokemon>();
     
     public PokedexMenu()
@@ -73,13 +72,6 @@ public class PokedexMenu extends AbstractMenu {
         getChildren().addAll(menuImage,btnBacktoTier,menu,resDisplay);
     }
     
-    public void setPokedex(Pokedex pokedex, boolean fromMenu)
-    {
-    	this.fromMenu=fromMenu;
-    	this.pokedex = pokedex;
-    	tierLabel.setText(pokedex.getTier());
-    }
-    
     private void clickSearchButton()
     {
     	ArrayList<ArrayList<String[]>> resArrays = new ArrayList<ArrayList<String[]>>();
@@ -96,7 +88,7 @@ public class PokedexMenu extends AbstractMenu {
     		}
     		else
     		{
-    			resArrays.add(pokedex.search(nameIn.getInput()));
+    			resArrays.add(UI.getCentralPokedex().search(nameIn.getInput()));
     			nameBool=true;
     		}
     	}
@@ -108,7 +100,7 @@ public class PokedexMenu extends AbstractMenu {
     		}
     		else
     		{
-    			resArrays.add(pokedex.idSearch(numberIn.getInput()));
+    			resArrays.add(UI.getCentralPokedex().idSearch(numberIn.getInput()));
     			numberBool=true;
     		}
     	}
@@ -120,7 +112,7 @@ public class PokedexMenu extends AbstractMenu {
     		}
     		else
     		{
-    			resArrays.add(pokedex.typeSearch(type1In.getInput()));
+    			resArrays.add(UI.getCentralPokedex().typeSearch(type1In.getInput()));
     			type1Bool=true;
     		}
     	}
@@ -132,7 +124,7 @@ public class PokedexMenu extends AbstractMenu {
 			}
 			else
 			{
-				resArrays.add(pokedex.typeSearch(type2In.getInput()));
+				resArrays.add(UI.getCentralPokedex().typeSearch(type2In.getInput()));
 				type2Bool=true;
 			}
 		}
@@ -155,16 +147,14 @@ public class PokedexMenu extends AbstractMenu {
     {
     	if(fromMenu)
     	{
-        	reset();
-        	UI.reset("BuilderMenu");
     		UI.sceneReload(UI.getPrimaryStage(),UI.getMenuScene());
+    		UI.reset();
     	}
     	else
     	{
-        	reset();
-        	UI.reset("BuilderMenu");
     		UI.sceneReload(UI.getPrimaryStage(),UI.getTierMenuScene());
 	    	UI.turnOffStage(UI.getSecondaryStage());
+	    	UI.reset();
     	}
     }
     
@@ -257,5 +247,15 @@ public class PokedexMenu extends AbstractMenu {
     		resList.add(p);
     	}
         return resList;
+    }
+    
+    public void tierName()
+    {
+    	tierLabel.setText(UI.getCentralPokedex().getTier());
+    }
+    
+    public void setFromMenu(boolean fromMenu)
+    {
+    	this.fromMenu = fromMenu;
     }
 }

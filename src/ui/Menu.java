@@ -1,7 +1,5 @@
 package ui;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -13,16 +11,9 @@ public class Menu extends AbstractMenu{
     private MenuButton btnStart;
     private MenuButton btnPokedex;
     private MenuButton btnExit;
-    //private final String menuImagePath = "file:resources/Pokeball.jpg";
-    //private ImageView menuImage;
     
     public Menu()
     {
-    	/*menuImage = new ImageView(new Image(menuImagePath));
-    	menuImage.setFitHeight(700);
-    	menuImage.setFitWidth(1244);
-        menuImage.setX(-310);*/
-    	
         Pokeball pb = new Pokeball(100);
         pb.setTranslateX(200);
         pb.setTranslateY(100);
@@ -60,9 +51,11 @@ public class Menu extends AbstractMenu{
     }
     
     public void clickPokedexButton(){
-    	UI instance = UI.getInstance();
-    	Pokedex distributionDex = Pokedex.toPokedex("AG");
-    	instance.getPokedexMenu().setPokedex(distributionDex,true);
+    	UI.setCentralPokedex(Pokedex.toPokedex("AG"));
     	UI.sceneReload(UI.getPrimaryStage(),UI.getPokedexMenuScene());
     }
+    
+    public void reset(){}
+    
+    public void tierName(){}
 }

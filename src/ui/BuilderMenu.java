@@ -27,13 +27,15 @@ public class BuilderMenu extends AbstractMenu {
 	private HBox teamLabels;
 	private VBox suggestionDisplay;
 	private MenuLabel suggestionLabel;
-	private HBox suggestionLabels;
+	private HBox suggestionButtons;
+	private MenuButton typeToggleButton;
+	private MenuButton statsToggleButton;
+	private MenuButton popToggleButton;
 	private MenuButton btnBacktoTier;
 	private MenuButton btnBacktoStart;
 	private final String menuImagePath = "file:resources/allPokemon.png";
     private ImageView menuImage;
 	
-	private Pokedex pokedex;
 	private ArrayList<String[]> team = new ArrayList<String[]>(6);
 	private int[] battleMode = new int[6];
 	private boolean battleModeChosen=false;
@@ -98,10 +100,10 @@ public class BuilderMenu extends AbstractMenu {
         btnCalculate.setOnMouseClicked(event -> {
             if(battleModeChosen&&(teamMemberIn.getInput()!=null&&!teamMemberIn.getInput().trim().isEmpty()))
             {
-            	long stTime = System.currentTimeMillis();
-            	clickCalcButton();
-                long endTime = System.currentTimeMillis();
-                System.out.println("Time: " + (endTime - stTime));
+            	//long stTime = System.currentTimeMillis();
+            	clickCalcButton(teamMemberIn.getInput(),true);
+                //long endTime = System.currentTimeMillis();
+                //System.out.println("Time: " + (endTime - stTime));
             }
             else if(battleModeChosen&&!(teamMemberIn.getInput()!=null&&!teamMemberIn.getInput().trim().isEmpty()))
             {
@@ -128,35 +130,20 @@ public class BuilderMenu extends AbstractMenu {
         menu.getChildren().addAll(teamMemberInput, btnCalculate);
         getChildren().addAll(menuImage,tierLabel,modeLabel,backMenu,modeMenu,menu,teamDisplay,suggestionDisplay);
 	}
-	
-    public void setPokedex(Pokedex pokedex)
-    {
-    	this.pokedex = pokedex;
-    	tierLabel.setText(pokedex.getTier());
-    }
     
     private void clickBattleModeButton(String mode)
     {
     	battleModeChosen = true;
     	if(mode.equals("defensive"))
     	{
-	    	battleMode[0]=3/2;
-	    	battleMode[1]=1/2;
-	    	battleMode[2]=3/2;
-	    	battleMode[3]=1/2;
-	    	battleMode[4]=3/2;
-	    	battleMode[5]=1/2;
+	    	battleMode[0]=9/5;
+	    	battleMode[1]=1/5;
+	    	battleMode[2]=9/5;
+	    	battleMode[3]=1/5;
+	    	battleMode[4]=9/5;
+	    	battleMode[5]=1/5;
     	}
     	else if(mode.equals("balanced"))
-    	{
-	    	battleMode[0]=1/2;
-	    	battleMode[1]=3/2;
-	    	battleMode[2]=1/2;
-	    	battleMode[3]=3/2;
-	    	battleMode[4]=1/2;
-	    	battleMode[5]=3/2;
-    	}
-    	else if(mode.equals("aggressive"))
     	{
 	    	battleMode[0]=1;
 	    	battleMode[1]=1;
@@ -165,29 +152,34 @@ public class BuilderMenu extends AbstractMenu {
 	    	battleMode[4]=1;
 	    	battleMode[5]=1;
     	}
+    	else if(mode.equals("aggressive"))
+    	{
+    		battleMode[0]=1/5;
+	    	battleMode[1]=9/5;
+	    	battleMode[2]=1/5;
+	    	battleMode[3]=9/5;
+	    	battleMode[4]=1/5;
+	    	battleMode[5]=9/5;
+    	}
     }
     
-    private void clickCalcButton()
+    public void clickCalcButton(String input, boolean added)
     {
     	if(team.size()<6)
     	{
-	    	String[] member = pokedex.exactSearch(teamMemberIn.getInput());
+	    	String[] member = UI.getCentralPokedex().exactSearch(input);
 	    	if(member[1]!=null)
 	    	{
-		    	teamMemberIn.setInput("");
-	    		team.add(member);
-		    	PokemonMaker pokemonMaker = new PokemonMaker(pokedex,team,battleMode);
-		    	teamList = pokemonMaker.makeTeamList();
-		    	teamReload(teamList);
-		    	if(team.size()<6)
+	    		teamMemberIn.setInput("");
+	    		if(added)
 		    	{
-			    	suggestionList = pokemonMaker.makeSuggestionList();
+		    		team.add(member);
 		    	}
 		    	else
 		    	{
-		    		suggestionList = new ArrayList<Suggestion>();
+		    		team.remove(member);
 		    	}
-		    	suggestionReload(suggestionList);
+		    	run();
 	    	}
 	    	else
 	    	{
@@ -202,16 +194,14 @@ public class BuilderMenu extends AbstractMenu {
     
 	private void clickBackButton()
     {
-		reset();
-		UI.reset("PokedexMenu");
 		UI.sceneReload(UI.getPrimaryStage(),UI.getTierMenuScene());
 		UI.turnOffStage(UI.getSecondaryStage());
+		UI.reset();
     }
 	
 	private void clickBackStartButton()
 	{
-		reset();
-		UI.reset("PokedexMenu");
+		UI.reset();
 		UI.sceneReload(UI.getPrimaryStage(),UI.getMenuScene());
 		UI.turnOffStage(UI.getSecondaryStage());
 	}
@@ -238,9 +228,10 @@ public class BuilderMenu extends AbstractMenu {
         teamLabel = new MenuLabel("Current Team", 430);
         teamLabels = new HBox(0);
         MenuLabel name = new MenuLabel("Name",200);
-        MenuLabel type1 = new MenuLabel("Type #1",115);
-        MenuLabel type2 = new MenuLabel("Type #2",115);
-        teamLabels.getChildren().addAll(name,type1,type2);
+        MenuLabel type1 = new MenuLabel("Type #1",100);
+        MenuLabel type2 = new MenuLabel("Type #2",100);
+        MenuLabel delete = new MenuLabel("X",30);
+        teamLabels.getChildren().addAll(name,type1,type2,delete);
         teamBox.getChildren().addAll(teamLabel,teamLabels);
 		return teamBox;
 	}
@@ -252,13 +243,89 @@ public class BuilderMenu extends AbstractMenu {
         suggs.setTranslateY(320);
         
         suggestionLabel = new MenuLabel("Suggestions", 430);
-        suggestionLabels = new HBox(0);
+        suggestionButtons = new HBox(0);
         MenuLabel name = new MenuLabel("Name",193);
-        MenuLabel stats = new MenuLabel("Type Score",80);
-        MenuLabel type = new MenuLabel("Stats Score",80);
-        MenuLabel pop = new MenuLabel("Popularity",77);
-        suggestionLabels.getChildren().addAll(name,stats,type,pop);
-        suggs.getChildren().addAll(suggestionLabel,suggestionLabels);
+        
+        typeToggleButton = new MenuButton("Type Score",80);
+        typeToggleButton.setFont(15);
+        typeToggleButton.setOnMouseClicked(event -> {
+    		UI.setTypeBool(!UI.getTypeBool());
+    		if(UI.getTypeBool())
+    		{
+    			typeToggleButton.setColor(Color.RED);
+    		}
+    		else
+    		{
+    			typeToggleButton.setColor(Color.BLACK);
+    		}
+    		
+    		if(team.size()>0)
+    		{
+	    		if(team.size()<6)
+	        	{
+		    		run();
+	        	}
+	        	else
+	        	{
+	        		teamMemberIn.setInput("Your Team is Full");
+	        	}
+    		}
+        });
+        
+        statsToggleButton = new MenuButton("Stats Score",80);
+        statsToggleButton.setFont(15);
+        statsToggleButton.setOnMouseClicked(event -> {
+        	UI.setStatsBool(!UI.getStatsBool());
+        	if(UI.getStatsBool())
+    		{
+    			statsToggleButton.setColor(Color.RED);
+    		}
+    		else
+    		{
+    			statsToggleButton.setColor(Color.BLACK);
+    		}
+        	
+        	if(team.size()>0)
+        	{
+	        	if(team.size()<6)
+	        	{
+		    		run();
+	        	}
+	        	else
+	        	{
+	        		teamMemberIn.setInput("Your Team is Full");
+	        	}
+        	}
+        });
+        
+        popToggleButton = new MenuButton("Popularity",77);
+        popToggleButton.setFont(15);
+        popToggleButton.setOnMouseClicked(event -> {
+        	UI.setPopBool(!UI.getPopBool());
+        	if(UI.getPopBool())
+    		{
+    			popToggleButton.setColor(Color.RED);
+    		}
+    		else
+    		{
+    			popToggleButton.setColor(Color.BLACK);
+    		}
+        	
+        	if(team.size()>0)
+        	{
+	        	if(team.size()<6)
+	        	{
+		    		run();
+	        	}
+	        	else
+	        	{
+	        		teamMemberIn.setInput("Your Team is Full");
+	        	}
+        	}
+        });
+        
+        suggestionButtons.getChildren().addAll(name,typeToggleButton,statsToggleButton,popToggleButton);
+        suggs.getChildren().addAll(suggestionLabel,suggestionButtons);
 	    
         return suggs;
 	}
@@ -278,9 +345,25 @@ public class BuilderMenu extends AbstractMenu {
 		if(battleModeChosen)
 		{
 			suggestionDisplay.getChildren().clear();
-			suggestionDisplay.getChildren().addAll(suggestionLabel,suggestionLabels);
+			suggestionDisplay.getChildren().addAll(suggestionLabel,suggestionButtons);
 			suggestionDisplay.getChildren().addAll(team);
 		}
+	}
+	
+	private void run()
+	{
+		PokemonMaker pokemonMaker = new PokemonMaker(UI.getCentralPokedex(),team,battleMode,this);
+    	teamList = pokemonMaker.makeTeamList();
+    	teamReload(teamList);
+    	if(team.size()<6&&team.size()>0)
+    	{
+    		suggestionList = pokemonMaker.makeSuggestionList();
+    	}
+    	else
+    	{
+    		suggestionList = new ArrayList<Suggestion>();
+    	}
+	    suggestionReload(suggestionList);
 	}
 	
 	public void reset()
@@ -288,15 +371,24 @@ public class BuilderMenu extends AbstractMenu {
     	btnDefensive.setColor(Color.BLACK);
     	btnBalanced.setColor(Color.BLACK);
     	btnAggressive.setColor(Color.BLACK);
+    	typeToggleButton.setColor(Color.BLACK);
+    	statsToggleButton.setColor(Color.BLACK);
+    	popToggleButton.setColor(Color.BLACK);
     	teamDisplay.getChildren().clear();
 		teamDisplay.getChildren().addAll(teamLabel,teamLabels);
 		suggestionDisplay.getChildren().clear();
-		suggestionDisplay.getChildren().addAll(suggestionLabel,suggestionLabels);
+		suggestionDisplay.getChildren().addAll(suggestionLabel,suggestionButtons);
     	
 		team.clear();
 		teamList.clear();
 		suggestionList.clear();
     	battleMode=new int[6];
     	battleModeChosen=false;
+    	teamMemberIn.setInput("");
 	}
+	
+	public void tierName()
+    {
+    	tierLabel.setText(UI.getCentralPokedex().getTier());
+    }
 }

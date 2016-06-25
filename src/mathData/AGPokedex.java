@@ -33,8 +33,8 @@ public class AGPokedex extends Pokedex {
 	}
 
 	@Override
-	public ArrayList<String[]> getList() {
-		
+	public ArrayList<String[]> getList() 
+	{
 		return agPokeList;
 	}
 	

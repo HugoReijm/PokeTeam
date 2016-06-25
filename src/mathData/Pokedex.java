@@ -3,6 +3,14 @@ package mathData;
 import java.util.ArrayList;
 
 public abstract class Pokedex {
+	private static Pokedex agPokedex = new AGPokedex();
+	private static Pokedex bsPokedex = new BSPokedex();
+	private static Pokedex ubersPokedex = new UbersPokedex();
+	private static Pokedex ouPokedex = new OUPokedex();
+	private static Pokedex uuPokedex = new UUPokedex();
+	private static Pokedex ruPokedex = new RUPokedex();
+	private static Pokedex nuPokedex = new NUPokedex();
+	private static Pokedex puPokedex = new PUPokedex();
 	
 	public abstract ArrayList<String[]> getList();
 	
@@ -26,31 +34,35 @@ public abstract class Pokedex {
 	{
 		if(tier.equals("AG"))
 		{
-			return new AGPokedex();
+			return agPokedex;
 		}
 		else if(tier.equals("BS"))
 		{
-			return new BSPokedex();
+			return bsPokedex;
 		}
 		else if(tier.equals("Ubers"))
 		{
-			return new UbersPokedex();
+			return ubersPokedex;
 		}
 		else if(tier.equals("OU"))
 		{
-			return new OUPokedex();
+			return ouPokedex;
 		}
 		else if(tier.equals("UU"))
 		{
-			return new UUPokedex();
+			return uuPokedex;
 		}
 		else if(tier.equals("RU"))
 		{
-			return new RUPokedex();
+			return ruPokedex;
 		}
 		else if(tier.equals("NU"))
 		{
-			return new NUPokedex();
+			return nuPokedex;
+		}
+		else if(tier.equals("PU"))
+		{
+			return puPokedex;
 		}
 		return null;
 	}

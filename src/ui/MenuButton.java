@@ -12,14 +12,17 @@ import javafx.scene.text.Text;
 public class MenuButton extends StackPane {
 
     private Text text;
-
     private Rectangle bg;
+    private Color mainColor;
+    private Color secondaryColor;
 
     public MenuButton(final String name,int width) {
-        text = new Text(name);
+        mainColor = Color.WHITE;
+    	secondaryColor = Color.AQUA;
+    	text = new Text(name);
         text.setFont(Font.font(17));
-        text.setFill(Color.WHITE);
-        bg = new Rectangle(width, 27.5);
+        text.setFill(mainColor);
+        bg = new Rectangle(width,30);
         bg.setOpacity(0.5);
         bg.setFill(Color.BLACK);
         bg.setEffect(new GaussianBlur(3.2));
@@ -27,11 +30,11 @@ public class MenuButton extends StackPane {
         getChildren().addAll(bg, text);
 
         this.setOnMouseEntered(event -> {
-                text.setFont(Font.font(19));
+                text.setFill(secondaryColor);
             });
 
         this.setOnMouseExited(event -> {
-        		text.setFont(Font.font(17));
+        		text.setFill(mainColor);
             });
 
         DropShadow drop = new DropShadow(40, Color.WHITE);
@@ -41,7 +44,20 @@ public class MenuButton extends StackPane {
         setOnMouseReleased(event -> setEffect(null));
     }
     
-    public void setColor(Color color) {
-        bg.setFill(color);
+    public void setColor(Color color)
+    {
+    	bg.setFill(color);
+    }
+    
+    public void setTextColor(Color color1, Color color2) 
+    {
+    	mainColor = color1;
+    	secondaryColor = color2;
+    	text.setFill(mainColor);
+    }
+    
+    public void setFont(int font)
+    {
+    	text.setFont(Font.font(font));
     }
 }

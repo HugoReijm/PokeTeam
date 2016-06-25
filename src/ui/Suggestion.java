@@ -27,5 +27,27 @@ public class Suggestion extends StackPane
         pokemon = new HBox(0);
         pokemon.getChildren().addAll(nameBox,statsBox,typeBox,popBox);
         getChildren().add(pokemon);
+
+        this.setOnMouseEntered(event -> {
+            nameBox.setTextColor(Color.AQUA);
+            statsBox.setTextColor(Color.AQUA);
+            typeBox.setTextColor(Color.AQUA);
+            popBox.setTextColor(Color.AQUA);
+        });
+
+        this.setOnMouseExited(event -> {
+        	nameBox.setTextColor(Color.WHITE);
+            statsBox.setTextColor(Color.WHITE);
+            typeBox.setTextColor(Color.WHITE);
+            popBox.setTextColor(Color.WHITE);
+        });
+        
+        setOnMousePressed(event -> setEffect(drop));
+        setOnMouseReleased(event -> setEffect(null));
+    }
+    
+    public String getName()
+    {
+    	return this.nameBox.getText();
     }
 }
