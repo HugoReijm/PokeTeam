@@ -1,21 +1,21 @@
 \select@language {english}
 \select@language {english}
-\contentsline {section}{\numberline {1}Introduction}{3}
-\contentsline {section}{\numberline {2}An In-depth Look at Pok\'emon Mechanics}{3}
-\contentsline {subsection}{\numberline {2.1}A Typical Pok\'emon Battle}{4}
+\contentsline {section}{\numberline {1}Introduction}{4}
+\contentsline {section}{\numberline {2}An In-depth Look at Pok\'emon Mechanics}{4}
+\contentsline {subsection}{\numberline {2.1}A Typical Pok\'emon Battle}{5}
 \contentsline {subsection}{\numberline {2.2}Individual Pok\'emon Mechanics}{8}
-\contentsline {subsubsection}{\numberline {2.2.1}Base Statistics}{8}
-\contentsline {subsubsection}{\numberline {2.2.2}Typing}{10}
-\contentsline {section}{\numberline {3}The Mechanics Behind the Algorithm}{12}
-\contentsline {subsection}{\numberline {3.1}Scoring Based on Base Stats}{13}
-\contentsline {subsection}{\numberline {3.2}Scoring Based on Typing}{14}
-\contentsline {subsection}{\numberline {3.3}Scoring Based on Popularity Factor}{15}
-\contentsline {subsection}{\numberline {3.4}Combining Scoring factors}{16}
-\contentsline {subsubsection}{\numberline {3.4.1}Criteria 1}{17}
-\contentsline {subsubsection}{\numberline {3.4.2}Criteria 2}{18}
-\contentsline {section}{\numberline {4}Run-Time Analysis}{19}
-\contentsline {section}{\numberline {5}Conclusion}{22}
-\contentsline {section}{\numberline {6}Acknowledgments and Bibliography}{23}
-\contentsline {subsection}{\numberline {6.1}Acknowledgments}{23}
-\contentsline {subsection}{\numberline {6.2}Bibliography}{23}
-\contentsline {section}{\numberline {7}Appendix}{24}
+\contentsline {subsubsection}{\numberline {2.2.1}Base Statistics}{9}
+\contentsline {subsubsection}{\numberline {2.2.2}Typing}{11}
+\contentsline {section}{\numberline {3}The Mechanics Behind the Algorithm}{13}
+\contentsline {subsection}{\numberline {3.1}Scoring Based on Base Stats}{14}
+\contentsline {subsection}{\numberline {3.2}Scoring Based on Typing}{16}
+\contentsline {subsection}{\numberline {3.3}Scoring Based on Popularity Factor}{16}
+\contentsline {subsection}{\numberline {3.4}Combining Scoring factors}{18}
+\contentsline {subsubsection}{\numberline {3.4.1}Criterion 1}{18}
+\contentsline {subsubsection}{\numberline {3.4.2}Criterion 2}{19}
+\contentsline {section}{\numberline {4}Run-Time Analysis}{20}
+\contentsline {section}{\numberline {5}Conclusion}{24}
+\contentsline {section}{\numberline {6}Acknowledgments and Bibliography}{25}
+\contentsline {subsection}{\numberline {6.1}Acknowledgments}{25}
+\contentsline {subsection}{\numberline {6.2}Bibliography}{25}
+\contentsline {section}{\numberline {7}Appendix}{26}
