@@ -3,13 +3,13 @@
 \contentsline {section}{\numberline {1}Introduction}{4}
 \contentsline {section}{\numberline {2}An In-depth Look at Pok\'emon Mechanics}{4}
 \contentsline {subsection}{\numberline {2.1}A Typical Pok\'emon Battle}{5}
-\contentsline {subsection}{\numberline {2.2}Individual Pok\'emon Mechanics}{8}
+\contentsline {subsection}{\numberline {2.2}Individual Pok\'emon Mechanics}{9}
 \contentsline {subsubsection}{\numberline {2.2.1}Base Statistics}{9}
 \contentsline {subsubsection}{\numberline {2.2.2}Typing}{11}
 \contentsline {section}{\numberline {3}The Mechanics Behind the Algorithm}{13}
-\contentsline {subsection}{\numberline {3.1}Scoring Based on Base Stats}{14}
+\contentsline {subsection}{\numberline {3.1}Scoring Based on Base Stats}{15}
 \contentsline {subsection}{\numberline {3.2}Scoring Based on Typing}{16}
-\contentsline {subsection}{\numberline {3.3}Scoring Based on Popularity Factor}{16}
+\contentsline {subsection}{\numberline {3.3}Scoring Based on Popularity Factor}{17}
 \contentsline {subsection}{\numberline {3.4}Combining Scoring factors}{18}
 \contentsline {subsubsection}{\numberline {3.4.1}Criterion 1}{18}
 \contentsline {subsubsection}{\numberline {3.4.2}Criterion 2}{19}

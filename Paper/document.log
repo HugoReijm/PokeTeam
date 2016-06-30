@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.11)  29 JUN 2016 15:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.11)  30 JUN 2016 10:45
 entering extended mode
 **document.tex
 (document.tex
@@ -569,7 +569,7 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 File: TierAmount.png Graphic file (type png)
  <use TierAmount.png>
 Package pdftex.def Info: TierAmount.png used on input line 92.
-(pdftex.def)             Requested size: 387.00153pt x 193.50198pt.
+(pdftex.def)             Requested size: 430.00462pt x 215.0056pt.
  [6]
 Underfull \hbox (badness 10000) in paragraph at lines 96--98
 
@@ -615,7 +615,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 105--112
 File: fluffyfile.png Graphic file (type png)
  <use fluffyfile.png>
 Package pdftex.def Info: fluffyfile.png used on input line 120.
-(pdftex.def)             Requested size: 344.005pt x 248.08865pt.
+(pdftex.def)             Requested size: 387.00153pt x 279.09627pt.
 
 [8] <fluffystats.png, id=51, 150.5625pt x 164.11313pt>
 File: fluffystats.png Graphic file (type png)
@@ -646,21 +646,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 151--153
 File: TypeChart.png Graphic file (type png)
  <use TypeChart.png>
 Package pdftex.def Info: TypeChart.png used on input line 164.
-(pdftex.def)             Requested size: 301.00192pt x 291.56664pt.
+(pdftex.def)             Requested size: 387.00153pt x 374.8725pt.
  [11]
 Underfull \hbox (badness 10000) in paragraph at lines 168--170
 
  []
 
-
+[12 <./TypeChart.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 177--179
 
  []
 
-[12 <./TypeChart.png>] <ScoringDiagram.png, id=66, 473.77pt x 373.395pt>
+<ScoringDiagram.png, id=66, 473.77pt x 373.395pt>
 File: ScoringDiagram.png Graphic file (type png)
-
-<use ScoringDiagram.png>
+ <use ScoringDiagram.png>
 Package pdftex.def Info: ScoringDiagram.png used on input line 189.
 (pdftex.def)             Requested size: 301.00192pt x 237.23424pt.
 
@@ -688,12 +687,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 216--218
 
  []
 
-
+[15]
 Underfull \hbox (badness 10000) in paragraph at lines 220--222
 
  []
 
-[15]
+
 Underfull \hbox (badness 10000) in paragraph at lines 224--228
 
  []
@@ -710,45 +709,45 @@ Underfull \hbox (badness 10000) in paragraph at lines 233--236
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 233--236
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 238--242
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 238--242
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 238--242
 
  []
 
 [16]
+Underfull \hbox (badness 10000) in paragraph at lines 238--242
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 238--242
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 238--242
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 244--247
 
  []
 
-
+[17]
 Underfull \hbox (badness 10000) in paragraph at lines 253--255
 
  []
 
-[17]
+
 Underfull \hbox (badness 10000) in paragraph at lines 265--268
 
  []
 
-
+[18]
 Underfull \hbox (badness 10000) in paragraph at lines 270--273
 
  []
 
-[18]
+
 Underfull \hbox (badness 10000) in paragraph at lines 286--297
 
  []
@@ -822,11 +821,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 464--465
 Here is how much of TeX's memory you used:
  3375 strings out of 493698
  42322 string characters out of 3144415
- 136881 words of memory out of 3000000
+ 133881 words of memory out of 3000000
  6634 multiletter control sequences out of 15000+200000
  12827 words of font info for 49 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 27i,9n,26p,1493b,267s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,9n,26p,1495b,267s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
 m/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12
 .pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><
@@ -841,7 +840,7 @@ r7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Progra
 m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/
 MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on document.pdf (26 pages, 953858 bytes).
+Output written on document.pdf (26 pages, 955100 bytes).
 PDF statistics:
  165 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
