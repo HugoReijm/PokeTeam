@@ -3,7 +3,6 @@ package ui;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import mathData.AGPokedex;
 import mathData.Pokedex;
 import ui.UI;
 import ui.MenuButton;
@@ -19,15 +18,13 @@ public class TierMenu extends AbstractMenu {
     private MenuButton btnNU;
     private MenuButton btnBacktoStart;
     
-    //private final String menuImagePath = "file:resources/";
-    //private ImageView menuImage;
-    
     public TierMenu()
     {
-        //menuImage = new ImageView(new Image(menuImagePath));
-        //getChildren().addAll(menuImage);
-
-        VBox menu = new VBox(10);
+        Pokeball pb = new Pokeball(75);
+        pb.setTranslateX(225);
+        pb.setTranslateY(35);
+    	
+    	VBox menu = new VBox(10);
         menu.setTranslateX(300-uniformWidth/2);
         menu.setTranslateY(225);
 
@@ -41,7 +38,7 @@ public class TierMenu extends AbstractMenu {
         		clickTierButton("Ubers");
         	});
 
-        btnBS = new MenuButton("BS",uniformWidth);
+        btnBS = new MenuButton("Battle Spot Singles",uniformWidth);
         btnBS.setOnMouseClicked(event -> {
         		clickTierButton("BS");
         	});
@@ -73,10 +70,10 @@ public class TierMenu extends AbstractMenu {
         
         menu.getChildren().addAll(btnAG, btnUbers, btnBS, btnOU, btnUU, btnRU, btnNU);
         Rectangle bg = new Rectangle(600, 700);
-        bg.setFill(Color.GREY);
+        bg.setFill(Color.AQUA);
         bg.setOpacity(0.35);
 
-        getChildren().addAll(bg, btnBacktoStart, menu);
+        getChildren().addAll(bg, pb, btnBacktoStart, menu);
     }
     
     private void clickTierButton(String tier)

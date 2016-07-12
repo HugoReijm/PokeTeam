@@ -3,7 +3,6 @@ package ui;
 import java.util.ArrayList;
 import mathData.Pokedex;
 import stats.StatsAnalyzer;
-import type.Null;
 import type.Type;
 import type.TypeAnalyzer;
 

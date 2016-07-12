@@ -136,6 +136,8 @@ public class UI extends Application{
     public static void sceneReload(Stage stage, Scene scene)
     {
     	stage.setScene(scene);
+    	stage.setResizable(false);
+    	stage.sizeToScene();
     	stage.show();
     	if(centralPokedex!=null)
     	{
@@ -337,8 +339,8 @@ public class UI extends Application{
         scene1 = new Scene(root, maxWidth, maxHeight, Color.WHITE);
         scene2 = new Scene(root2,maxWidth,maxHeight, Color.WHITE);
         scene3 = new Scene(root3,630,maxHeight, Color.WHITE);
-        scene4 = new Scene(root4,900,maxHeight, Color.WHITE);
-        
+        scene4 = new Scene(root4,1130,maxHeight, Color.WHITE);
+        //1230
         sceneReload(primaryStage,scene1);
 	}
 }

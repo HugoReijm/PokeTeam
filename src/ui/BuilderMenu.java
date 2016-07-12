@@ -8,7 +8,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
-import mathData.Pokedex;
+import type.Type;
+import type.TypeAnalyzer;
 import ui.InputField;
 import ui.MenuLabel;
 import ui.MenuButton;
@@ -33,6 +34,10 @@ public class BuilderMenu extends AbstractMenu {
 	private MenuButton popToggleButton;
 	private MenuButton btnBacktoTier;
 	private MenuButton btnBacktoStart;
+	private VBox typeChart;
+	private HBox typeLabels;
+	private MenuLabel types;
+	private MenuLabel typeScores;
 	private final String menuImagePath = "file:resources/allPokemon.png";
     private ImageView menuImage;
 	
@@ -125,10 +130,14 @@ public class BuilderMenu extends AbstractMenu {
     		clickBackStartButton();
         });
         
+        MenuLabel typeChartLabel = new MenuLabel("Current Team Type Chart",200);
+        typeChartLabel.setTranslateX(920);
+        makeTypeChart(100,100);
+        
         backMenu.getChildren().addAll(btnBacktoTier, btnBacktoStart);
         modeMenu.getChildren().addAll(btnDefensive, btnBalanced, btnAggressive);
         menu.getChildren().addAll(teamMemberInput, btnCalculate);
-        getChildren().addAll(menuImage,tierLabel,modeLabel,backMenu,modeMenu,menu,teamDisplay,suggestionDisplay);
+        getChildren().addAll(menuImage,tierLabel,modeLabel,backMenu,modeMenu,menu,teamDisplay,suggestionDisplay,typeChartLabel,typeChart);
 	}
     
     private void clickBattleModeButton(String mode)
@@ -165,7 +174,7 @@ public class BuilderMenu extends AbstractMenu {
     
     public void clickCalcButton(String input, boolean added)
     {
-    	if(team.size()<6)
+    	if(team.size()<6||!added)
     	{
 	    	String[] member = UI.getCentralPokedex().exactSearch(input);
 	    	if(member[1]!=null)
@@ -330,6 +339,19 @@ public class BuilderMenu extends AbstractMenu {
         return suggs;
 	}
 	
+	private void makeTypeChart(int typeWidth, int weakWidth)
+	{
+		typeChart = new VBox(5);
+        typeChart.setTranslateX(920);
+        typeChart.setTranslateY(30);
+        typeLabels = new HBox(0);
+        types = new MenuLabel("Type",typeWidth);
+        typeScores = new MenuLabel("Type Scores",weakWidth);
+        typeLabels.getChildren().addAll(types,typeScores);
+        typeChart.getChildren().add(typeLabels);
+        typeReload(typeWidth,weakWidth);
+	}
+	
 	private void teamReload(List<TeamMember> team)
 	{
 		if(battleModeChosen)
@@ -352,6 +374,7 @@ public class BuilderMenu extends AbstractMenu {
 	
 	private void run()
 	{
+		typeReload(100,100);
 		PokemonMaker pokemonMaker = new PokemonMaker(UI.getCentralPokedex(),team,battleMode,this);
     	teamList = pokemonMaker.makeTeamList();
     	teamReload(teamList);
@@ -380,15 +403,171 @@ public class BuilderMenu extends AbstractMenu {
 		suggestionDisplay.getChildren().addAll(suggestionLabel,suggestionButtons);
     	
 		team.clear();
+		typeReload(100,100);
 		teamList.clear();
 		suggestionList.clear();
     	battleMode=new int[6];
     	battleModeChosen=false;
     	teamMemberIn.setInput("");
+    	
 	}
 	
 	public void tierName()
     {
     	tierLabel.setText(UI.getCentralPokedex().getTier());
     }
+	
+	private void typeReload(int typeWidth, int weakWidth)
+	{
+		typeChart.getChildren().clear();
+		typeChart.getChildren().add(typeLabels);
+		double[] tempChart = new double[19];
+		ArrayList<Type> teamTypes = new ArrayList<Type>();
+		for(int i=0;i!=team.size();i++)
+		{
+			teamTypes.add(Type.toType(team.get(i)[8]));
+			teamTypes.add(Type.toType(team.get(i)[9]));
+		}
+		ArrayList<ArrayList<Type>> wriTable = TypeAnalyzer.wriTable(teamTypes);
+		double[] typeChartScores = TypeAnalyzer.minusWeakness(tempChart,wriTable);
+		typeChartScores = TypeAnalyzer.plusResistance(typeChartScores,wriTable);
+		
+		HBox bug = new HBox(0);
+			MenuLabel bugLabel = new MenuLabel("Bug",typeWidth);
+			MenuLabel bugWeakness = new MenuLabel(Double.toString(typeChartScores[0]),weakWidth);
+			typeChartColorChanger(bugWeakness,typeChartScores[0]);
+			bug.getChildren().addAll(bugLabel,bugWeakness);
+		
+		HBox dark = new HBox(0);
+			MenuLabel darkLabel = new MenuLabel("Dark",typeWidth);
+			MenuLabel darkWeakness = new MenuLabel(Double.toString(typeChartScores[1]),weakWidth);
+			typeChartColorChanger(darkWeakness,typeChartScores[1]);
+			dark.getChildren().addAll(darkLabel,darkWeakness);
+		
+		HBox dragon = new HBox(0);
+			MenuLabel dragonLabel = new MenuLabel("Dragon",typeWidth);
+			MenuLabel dragonWeakness = new MenuLabel(Double.toString(typeChartScores[2]),weakWidth);
+			typeChartColorChanger(dragonWeakness,typeChartScores[2]);
+			dragon.getChildren().addAll(dragonLabel,dragonWeakness);
+		
+		HBox electric = new HBox(0);
+			MenuLabel electricLabel = new MenuLabel("Electric",typeWidth);
+			MenuLabel electricWeakness = new MenuLabel(Double.toString(typeChartScores[3]),weakWidth);
+			typeChartColorChanger(electricWeakness,typeChartScores[3]);
+			electric.getChildren().addAll(electricLabel,electricWeakness);
+		
+		HBox fairy = new HBox(0);
+			MenuLabel fairyLabel = new MenuLabel("Fairy",typeWidth);
+			MenuLabel fairyWeakness = new MenuLabel(Double.toString(typeChartScores[4]),weakWidth);
+			typeChartColorChanger(fairyWeakness,typeChartScores[4]);
+			fairy.getChildren().addAll(fairyLabel,fairyWeakness);
+		
+		HBox fighting = new HBox(0);
+			MenuLabel fightingLabel = new MenuLabel("Fighting",typeWidth);
+			MenuLabel fightingWeakness = new MenuLabel(Double.toString(typeChartScores[5]),weakWidth);
+			typeChartColorChanger(fightingWeakness,typeChartScores[5]);
+			fighting.getChildren().addAll(fightingLabel,fightingWeakness);
+		
+		HBox fire = new HBox(0);
+			MenuLabel fireLabel = new MenuLabel("Fire",typeWidth);
+			MenuLabel fireWeakness = new MenuLabel(Double.toString(typeChartScores[6]),weakWidth);
+			typeChartColorChanger(fireWeakness,typeChartScores[6]);
+			fire.getChildren().addAll(fireLabel,fireWeakness);
+		
+		HBox flying = new HBox(0);
+			MenuLabel flyingLabel = new MenuLabel("Flying",typeWidth);
+			MenuLabel flyingWeakness = new MenuLabel(Double.toString(typeChartScores[7]),weakWidth);
+			typeChartColorChanger(flyingWeakness,typeChartScores[7]);
+			flying.getChildren().addAll(flyingLabel,flyingWeakness);
+		
+		HBox ghost = new HBox(0);
+			MenuLabel ghostLabel = new MenuLabel("Ghost",typeWidth);
+			MenuLabel ghostWeakness = new MenuLabel(Double.toString(typeChartScores[8]),weakWidth);
+			typeChartColorChanger(ghostWeakness,typeChartScores[8]);
+			ghost.getChildren().addAll(ghostLabel,ghostWeakness);
+		
+		HBox grass = new HBox(0);
+			MenuLabel grassLabel = new MenuLabel("Grass",typeWidth);
+			MenuLabel grassWeakness = new MenuLabel(Double.toString(typeChartScores[9]),weakWidth);
+			typeChartColorChanger(grassWeakness,typeChartScores[9]);
+			grass.getChildren().addAll(grassLabel,grassWeakness);
+		
+		HBox ground = new HBox(0);
+			MenuLabel groundLabel = new MenuLabel("Ground",typeWidth);
+			MenuLabel groundWeakness = new MenuLabel(Double.toString(typeChartScores[10]),weakWidth);
+			typeChartColorChanger(groundWeakness,typeChartScores[10]);
+			ground.getChildren().addAll(groundLabel,groundWeakness);
+	
+		HBox ice = new HBox(0);
+			MenuLabel iceLabel = new MenuLabel("Ice",typeWidth);
+			MenuLabel iceWeakness = new MenuLabel(Double.toString(typeChartScores[11]),weakWidth);
+			typeChartColorChanger(iceWeakness,typeChartScores[11]);
+			ice.getChildren().addAll(iceLabel,iceWeakness);
+		
+		HBox normal = new HBox(0);
+			MenuLabel normalLabel = new MenuLabel("Normal",typeWidth);
+			MenuLabel normalWeakness = new MenuLabel(Double.toString(typeChartScores[12]),weakWidth);
+			typeChartColorChanger(normalWeakness,typeChartScores[12]);
+			normal.getChildren().addAll(normalLabel,normalWeakness);		
+		
+		HBox poison = new HBox(0);
+			MenuLabel poisonLabel = new MenuLabel("Poison",typeWidth);
+			MenuLabel poisonWeakness = new MenuLabel(Double.toString(typeChartScores[14]),weakWidth);
+			typeChartColorChanger(poisonWeakness,typeChartScores[14]);
+			poison.getChildren().addAll(poisonLabel,poisonWeakness);		
+		
+		HBox psychic = new HBox(0);
+			MenuLabel psychicLabel = new MenuLabel("Psychic",typeWidth);
+			MenuLabel psychicWeakness = new MenuLabel(Double.toString(typeChartScores[15]),weakWidth);
+			typeChartColorChanger(psychicWeakness,typeChartScores[15]);
+			psychic.getChildren().addAll(psychicLabel,psychicWeakness);
+		
+		HBox rock = new HBox(0);
+			MenuLabel rockLabel = new MenuLabel("Rock",typeWidth);
+			MenuLabel rockWeakness = new MenuLabel(Double.toString(typeChartScores[16]),weakWidth);
+			typeChartColorChanger(rockWeakness,typeChartScores[16]);
+			rock.getChildren().addAll(rockLabel,rockWeakness);
+		
+		HBox steel = new HBox(0);
+			MenuLabel steelLabel = new MenuLabel("Steel",typeWidth);
+			MenuLabel steelWeakness = new MenuLabel(Double.toString(typeChartScores[17]),weakWidth);
+			typeChartColorChanger(steelWeakness,typeChartScores[17]);
+			steel.getChildren().addAll(steelLabel,steelWeakness);
+		
+		HBox water = new HBox(0);
+			MenuLabel waterLabel = new MenuLabel("Water",typeWidth);
+			MenuLabel waterWeakness = new MenuLabel(Double.toString(typeChartScores[18]),weakWidth);
+			typeChartColorChanger(waterWeakness,typeChartScores[18]);
+			water.getChildren().addAll(waterLabel,waterWeakness);
+		typeChart.getChildren().addAll(bug,dark,dragon,electric,fairy,fighting,fire,flying,ghost,grass,ground,ice,normal,poison,psychic,rock,steel,water);
+	}
+	
+	private void typeChartColorChanger(MenuLabel label, double score)
+	{
+		if(score==0)
+		{
+			label.setFillColor(Color.BLACK);
+			label.setTextColor(Color.AQUA);
+		}
+		else if(score<-1.0)
+		{
+			label.setFillColor(Color.FIREBRICK);
+			label.setTextColor(Color.BLACK);
+		}
+		else if(score<0.0)
+		{
+			label.setFillColor(Color.CORAL);
+			label.setTextColor(Color.BLACK);
+		}
+		else if(score>1.0)
+		{
+			label.setFillColor(Color.LIME);
+			label.setTextColor(Color.BLACK);
+		}
+		else if(score>0.0)
+		{
+			label.setFillColor(Color.LAWNGREEN);
+			label.setTextColor(Color.BLACK);
+		}
+	}
 }

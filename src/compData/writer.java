@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import mathData.AGPokedex;
-import mathData.BSPokedex;
-import mathData.NUPokedex;
-import mathData.OUPokedex;
+//import mathData.BSPokedex;
+//import mathData.NUPokedex;
+//import mathData.OUPokedex;
 import mathData.Pokedex;
-import mathData.RUPokedex;
-import mathData.UUPokedex;
-import mathData.UbersPokedex;
+//import mathData.RUPokedex;
+//import mathData.UUPokedex;
+//import mathData.UbersPokedex;
 
 public class writer {
 	private static ArrayList<ArrayList<String>> table = new ArrayList<ArrayList<String>>();
@@ -162,7 +162,7 @@ public class writer {
 		}
 	}
 	
-	public static void writer(Pokedex pokedex)
+	public static void fileWriter(Pokedex pokedex)
 	{
 		try
 		{
@@ -337,7 +337,7 @@ public class writer {
 			if(respond.equals("N"))
 			{
 				rerun = false;
-				writer(pokedex);
+				fileWriter(pokedex);
 				scanner.close();
 				System.out.println("Done!");
 			}

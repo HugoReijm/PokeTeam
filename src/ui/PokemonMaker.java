@@ -7,10 +7,10 @@ import mathData.Pokedex;
 
 public class PokemonMaker 
 {
-	private static int[] battleMode;
-    private static ArrayList<String[]> team;
-    private static Pokedex pokedex;
-    private static BuilderMenu builderMenu;
+	private int[] battleMode;
+    private ArrayList<String[]> team;
+    private Pokedex pokedex;
+    private BuilderMenu builderMenu;
 	
 	public PokemonMaker(Pokedex pokedex, ArrayList<String[]> team, int[] battleMode, BuilderMenu builderMenu) 
     {
@@ -20,7 +20,7 @@ public class PokemonMaker
 		this.builderMenu = builderMenu;
     }
 
-	public static List<TeamMember> makeTeamList()
+	public List<TeamMember> makeTeamList()
 	{
 		List<TeamMember> list = new ArrayList<TeamMember>();
 		for(int i=0;i!=team.size();i++)
@@ -31,7 +31,7 @@ public class PokemonMaker
 		return list;
 	}
 	
-    public static List<Suggestion> makeSuggestionList()
+    public List<Suggestion> makeSuggestionList()
     {
     	List<Suggestion> list = new ArrayList<Suggestion>(10);
     	String[][] scores = UI.finalScores(10,pokedex,team,battleMode);

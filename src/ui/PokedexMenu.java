@@ -5,10 +5,9 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import mathData.Pokedex;
 import ui.InputField;
 import ui.MenuLabel;
@@ -32,17 +31,18 @@ public class PokedexMenu extends AbstractMenu {
     private ObservableList<Pokemon> observableList;
     private ListView<Pokemon> resScroll;
     private MenuButton btnBacktoTier;
-	private final String menuImagePath = "file:resources/kalosPokedex3.jpg";
-    private ImageView menuImage;
     
     private List<Pokemon> results = new ArrayList<Pokemon>();
     
     public PokedexMenu()
     {
-    	menuImage = new ImageView(new Image(menuImagePath));
-		menuImage.setOpacity(0.40);
-    	menuImage.setFitHeight(700);
-    	menuImage.setFitWidth(630);
+        Pokeball pb1 = new Pokeball(50);
+        pb1.setTranslateX(50);
+        pb1.setTranslateY(100);
+        
+        Pokeball pb2 = new Pokeball(50);
+        pb2.setTranslateX(480);
+        pb2.setTranslateY(100);
 
     	VBox menu = new VBox(8);
         menu.setTranslateX(215);
@@ -68,8 +68,12 @@ public class PokedexMenu extends AbstractMenu {
             clickBackButton();
         });
         
+        Rectangle bg = new Rectangle(630, 700);
+        bg.setFill(Color.AQUA);
+        bg.setOpacity(0.35);
+        
         menu.getChildren().addAll(tierLabel,nameInput,numberInput,type1Input,type2Input,btnSearch);
-        getChildren().addAll(menuImage,btnBacktoTier,menu,resDisplay);
+        getChildren().addAll(bg,pb1,pb2,btnBacktoTier,menu,resDisplay);
     }
     
     private void clickSearchButton()

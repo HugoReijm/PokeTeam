@@ -31,4 +31,14 @@ public class MenuLabel extends StackPane {
     {
     	name.setText(text);
     }
+    
+    public void setFillColor(Color color)
+    {
+    	bg.setFill(color);
+    }
+    
+    public void setTextColor(Color color)
+    {
+    	name.setTextFill(color);
+    }
 }

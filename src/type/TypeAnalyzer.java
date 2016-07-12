@@ -83,7 +83,7 @@ public class TypeAnalyzer {
 		return sum;
 	}
 	
-	private static double[] minusWeakness(double[] typeArray,ArrayList<ArrayList<Type>> newWRITable)
+	public static double[] minusWeakness(double[] typeArray,ArrayList<ArrayList<Type>> newWRITable)
 	{
 		for(int i=0;i!=newWRITable.get(0).size();i++)
 		{
@@ -168,7 +168,7 @@ public class TypeAnalyzer {
 		return typeArray;
 	}
 	
-	private static double[] plusResistance(double[] typeArray, ArrayList<ArrayList<Type>> newWRITable)
+	public static double[] plusResistance(double[] typeArray, ArrayList<ArrayList<Type>> newWRITable)
 	{
 		for(int i=0;i!=newWRITable.get(1).size();i++)
 		{
