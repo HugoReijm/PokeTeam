@@ -164,7 +164,7 @@ public class UI extends Application{
     	pokedexMenu.reset();
     }
     
-    public static String[][] finalScores(int quantity, Pokedex pokedex, ArrayList<String[]> team, int[] battleMode)
+    public static String[][] finalScores(int quantity, Pokedex pokedex, ArrayList<String[]> team, double[] battleMode)
 	{
     	int length = pokedex.getList().size();
     	ArrayList<String[]> finalScores = new ArrayList<String[]>(length);
@@ -340,7 +340,7 @@ public class UI extends Application{
         scene2 = new Scene(root2,maxWidth,maxHeight, Color.WHITE);
         scene3 = new Scene(root3,630,maxHeight, Color.WHITE);
         scene4 = new Scene(root4,1130,maxHeight, Color.WHITE);
-        //1230
+      
         sceneReload(primaryStage,scene1);
 	}
 }

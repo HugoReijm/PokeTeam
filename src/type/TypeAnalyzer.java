@@ -4,49 +4,96 @@ import java.util.ArrayList;
 
 public class TypeAnalyzer {
 
-	public static ArrayList<ArrayList<Type>> wriTable(ArrayList<Type> types){
+	public synchronized static ArrayList<ArrayList<Type>> wriTable(ArrayList<Type> types){
 		ArrayList<ArrayList<Type>> wriTable = new ArrayList<ArrayList<Type>>(2);
 		wriTable.add(new ArrayList<Type>());
 		wriTable.add(new ArrayList<Type>());
+		
+		ArrayList<Type[]> sections = new ArrayList<Type[]>();
 		for(int j=0;j!=types.size();j++)
 		{
-			ArrayList<String> w = types.get(j).getWeakness();
-			ArrayList<String> r = types.get(j).getResistance();
-			ArrayList<String> i = types.get(j).getImmunity();
-			for(int k=0;k!=w.size();k++){
-				wriTable.get(0).add(Type.toType(w.get(k)));
-			}
-			for(int k=0;k!=r.size();k++){
-				wriTable.get(1).add(Type.toType(r.get(k)));
-			}
-			for(int k=0;k!=i.size();k++){
-				wriTable.get(1).add(Type.toType(i.get(k)));
-				wriTable.get(1).add(Type.toType(i.get(k)));
+			if(j%2!=0)
+			{
+				Type[] s = new Type[2];
+				s[0] = types.get(j-1);
+				s[1] = types.get(j);
+				sections.add(s);
 			}
 		}
-		for(int i=0;i!=2;i++)
+		
+		for(int j=0;j!=sections.size();j++)
 		{
-			for(int j=wriTable.get(i).size()-1;j!=-1;j--)
+			ArrayList<ArrayList<Type>> tempWRI = new ArrayList<ArrayList<Type>>(2);
+			tempWRI.add(new ArrayList<Type>());
+			tempWRI.add(new ArrayList<Type>());
+			
+			for(int k=0;k!=2;k++)
 			{
-				if(wriTable.get(i).get(j)==null)
-				{
-					wriTable.get(i).remove(wriTable.get(i).get(j));
-					//break;
+				ArrayList<String> w = sections.get(j)[k].getWeakness();
+				ArrayList<String> r = sections.get(j)[k].getResistance();
+				
+				for(int m=0;m!=w.size();m++){
+					tempWRI.get(0).add(Type.toType(w.get(m)));
+				}
+				for(int m=0;m!=r.size();m++){
+					tempWRI.get(1).add(Type.toType(r.get(m)));
 				}
 			}
+			tempWRI=simplify(tempWRI);
+			
+			for(int k=0;k!=2;k++)
+			{
+				ArrayList<String> i = sections.get(j)[k].getImmunity();
+				if(i!=null)
+				{
+					for(int m=0;m!=i.size();m++)
+					{
+						for(int n=tempWRI.get(0).size()-1;n!=-1;n--)
+						{
+							if(tempWRI.get(0).get(n)!=null&&tempWRI.get(0).get(n).getName().equals(i.get(m)))
+							{
+								tempWRI.get(0).remove(tempWRI.get(0).get(n));
+							}
+						}
+						for(int n=tempWRI.get(1).size()-1;n!=-1;n--)
+						{
+							if(tempWRI.get(1).get(n)!=null&&tempWRI.get(1).get(n).getName().equals(i.get(m)))
+							{
+								tempWRI.get(1).remove(tempWRI.get(1).get(n));
+							}
+						}
+						tempWRI.get(1).add(Type.toType(i.get(m)));
+						tempWRI.get(1).add(Type.toType(i.get(m)));
+					}
+				}
+			}
+			
+			wriTable.get(0).addAll(tempWRI.get(0));
+			wriTable.get(1).addAll(tempWRI.get(1));
 		}
 		return simplify(wriTable);
 	}
 	
 	private static ArrayList<ArrayList<Type>> simplify(ArrayList<ArrayList<Type>> wriTable){
-		for(int i=wriTable.get(0).size()-1;i!=-1;i--)
+		for(int k=0;k!=2;k++)
 		{
-			for(int j=wriTable.get(1).size()-1;j!=-1;j--)
+			for(int m=wriTable.get(k).size()-1;m!=-1;m--)
 			{
-				if(wriTable.get(0).get(i).getName().equals(wriTable.get(1).get(j).getName()))
+				if(wriTable.get(k).get(m)==null)
 				{
-					wriTable.get(1).remove(wriTable.get(1).get(j));
-					wriTable.get(0).remove(wriTable.get(0).get(i));
+					wriTable.get(k).remove(wriTable.get(k).get(m));
+				}
+			}
+		}
+		
+		for(int k=wriTable.get(0).size()-1;k!=-1;k--)
+		{
+			for(int l=wriTable.get(1).size()-1;l!=-1;l--)
+			{
+				if(wriTable.get(0).get(k).getName().equals(wriTable.get(1).get(l).getName()))
+				{
+					wriTable.get(1).remove(wriTable.get(1).get(l));
+					wriTable.get(0).remove(wriTable.get(0).get(k));
 					break;
 				}
 			}

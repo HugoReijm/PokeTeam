@@ -1,7 +1,6 @@
 package mathData;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,8 +12,7 @@ public class RUPokedex extends Pokedex{
 	public RUPokedex(){
 		try 
 		{
-			String currentDirectory = new File("").getAbsolutePath();
-			FileReader inputPath = new FileReader(currentDirectory+"\\resources\\pokedex\\"+tier+".txt");
+			FileReader inputPath = new FileReader("resources/pokedex/"+tier+".txt");
 			BufferedReader bufRead = new BufferedReader(inputPath);
 			String line = null;
 			while((line=bufRead.readLine())!=null)

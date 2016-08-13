@@ -8,7 +8,7 @@ import type.TypeAnalyzer;
 
 public class MathAnalyzer {
 	
-	public static ArrayList<String[]> mathScores(int[] battleMode,ArrayList<String[]> team, Pokedex pokedex)
+	public static ArrayList<String[]> mathScores(double[] battleMode,ArrayList<String[]> team, Pokedex pokedex)
 	{
 		ArrayList<String[]> pokeList = pokedex.getList();
 		ArrayList<String[]> scores = new ArrayList<String[]>();
@@ -74,7 +74,7 @@ public class MathAnalyzer {
 		return scores;
 	}
 	
-	public static ArrayList<String[]> statScore(Pokedex pokedex, ArrayList<String[]> team, int[] battleMode)
+	public static ArrayList<String[]> statScore(Pokedex pokedex, ArrayList<String[]> team, double[] battleMode)
 	{
 		ArrayList<String[]> pokeList = pokedex.getList();
 		ArrayList<String[]> scores = new ArrayList<String[]>();
@@ -94,7 +94,7 @@ public class MathAnalyzer {
 		return scores;
 	}
 	
-	private static double[] findMaxMin(int[] battleMode,ArrayList<String[]> pokeList,ArrayList<String[]> team, int[] totalAverages )
+	private static double[] findMaxMin(double[] battleMode,ArrayList<String[]> pokeList,ArrayList<String[]> team, int[] totalAverages )
 	{
 		double[] MaxMin = new double[4];
 		MaxMin[0] = 0.0;

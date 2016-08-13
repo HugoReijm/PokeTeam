@@ -30,8 +30,8 @@ public class writer {
 		{
 			String tier = pokedex.getTier();
 			int size=pokedex.getList().size();
-			File file = new File(currentDirectory+"\\resources\\tables\\"+tier+"data.txt");
-			File logFile = new File(currentDirectory+"\\resources\\tables\\"+tier+"log.txt");
+			File file = new File(currentDirectory+"/resources/tables/"+tier+"data.txt");
+			File logFile = new File(currentDirectory+"/resources/tables/"+tier+"log.txt");
 			System.out.println(file.getCanonicalPath());
 			System.out.println(logFile.getCanonicalPath());
 			FileWriter output = new FileWriter(file);
@@ -64,7 +64,7 @@ public class writer {
 		{
 			String tier = pokedex.getTier();
 			int size=pokedex.getList().size();
-			File backupFile = new File(currentDirectory+"\\resources\\tables\\"+tier+"backup.txt");
+			File backupFile = new File(currentDirectory+"/resources/tables/"+tier+"backup.txt");
 			System.out.println(backupFile.getCanonicalPath());
 			FileWriter backupOutput = new FileWriter(backupFile);
 			BufferedWriter backupBuf = new BufferedWriter(backupOutput);
@@ -91,9 +91,9 @@ public class writer {
 		try 
 		{
 			String tier = pokedex.getTier();
-			FileReader inputPath = new FileReader(currentDirectory+"\\resources\\tables\\"+tier+"data.txt");
-			FileReader backupPath = new FileReader(currentDirectory+"\\resources\\tables\\"+tier+"backup.txt");
-			FileReader logPath = new FileReader(currentDirectory+"\\resources\\tables\\"+tier+"log.txt");
+			FileReader inputPath = new FileReader(currentDirectory+"/resources/tables/"+tier+"data.txt");
+			FileReader backupPath = new FileReader(currentDirectory+"/resources/tables/"+tier+"backup.txt");
+			FileReader logPath = new FileReader(currentDirectory+"/resources/tables/"+tier+"log.txt");
 			BufferedReader bufRead = new BufferedReader(inputPath);
 			BufferedReader backupBuf = new BufferedReader(backupPath);
 			BufferedReader logBuf = new BufferedReader(logPath);
@@ -168,9 +168,9 @@ public class writer {
 		{
 			String tier = pokedex.getTier();
 			int size=pokedex.getList().size();
-			File file = new File(currentDirectory+"\\resources\\tables\\"+tier+"data.txt");
-			File backupFile = new File(currentDirectory+"\\resources\\tables\\"+tier+"backup.txt");
-			File logFile = new File(currentDirectory+"\\resources\\tables\\"+tier+"log.txt");
+			File file = new File(currentDirectory+"/resources/tables/"+tier+"data.txt");
+			File backupFile = new File(currentDirectory+"/resources/tables/"+tier+"backup.txt");
+			File logFile = new File(currentDirectory+"/resources/tables/"+tier+"log.txt");
 			FileWriter output = new FileWriter(file);
 			FileWriter backupOutput = new FileWriter(backupFile);
 			FileWriter logOutput = new FileWriter(logFile);

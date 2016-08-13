@@ -138,7 +138,7 @@ public class StatsAnalyzer {
 		return statsAverages;
 	}
 	
-	public static double statsScore(int[] battleMode, ArrayList<String[]> team, int[] totalAverages, String[] pokemon)
+	public static double statsScore(double[] battleMode, ArrayList<String[]> team, int[] totalAverages, String[] pokemon)
 	{	
 		ArrayList<String[]> tempTeam = new ArrayList<String[]>();
 		tempTeam.addAll(team);

@@ -2,6 +2,7 @@ package ui;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -16,33 +17,33 @@ import ui.MenuButton;
 
 public class BuilderMenu extends AbstractMenu {
 	private int uniformWidth=200;
-	private MenuLabel tierLabel;
-	private MenuButton btnDefensive;
-	private MenuButton btnBalanced;
-	private MenuButton btnAggressive;
+	private final MenuLabel tierLabel;
+	private final MenuButton btnDefensive;
+	private final MenuButton btnBalanced;
+	private final MenuButton btnAggressive;
 	private InputField teamMemberIn;
-	private VBox teamMemberInput;
-	private MenuButton btnCalculate;
-	private VBox teamDisplay;
-	private MenuLabel teamLabel;
-	private HBox teamLabels;
-	private VBox suggestionDisplay;
-	private MenuLabel suggestionLabel;
-	private HBox suggestionButtons;
-	private MenuButton typeToggleButton;
-	private MenuButton statsToggleButton;
-	private MenuButton popToggleButton;
-	private MenuButton btnBacktoTier;
-	private MenuButton btnBacktoStart;
-	private VBox typeChart;
-	private HBox typeLabels;
-	private MenuLabel types;
-	private MenuLabel typeScores;
+	private final VBox teamMemberInput;
+	private final MenuButton btnCalculate;
+	private final VBox teamDisplay;
+	private final MenuLabel teamLabel;
+	private final HBox teamLabels;
+	private final VBox suggestionDisplay;
+	private final MenuLabel suggestionLabel;
+	private final HBox suggestionButtons;
+	private final MenuButton typeToggleButton;
+	private final MenuButton statsToggleButton;
+	private final MenuButton popToggleButton;
+	private final MenuButton btnBacktoTier;
+	private final MenuButton btnBacktoStart;
+	private final VBox typeChart;
+	private final HBox typeLabels;
+	private final MenuLabel types;
+	private final MenuLabel typeScores;
 	private final String menuImagePath = "file:resources/allPokemon.png";
     private ImageView menuImage;
 	
-	private ArrayList<String[]> team = new ArrayList<String[]>(6);
-	private int[] battleMode = new int[6];
+	private final ArrayList<String[]> team = new ArrayList<String[]>(6);
+	private final double[] battleMode = new double[6];
 	private boolean battleModeChosen=false;
 	private List<TeamMember> teamList = new ArrayList<TeamMember>();
 	private List<Suggestion> suggestionList = new ArrayList<Suggestion>();
@@ -71,11 +72,21 @@ public class BuilderMenu extends AbstractMenu {
         menu.setTranslateX(450-uniformWidth/2);
         menu.setTranslateY(200);
         
+        teamLabel = new MenuLabel("Current Team", 430);
+        teamLabels = new HBox(0);
         teamDisplay = makeTeamDisplay();
         
+        suggestionLabel = new MenuLabel("Suggestions", 430);
+        suggestionButtons = new HBox(0);
+        typeToggleButton = new MenuButton("Type Score",80);
+        statsToggleButton = new MenuButton("Stats Score",80);
+        popToggleButton = new MenuButton("Popularity",77);
         suggestionDisplay = makeSuggDisplay();
         
         btnDefensive = new MenuButton("Defensive",uniformWidth/2);
+        btnBalanced = new MenuButton("Balanced",uniformWidth/2);
+        btnAggressive = new MenuButton("Aggressive",uniformWidth/2);
+        
         btnDefensive.setOnMouseClicked(event -> {
         	btnDefensive.setColor(Color.AQUA);
         	btnBalanced.setColor(Color.BLACK);
@@ -83,7 +94,6 @@ public class BuilderMenu extends AbstractMenu {
         	clickBattleModeButton("defensive");
         });
         
-        btnBalanced = new MenuButton("Balanced",uniformWidth/2);
         btnBalanced.setOnMouseClicked(event -> {
         	btnDefensive.setColor(Color.BLACK);
         	btnBalanced.setColor(Color.AQUA);
@@ -91,7 +101,6 @@ public class BuilderMenu extends AbstractMenu {
         	clickBattleModeButton("balanced");
         });
         
-        btnAggressive = new MenuButton("Aggressive",uniformWidth/2);
         btnAggressive.setOnMouseClicked(event -> {
         	btnDefensive.setColor(Color.BLACK);
         	btnBalanced.setColor(Color.BLACK);
@@ -132,6 +141,10 @@ public class BuilderMenu extends AbstractMenu {
         
         MenuLabel typeChartLabel = new MenuLabel("Current Team Type Chart",200);
         typeChartLabel.setTranslateX(920);
+		typeChart = new VBox(5);
+        typeLabels = new HBox(0);
+        types = new MenuLabel("Type",100);
+        typeScores = new MenuLabel("Type Scores",100);
         makeTypeChart(100,100);
         
         backMenu.getChildren().addAll(btnBacktoTier, btnBacktoStart);
@@ -145,30 +158,30 @@ public class BuilderMenu extends AbstractMenu {
     	battleModeChosen = true;
     	if(mode.equals("defensive"))
     	{
-	    	battleMode[0]=9/5;
-	    	battleMode[1]=1/5;
-	    	battleMode[2]=9/5;
-	    	battleMode[3]=1/5;
-	    	battleMode[4]=9/5;
-	    	battleMode[5]=1/5;
+	    	battleMode[0]=(double)9/5;
+	    	battleMode[1]=(double)1/5;
+	    	battleMode[2]=(double)9/5;
+	    	battleMode[3]=(double)1/5;
+	    	battleMode[4]=(double)9/5;
+	    	battleMode[5]=(double)1/5;
     	}
     	else if(mode.equals("balanced"))
     	{
-	    	battleMode[0]=1;
-	    	battleMode[1]=1;
-	    	battleMode[2]=1;
-	    	battleMode[3]=1;
-	    	battleMode[4]=1;
-	    	battleMode[5]=1;
+	    	battleMode[0]=(double)1;
+	    	battleMode[1]=(double)1;
+	    	battleMode[2]=(double)1;
+	    	battleMode[3]=(double)1;
+	    	battleMode[4]=(double)1;
+	    	battleMode[5]=(double)1;
     	}
     	else if(mode.equals("aggressive"))
     	{
-    		battleMode[0]=1/5;
-	    	battleMode[1]=9/5;
-	    	battleMode[2]=1/5;
-	    	battleMode[3]=9/5;
-	    	battleMode[4]=1/5;
-	    	battleMode[5]=9/5;
+    		battleMode[0]=(double)1/5;
+	    	battleMode[1]=(double)9/5;
+	    	battleMode[2]=(double)1/5;
+	    	battleMode[3]=(double)9/5;
+	    	battleMode[4]=(double)1/5;
+	    	battleMode[5]=(double)9/5;
     	}
     }
     
@@ -234,8 +247,6 @@ public class BuilderMenu extends AbstractMenu {
 		teamBox.setTranslateX(10);
         teamBox.setTranslateY(320);
         
-        teamLabel = new MenuLabel("Current Team", 430);
-        teamLabels = new HBox(0);
         MenuLabel name = new MenuLabel("Name",200);
         MenuLabel type1 = new MenuLabel("Type #1",100);
         MenuLabel type2 = new MenuLabel("Type #2",100);
@@ -251,11 +262,8 @@ public class BuilderMenu extends AbstractMenu {
         suggs.setTranslateX(460);
         suggs.setTranslateY(320);
         
-        suggestionLabel = new MenuLabel("Suggestions", 430);
-        suggestionButtons = new HBox(0);
         MenuLabel name = new MenuLabel("Name",193);
         
-        typeToggleButton = new MenuButton("Type Score",80);
         typeToggleButton.setFont(15);
         typeToggleButton.setOnMouseClicked(event -> {
     		UI.setTypeBool(!UI.getTypeBool());
@@ -281,7 +289,6 @@ public class BuilderMenu extends AbstractMenu {
     		}
         });
         
-        statsToggleButton = new MenuButton("Stats Score",80);
         statsToggleButton.setFont(15);
         statsToggleButton.setOnMouseClicked(event -> {
         	UI.setStatsBool(!UI.getStatsBool());
@@ -307,7 +314,6 @@ public class BuilderMenu extends AbstractMenu {
         	}
         });
         
-        popToggleButton = new MenuButton("Popularity",77);
         popToggleButton.setFont(15);
         popToggleButton.setOnMouseClicked(event -> {
         	UI.setPopBool(!UI.getPopBool());
@@ -341,12 +347,8 @@ public class BuilderMenu extends AbstractMenu {
 	
 	private void makeTypeChart(int typeWidth, int weakWidth)
 	{
-		typeChart = new VBox(5);
         typeChart.setTranslateX(920);
         typeChart.setTranslateY(30);
-        typeLabels = new HBox(0);
-        types = new MenuLabel("Type",typeWidth);
-        typeScores = new MenuLabel("Type Scores",weakWidth);
         typeLabels.getChildren().addAll(types,typeScores);
         typeChart.getChildren().add(typeLabels);
         typeReload(typeWidth,weakWidth);
@@ -406,7 +408,10 @@ public class BuilderMenu extends AbstractMenu {
 		typeReload(100,100);
 		teamList.clear();
 		suggestionList.clear();
-    	battleMode=new int[6];
+    	for(int i=0;i!=battleMode.length;i++)
+    	{
+    		battleMode[i]=0.0;
+    	}
     	battleModeChosen=false;
     	teamMemberIn.setInput("");
     	

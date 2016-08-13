@@ -7,12 +7,12 @@ import mathData.Pokedex;
 
 public class PokemonMaker 
 {
-	private int[] battleMode;
+	private double[] battleMode;
     private ArrayList<String[]> team;
     private Pokedex pokedex;
     private BuilderMenu builderMenu;
 	
-	public PokemonMaker(Pokedex pokedex, ArrayList<String[]> team, int[] battleMode, BuilderMenu builderMenu) 
+	public PokemonMaker(Pokedex pokedex, ArrayList<String[]> team, double[] battleMode, BuilderMenu builderMenu) 
     {
 		this.pokedex=pokedex;
 		this.team=team;
